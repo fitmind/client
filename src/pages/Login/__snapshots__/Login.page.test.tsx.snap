@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginPage should match the snapshot 1`] = `
+<div
+  className="container-fluid"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-3"
+    />
+    <div
+      className="col"
+    >
+      <div
+        className="sc-bdVaJa fOsasd"
+      >
+        <div
+          className="card border-secondary"
+        >
+          <h5
+            className="card-header"
+          >
+            Admin Login
+          </h5>
+          <div
+            className="card-body"
+          >
+            <p
+              className="card-text"
+            >
+              Please enter with your admin login credentials
+            </p>
+            <form
+              className=""
+              onSubmit={[Function]}
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  className="form-label"
+                  htmlFor="formBasicEmail"
+                >
+                  Email address
+                </label>
+                <input
+                  className="form-control"
+                  id="formBasicEmail"
+                  placeholder="Enter email"
+                  type="email"
+                />
+                <small
+                  className="text-muted form-text"
+                >
+                  You can only login as an admin.
+                </small>
+              </div>
+              <div
+                className="form-group"
+              >
+                <label
+                  className="form-label"
+                  htmlFor="formBasicPassword"
+                >
+                  Password
+                </label>
+                <input
+                  className="form-control"
+                  id="formBasicPassword"
+                  placeholder="Password"
+                  type="password"
+                />
+              </div>
+              <button
+                className="btn btn-outline-primary"
+                disabled={false}
+                type="submit"
+              >
+                Login
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="col-md-3"
+    />
+  </div>
+</div>
+`;

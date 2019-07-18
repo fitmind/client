@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFoundPage should match the snapshot 1`] = `
+<div
+  className="jumbotron jumbotron-fluid"
+>
+  <div
+    className="container"
+  >
+    <h1>
+      Page not found :(
+    </h1>
+    <p>
+      Please navigate back to or login again
+    </p>
+  </div>
+</div>
+`;

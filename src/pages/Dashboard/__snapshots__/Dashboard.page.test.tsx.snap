@@ -1,0 +1,878 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DashboardPage should match the snapshot 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col"
+    >
+      <div
+        className="jumbotron"
+      >
+        <h1>
+          Welcome Ada!
+        </h1>
+        <p>
+          Here you will be able to review the pending listings and experts waiting to be approved.
+        </p>
+      </div>
+      <div>
+        <div
+          className="sc-bdVaJa fOsasd"
+        >
+          <h2>
+            Pending personal trainer experts
+          </h2>
+          <table
+            className="table table-bordered table-hover"
+          >
+            <thead>
+              <tr>
+                <th>
+                  #
+                </th>
+                <th>
+                  Full Name
+                </th>
+                <th>
+                  Email
+                </th>
+                <th>
+                  Phone
+                </th>
+                <th>
+                  Location
+                </th>
+                <th>
+                  Submited Date
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  0
+                </td>
+                <td>
+                  Diego Romero
+                </td>
+                <td>
+                  diego@mail.com
+                </td>
+                <td>
+                  +44 8234523420
+                </td>
+                <td>
+                  EC1V7AL
+                </td>
+                <td>
+                  2019-07-11T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  1
+                </td>
+                <td>
+                  Joe T
+                </td>
+                <td>
+                  joe@mail.com
+                </td>
+                <td>
+                  +44 8234523420
+                </td>
+                <td>
+                  EC1V7AL
+                </td>
+                <td>
+                  2019-07-11T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  2
+                </td>
+                <td>
+                  Mark Stickley
+                </td>
+                <td>
+                  adsasada@mail.com
+                </td>
+                <td>
+                  +44 8234523420
+                </td>
+                <td>
+                  EC1V7AL
+                </td>
+                <td>
+                  2019-07-11T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  3
+                </td>
+                <td>
+                  Jack Flowers
+                </td>
+                <td>
+                  flowers@mail.com
+                </td>
+                <td>
+                  +44 8234523420
+                </td>
+                <td>
+                  EC1V7AL
+                </td>
+                <td>
+                  2019-07-11T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  4
+                </td>
+                <td>
+                  Chris Min
+                </td>
+                <td>
+                  Cadsagrfgd@mail.com
+                </td>
+                <td>
+                  +44 8234523420
+                </td>
+                <td>
+                  EC1V7AL
+                </td>
+                <td>
+                  2019-07-11T11:42:36.108Z
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          className="sc-bdVaJa fOsasd"
+        >
+          <h2>
+            Pending personal trainer listings
+          </h2>
+          <table
+            className="table table-bordered table-hover"
+          >
+            <thead>
+              <tr>
+                <th>
+                  #
+                </th>
+                <th>
+                  Coach name
+                </th>
+                <th>
+                  Listing Name
+                </th>
+                <th>
+                  Email
+                </th>
+                <th>
+                  Submitted
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  0
+                </td>
+                <td>
+                  Diego
+                </td>
+                <td>
+                  Personal trainer with gym provided
+                </td>
+                <td>
+                  diego@mail.com
+                </td>
+                <td>
+                  2019-07-01T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  1
+                </td>
+                <td>
+                  Dan
+                </td>
+                <td>
+                  Personal trainer with gym provided
+                </td>
+                <td>
+                  xxx@mail.com
+                </td>
+                <td>
+                  2019-07-01T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  2
+                </td>
+                <td>
+                  Marcela
+                </td>
+                <td>
+                  Personal trainer with gym provided
+                </td>
+                <td>
+                  yyyy@mail.com
+                </td>
+                <td>
+                  2019-07-01T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  3
+                </td>
+                <td>
+                  Chris
+                </td>
+                <td>
+                  Personal trainer with gym provided
+                </td>
+                <td>
+                  ttttt@mail.com
+                </td>
+                <td>
+                  2019-07-01T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  4
+                </td>
+                <td>
+                  Shankar
+                </td>
+                <td>
+                  Personal trainer with gym provided
+                </td>
+                <td>
+                  ppppp@mail.com
+                </td>
+                <td>
+                  2019-07-01T11:42:36.108Z
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div
+          className="sc-bdVaJa fOsasd"
+        >
+          <h2>
+            Yoga trainer experts
+          </h2>
+          <table
+            className="table table-bordered table-hover"
+          >
+            <thead>
+              <tr>
+                <th>
+                  #
+                </th>
+                <th>
+                  Full Name
+                </th>
+                <th>
+                  Email
+                </th>
+                <th>
+                  Phone
+                </th>
+                <th>
+                  Location
+                </th>
+                <th>
+                  Submited Date
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  0
+                </td>
+                <td>
+                  Diego Romero
+                </td>
+                <td>
+                  diego@mail.com
+                </td>
+                <td>
+                  +44 8234523420
+                </td>
+                <td>
+                  EC1V7AL
+                </td>
+                <td>
+                  2019-07-11T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  1
+                </td>
+                <td>
+                  Joe T
+                </td>
+                <td>
+                  joe@mail.com
+                </td>
+                <td>
+                  +44 8234523420
+                </td>
+                <td>
+                  EC1V7AL
+                </td>
+                <td>
+                  2019-07-11T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  2
+                </td>
+                <td>
+                  Mark Stickley
+                </td>
+                <td>
+                  adsasada@mail.com
+                </td>
+                <td>
+                  +44 8234523420
+                </td>
+                <td>
+                  EC1V7AL
+                </td>
+                <td>
+                  2019-07-11T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  3
+                </td>
+                <td>
+                  Jack Flowers
+                </td>
+                <td>
+                  flowers@mail.com
+                </td>
+                <td>
+                  +44 8234523420
+                </td>
+                <td>
+                  EC1V7AL
+                </td>
+                <td>
+                  2019-07-11T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  4
+                </td>
+                <td>
+                  Chris Min
+                </td>
+                <td>
+                  Cadsagrfgd@mail.com
+                </td>
+                <td>
+                  +44 8234523420
+                </td>
+                <td>
+                  EC1V7AL
+                </td>
+                <td>
+                  2019-07-11T11:42:36.108Z
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          className="sc-bdVaJa fOsasd"
+        >
+          <h2>
+            yoga trainer listings
+          </h2>
+          <table
+            className="table table-bordered table-hover"
+          >
+            <thead>
+              <tr>
+                <th>
+                  #
+                </th>
+                <th>
+                  Coach name
+                </th>
+                <th>
+                  Listing Name
+                </th>
+                <th>
+                  Email
+                </th>
+                <th>
+                  Submitted
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  0
+                </td>
+                <td>
+                  Diego
+                </td>
+                <td>
+                  Personal trainer with gym provided
+                </td>
+                <td>
+                  diego@mail.com
+                </td>
+                <td>
+                  2019-07-01T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  1
+                </td>
+                <td>
+                  Dan
+                </td>
+                <td>
+                  Personal trainer with gym provided
+                </td>
+                <td>
+                  xxx@mail.com
+                </td>
+                <td>
+                  2019-07-01T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  2
+                </td>
+                <td>
+                  Marcela
+                </td>
+                <td>
+                  Personal trainer with gym provided
+                </td>
+                <td>
+                  yyyy@mail.com
+                </td>
+                <td>
+                  2019-07-01T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  3
+                </td>
+                <td>
+                  Chris
+                </td>
+                <td>
+                  Personal trainer with gym provided
+                </td>
+                <td>
+                  ttttt@mail.com
+                </td>
+                <td>
+                  2019-07-01T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  4
+                </td>
+                <td>
+                  Shankar
+                </td>
+                <td>
+                  Personal trainer with gym provided
+                </td>
+                <td>
+                  ppppp@mail.com
+                </td>
+                <td>
+                  2019-07-01T11:42:36.108Z
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div
+          className="sc-bdVaJa fOsasd"
+        >
+          <h2>
+            Life coach trainer experts
+          </h2>
+          <table
+            className="table table-bordered table-hover"
+          >
+            <thead>
+              <tr>
+                <th>
+                  #
+                </th>
+                <th>
+                  Full Name
+                </th>
+                <th>
+                  Email
+                </th>
+                <th>
+                  Phone
+                </th>
+                <th>
+                  Location
+                </th>
+                <th>
+                  Submited Date
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  0
+                </td>
+                <td>
+                  Diego Romero
+                </td>
+                <td>
+                  diego@mail.com
+                </td>
+                <td>
+                  +44 8234523420
+                </td>
+                <td>
+                  EC1V7AL
+                </td>
+                <td>
+                  2019-07-11T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  1
+                </td>
+                <td>
+                  Joe T
+                </td>
+                <td>
+                  joe@mail.com
+                </td>
+                <td>
+                  +44 8234523420
+                </td>
+                <td>
+                  EC1V7AL
+                </td>
+                <td>
+                  2019-07-11T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  2
+                </td>
+                <td>
+                  Mark Stickley
+                </td>
+                <td>
+                  adsasada@mail.com
+                </td>
+                <td>
+                  +44 8234523420
+                </td>
+                <td>
+                  EC1V7AL
+                </td>
+                <td>
+                  2019-07-11T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  3
+                </td>
+                <td>
+                  Jack Flowers
+                </td>
+                <td>
+                  flowers@mail.com
+                </td>
+                <td>
+                  +44 8234523420
+                </td>
+                <td>
+                  EC1V7AL
+                </td>
+                <td>
+                  2019-07-11T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  4
+                </td>
+                <td>
+                  Chris Min
+                </td>
+                <td>
+                  Cadsagrfgd@mail.com
+                </td>
+                <td>
+                  +44 8234523420
+                </td>
+                <td>
+                  EC1V7AL
+                </td>
+                <td>
+                  2019-07-11T11:42:36.108Z
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          className="sc-bdVaJa fOsasd"
+        >
+          <h2>
+            Life coach listings
+          </h2>
+          <table
+            className="table table-bordered table-hover"
+          >
+            <thead>
+              <tr>
+                <th>
+                  #
+                </th>
+                <th>
+                  Coach name
+                </th>
+                <th>
+                  Listing Name
+                </th>
+                <th>
+                  Email
+                </th>
+                <th>
+                  Submitted
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  0
+                </td>
+                <td>
+                  Diego
+                </td>
+                <td>
+                  Personal trainer with gym provided
+                </td>
+                <td>
+                  diego@mail.com
+                </td>
+                <td>
+                  2019-07-01T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  1
+                </td>
+                <td>
+                  Dan
+                </td>
+                <td>
+                  Personal trainer with gym provided
+                </td>
+                <td>
+                  xxx@mail.com
+                </td>
+                <td>
+                  2019-07-01T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  2
+                </td>
+                <td>
+                  Marcela
+                </td>
+                <td>
+                  Personal trainer with gym provided
+                </td>
+                <td>
+                  yyyy@mail.com
+                </td>
+                <td>
+                  2019-07-01T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  3
+                </td>
+                <td>
+                  Chris
+                </td>
+                <td>
+                  Personal trainer with gym provided
+                </td>
+                <td>
+                  ttttt@mail.com
+                </td>
+                <td>
+                  2019-07-01T11:42:36.108Z
+                </td>
+              </tr>
+              <tr
+                className="sc-bwzfXH ivdGIV"
+                onClick={[Function]}
+              >
+                <td>
+                  4
+                </td>
+                <td>
+                  Shankar
+                </td>
+                <td>
+                  Personal trainer with gym provided
+                </td>
+                <td>
+                  ppppp@mail.com
+                </td>
+                <td>
+                  2019-07-01T11:42:36.108Z
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
