@@ -1,8 +1,9 @@
 # Fitmind Client
-<!-- [![Build Status](https://travis-ci.org/fitmind/admin-client.svg?branch=master)](https://travis-ci.org/fitmind/admin-client)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/61011fa2-eb4b-4fd9-8c31-e94f16f373e7/deploy-status)](https://app.netlify.com/sites/fitmind-admin/deploys) -->
 
-### Installing dependenceis
+[![Build Status](https://travis-ci.org/fitmind/client.svg?branch=master)](https://travis-ci.org/fitmind/client)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e17387ae-772b-43ee-b438-64a53b39624c/deploy-status)](https://app.netlify.com/sites/distracted-torvalds-9fe055/deploys)
+
+### Installing dependencies
 
 ```bash
 yarn
