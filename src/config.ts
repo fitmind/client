@@ -8,9 +8,9 @@ const CONFIG = {
         customerSignUp: '/sign-up',
         customerDashboard: '/dashboard',
         expert: '/expert/:id',
-        expertLogin: '/expert-login',
-        expertSignUp: '/expert-sign-up',
-        expertDashboard: '/expert/dashboard',
+        expertLogin: '/experts-login',
+        expertSignUp: '/experts-sign-up',
+        expertDashboard: '/experts/dashboard',
     },
 };
 

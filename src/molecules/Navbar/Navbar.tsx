@@ -25,25 +25,25 @@ const NavBar: React.FC<allProps> = ({ expert, customerUser, history }) => (
             </Nav>
             {customerUser._id && (
                 <ButtonGroup className="mr-2">
-                    <Button variant="outline-primary" onClick={() => history.push(CONFIG.routes.home)}>
+                    <Button variant="outline-primary" onClick={() => history.push(CONFIG.routes.customerDashboard)}>
                         Dashboard
                     </Button>
                 </ButtonGroup>
             )}
             {!customerUser._id && (
                 <ButtonGroup className="mr-2">
-                    <Button variant="outline-primary" onClick={() => history.push(CONFIG.routes.home)}>
+                    <Button variant="outline-primary" onClick={() => history.push(CONFIG.routes.customerLogin)}>
                         Customers
                     </Button>
                 </ButtonGroup>
             )}
             {expert._id && (
-                <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.home)}>
+                <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.expertDashboard)}>
                     Dashboard
                 </Button>
             )}
             {!expert._id && (
-                <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.home)}>
+                <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.expertLogin)}>
                     Experts
                 </Button>
             )}

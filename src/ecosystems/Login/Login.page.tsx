@@ -3,13 +3,24 @@ import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { withRouter, RouteComponentProps } from 'react-router';
 import styled from 'styled-components';
 import CONFIG from '../../config';
+import { connect } from 'react-redux';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 
-interface LoginStateProps {
-    email: string;
-    password: string;
-}
+const LoginSchema = Yup.object().shape({
+    password: Yup.string()
+        .min(6, 'Too Short!')
+        .max(24, 'Too Long!')
+        .required('Required'),
+    email: Yup.string()
+        .email('Invalid email')
+        .required('Required'),
+});
 
-export class LoginPage extends React.Component<RouteComponentProps, LoginStateProps> {
+export class LoginPage extends React.Component<RouteComponentProps> {
+    public componentDidMount() {
+        // Needs to logout both types of user
+    }
     public onSubmit = (e: FormEvent) => {
         e.preventDefault();
         this.props.history.push('/dashboard');
@@ -21,27 +32,75 @@ export class LoginPage extends React.Component<RouteComponentProps, LoginStatePr
                     <Col md={4} />
                     <Col>
                         <CardWrapper>
-                            <Card border="secondary">
+                            <Card>
                                 <Card.Header as="h5">Login</Card.Header>
                                 <Card.Body>
                                     <Card.Text>Please enter with your admin login credentials</Card.Text>
-                                    <Form onSubmit={this.onSubmit}>
-                                        <Form.Group controlId="formBasicEmail">
-                                            <Form.Label>Email address</Form.Label>
-                                            <Form.Control type="email" placeholder="Enter email" />
-                                        </Form.Group>
-
-                                        <Form.Group controlId="formBasicPassword">
-                                            <Form.Label>Password</Form.Label>
-                                            <Form.Control type="password" placeholder="Password" />
-                                            <Form.Text className="text-muted">
-                                                Password needs to have numbers and letters
-                                            </Form.Text>
-                                        </Form.Group>
-                                        <Button variant="outline-primary" type="submit" block={true}>
-                                            Login
-                                        </Button>
-                                    </Form>
+                                    <Formik
+                                        initialValues={{ email: 'hola@gmail.com', password: '' }}
+                                        validationSchema={LoginSchema}
+                                        onSubmit={(values, actions) => {
+                                            console.log(values);
+                                            console.log(actions);
+                                        }}
+                                        render={({
+                                            values,
+                                            errors,
+                                            touched,
+                                            handleBlur,
+                                            handleChange,
+                                            handleSubmit,
+                                            isSubmitting,
+                                        }) => (
+                                            <Form noValidate onSubmit={handleSubmit}>
+                                                <Form.Group>
+                                                    <Form.Label>Email address</Form.Label>
+                                                    <Form.Control
+                                                        type="email"
+                                                        name="email"
+                                                        placeholder="Enter email"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values.email}
+                                                        isValid={touched.email && !errors.email}
+                                                        isInvalid={!!errors.email}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {errors.email}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                <Form.Group controlId="formBasicPassword">
+                                                    <Form.Label>Password</Form.Label>
+                                                    <Form.Control
+                                                        type="password"
+                                                        placeholder="Password"
+                                                        name="password"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values.password}
+                                                        isValid={touched.password && !errors.password}
+                                                        isInvalid={!!errors.password}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {errors.password}
+                                                    </Form.Control.Feedback>
+                                                    <Form.Text className="text-muted">
+                                                        Password needs to have numbers and letters
+                                                    </Form.Text>
+                                                </Form.Group>
+                                                <Button
+                                                    variant="outline-primary"
+                                                    type="submit"
+                                                    block={true}
+                                                    disabled={isSubmitting}
+                                                >
+                                                    Login
+                                                </Button>
+                                            </Form>
+                                        )}
+                                    />
                                 </Card.Body>
                                 <Card.Footer className="text-muted">
                                     <InnerFooter onClick={() => this.props.history.push(CONFIG.routes.customerSignUp)}>
@@ -58,7 +117,12 @@ export class LoginPage extends React.Component<RouteComponentProps, LoginStatePr
     }
 }
 
-const LoginPageWithRouter = withRouter(LoginPage);
+const LoginPageWithRouter = withRouter(
+    connect(
+        null,
+        null,
+    )(LoginPage),
+);
 
 export default LoginPageWithRouter;
 

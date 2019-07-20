@@ -17,7 +17,7 @@ exports[`LoginPage should match the snapshot 1`] = `
         className="sc-bdVaJa fOsasd"
       >
         <div
-          className="card border-secondary"
+          className="card"
         >
           <h5
             className="card-header"
@@ -34,6 +34,7 @@ exports[`LoginPage should match the snapshot 1`] = `
             </p>
             <form
               className=""
+              noValidate={true}
               onSubmit={[Function]}
             >
               <div
@@ -41,15 +42,25 @@ exports[`LoginPage should match the snapshot 1`] = `
               >
                 <label
                   className="form-label"
-                  htmlFor="formBasicEmail"
                 >
                   Email address
                 </label>
                 <input
                   className="form-control"
-                  id="formBasicEmail"
+                  name="email"
+                  onBlur={[Function]}
+                  onChange={[Function]}
                   placeholder="Enter email"
                   type="email"
+                  value="hola@gmail.com"
+                />
+                <div
+                  className="valid-feedback"
+                >
+                  Looks good!
+                </div>
+                <div
+                  className="invalid-feedback"
                 />
               </div>
               <div
@@ -64,8 +75,20 @@ exports[`LoginPage should match the snapshot 1`] = `
                 <input
                   className="form-control"
                   id="formBasicPassword"
+                  name="password"
+                  onBlur={[Function]}
+                  onChange={[Function]}
                   placeholder="Password"
                   type="password"
+                  value=""
+                />
+                <div
+                  className="valid-feedback"
+                >
+                  Looks good!
+                </div>
+                <div
+                  className="invalid-feedback"
                 />
                 <small
                   className="text-muted form-text"
