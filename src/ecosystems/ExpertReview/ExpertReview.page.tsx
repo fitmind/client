@@ -43,14 +43,14 @@ class ExpertReviewPage extends React.Component<RouteComponentProps> {
                                 <hr />
                                 <Button
                                     variant="outline-primary"
-                                    onClick={() => this.props.history.push(CONFIG.routes.dashboard)}
+                                    onClick={() => this.props.history.push(CONFIG.routes.home)}
                                 >
                                     Approve
                                 </Button>
                                 <hr />
                                 <Button
                                     variant="outline-danger"
-                                    onClick={() => this.props.history.push(CONFIG.routes.dashboard)}
+                                    onClick={() => this.props.history.push(CONFIG.routes.home)}
                                 >
                                     Disaprove
                                 </Button>

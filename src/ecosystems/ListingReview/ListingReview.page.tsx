@@ -11,7 +11,6 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import CONFIG from '../../config';
 import { formatDate } from '../../utils/utils';
 
-
 class ListingReviewPage extends React.Component<RouteComponentProps> {
     public render() {
         return (
@@ -44,14 +43,14 @@ class ListingReviewPage extends React.Component<RouteComponentProps> {
                                 <hr />
                                 <Button
                                     variant="outline-primary"
-                                    onClick={() => this.props.history.push(CONFIG.routes.dashboard)}
+                                    onClick={() => this.props.history.push(CONFIG.routes.home)}
                                 >
                                     Approve
                                 </Button>
                                 <hr />
                                 <Button
                                     variant="outline-danger"
-                                    onClick={() => this.props.history.push(CONFIG.routes.dashboard)}
+                                    onClick={() => this.props.history.push(CONFIG.routes.home)}
                                 >
                                     Disaprove
                                 </Button>

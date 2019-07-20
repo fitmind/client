@@ -1,4 +1,4 @@
-import { UIActions, UiActionTypes } from '../../actions/ui/ui.actions';
+import { UiActionTypes } from '../../actions/ui/ui.actions';
 import { Reducer } from 'redux';
 
 export interface expertUserInterface {

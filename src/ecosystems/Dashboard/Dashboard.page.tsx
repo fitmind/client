@@ -39,7 +39,7 @@ const ExpertTable: React.FC<ExpertTableProps> = ({ data, history, header }) => (
                     <th>Submited Date</th>
                 </tr>
             </thead>
-            <tbody>
+            {/* <tbody>
                 {data.map((expert, index) => (
                     <TableRow
                         key={expert.email}
@@ -53,7 +53,7 @@ const ExpertTable: React.FC<ExpertTableProps> = ({ data, history, header }) => (
                         <td>{expert.submittedDate}</td>
                     </TableRow>
                 ))}
-            </tbody>
+            </tbody> */}
         </Table>
     </TableWrapper>
 );

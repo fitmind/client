@@ -1,4 +1,4 @@
-import { Navbar, Nav, Button, ButtonGroup, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, Button, ButtonGroup } from 'react-bootstrap';
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
 import CONFIG from '../../config';
@@ -15,7 +15,7 @@ type allProps = PropsFromState & RouteComponentProps;
 
 const NavBar: React.FC<allProps> = ({ expert, customerUser, history }) => (
     <Navbar bg="light" expand="lg">
-        <Navbar.Brand onClick={() => history.push(CONFIG.routes.login)}>Fitmind</Navbar.Brand>
+        <Navbar.Brand onClick={() => history.push(CONFIG.routes.home)}>Fitmind</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
@@ -25,25 +25,25 @@ const NavBar: React.FC<allProps> = ({ expert, customerUser, history }) => (
             </Nav>
             {customerUser._id && (
                 <ButtonGroup className="mr-2">
-                    <Button variant="outline-primary" onClick={() => history.push(CONFIG.routes.login)}>
+                    <Button variant="outline-primary" onClick={() => history.push(CONFIG.routes.home)}>
                         Dashboard
                     </Button>
                 </ButtonGroup>
             )}
             {!customerUser._id && (
                 <ButtonGroup className="mr-2">
-                    <Button variant="outline-primary" onClick={() => history.push(CONFIG.routes.login)}>
+                    <Button variant="outline-primary" onClick={() => history.push(CONFIG.routes.home)}>
                         Customers
                     </Button>
                 </ButtonGroup>
             )}
             {expert._id && (
-                <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.expertDashboard)}>
+                <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.home)}>
                     Dashboard
                 </Button>
             )}
             {!expert._id && (
-                <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.login)}>
+                <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.home)}>
                     Experts
                 </Button>
             )}

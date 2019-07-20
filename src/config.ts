@@ -1,12 +1,16 @@
 const CONFIG = {
     routes: {
-        login: '/',
-        dashboard: '/dashboard',
-        expert: '/expert/:id',
-        expertDashboard: '/expert/dashboard',
-        NavigateToExpert: (id: number): string => `/expert/${id}`,
+        home: '/',
+        listings: '/listings',
         listing: '/listing/:id',
         NavigateToListing: (id: number): string => `/listing/${id}`,
+        customerLogin: '/login',
+        customerSignUp: '/sign-up',
+        customerDashboard: '/dashboard',
+        expert: '/expert/:id',
+        expertLogin: '/expert-login',
+        expertSignUp: '/expert-sign-up',
+        expertDashboard: '/expert/dashboard',
     },
 };
 

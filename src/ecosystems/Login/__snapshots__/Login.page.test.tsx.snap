@@ -8,7 +8,7 @@ exports[`LoginPage should match the snapshot 1`] = `
     className="row"
   >
     <div
-      className="col-md-3"
+      className="col-md-4"
     />
     <div
       className="col"
@@ -51,11 +51,6 @@ exports[`LoginPage should match the snapshot 1`] = `
                   placeholder="Enter email"
                   type="email"
                 />
-                <small
-                  className="text-muted form-text"
-                >
-                  You can only login as an admin.
-                </small>
               </div>
               <div
                 className="form-group"
@@ -72,9 +67,14 @@ exports[`LoginPage should match the snapshot 1`] = `
                   placeholder="Password"
                   type="password"
                 />
+                <small
+                  className="text-muted form-text"
+                >
+                  Password needs to have numbers and letters
+                </small>
               </div>
               <button
-                className="btn btn-outline-primary"
+                className="btn btn-outline-primary btn-block"
                 disabled={false}
                 type="submit"
               >
@@ -82,11 +82,21 @@ exports[`LoginPage should match the snapshot 1`] = `
               </button>
             </form>
           </div>
+          <div
+            className="text-muted card-footer"
+          >
+            <span
+              className="sc-bwzfXH ivdGIV"
+              onClick={[Function]}
+            >
+              To Sign Up click here
+            </span>
+          </div>
         </div>
       </div>
     </div>
     <div
-      className="col-md-3"
+      className="col-md-4"
     />
   </div>
 </div>
