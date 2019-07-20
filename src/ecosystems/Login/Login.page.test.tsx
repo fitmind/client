@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import LoginPageWithRouter, { LoginPage } from './Login.page';
+import { shallow } from 'enzyme';
+import LoginPageWithRouter from './Login.page';
 import renderer from 'react-test-renderer';
 import { Router } from 'react-router';
 import { history } from '../../redux/store';

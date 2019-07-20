@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
-import store, { history } from '../../redux/store';
-import AppRouter from '../AppRouter/AppRouter';
+import store, { history } from '../redux/store';
+import AppRouter from './AppRouter/AppRouter';
 import { ConnectedRouter } from 'connected-react-router';
 
 const theme = {

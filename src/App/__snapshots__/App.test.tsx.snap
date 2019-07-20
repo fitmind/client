@@ -3,38 +3,83 @@
 exports[`App should match the snapshot 1`] = `
 <div>
   <nav
-    className="navbar navbar-expand navbar-dark bg-dark"
+    className="navbar navbar-expand-lg navbar-light bg-light"
   >
     <span
       className="navbar-brand"
       onClick={[Function]}
     >
-      FITMIND ADMIN
+      Fitmind
     </span>
-    <div
-      className="mr-auto navbar-nav"
-      onKeyDown={[Function]}
+    <button
+      aria-controls="basic-navbar-nav"
+      aria-label="Toggle navigation"
+      className="navbar-toggler"
+      onClick={[Function]}
+      type="button"
     >
-      <a
-        className="nav-link"
-        data-rb-event-key={null}
-        href="#"
-        onClick={[Function]}
+      <span
+        className="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      aria-expanded={null}
+      className="navbar-collapse collapse"
+      id="basic-navbar-nav"
+    >
+      <div
+        className="mr-auto navbar-nav"
         onKeyDown={[Function]}
-        role="button"
       >
-        Login
-      </a>
-      <a
-        className="nav-link"
-        data-rb-event-key={null}
-        href="#"
+        <a
+          className="nav-link"
+          data-rb-event-key="#home"
+          href="#home"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+        >
+          Listings
+        </a>
+        <a
+          className="nav-link"
+          data-rb-event-key="#link"
+          href="#link"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+        >
+          About
+        </a>
+        <a
+          className="nav-link"
+          data-rb-event-key="#link"
+          href="#link"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+        >
+          Contact
+        </a>
+      </div>
+      <div
+        className="mr-2 btn-group"
+        role="group"
+      >
+        <button
+          className="btn btn-outline-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Customers
+        </button>
+      </div>
+      <button
+        className="btn btn-outline-secondary"
+        disabled={false}
         onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
+        type="button"
       >
-        Dashboard
-      </a>
+        Experts
+      </button>
     </div>
   </nav>
   <div
@@ -58,7 +103,7 @@ exports[`App should match the snapshot 1`] = `
             <h5
               className="card-header"
             >
-              Admin Login
+              Login
             </h5>
             <div
               className="card-body"

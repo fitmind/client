@@ -1,5 +1,5 @@
 import { Store, createStore, applyMiddleware } from 'redux';
-import { ApplicationState, initialState, createRootReducer } from './reducers/root.reducer';
+import { ApplicationState, storeInitialState, createRootReducer } from './reducers/root.reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from './saga/root.saga';
@@ -10,7 +10,7 @@ import { routerMiddleware } from 'connected-react-router';
 // Normally you would use browser history.
 export const history: History = createHashHistory();
 
-export const configureStore = (): Store<ApplicationState> => {
+export const configureStore = (initialState: ApplicationState): Store<ApplicationState> => {
     const sagaMiddleware = createSagaMiddleware();
     const composeEnhancers = composeWithDevTools({});
     let store = createStore(
@@ -23,6 +23,6 @@ export const configureStore = (): Store<ApplicationState> => {
     return store;
 };
 
-const store: Store<ApplicationState> = configureStore();
+const store: Store<ApplicationState> = configureStore(storeInitialState);
 
 export default store;

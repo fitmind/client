@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../components/Button/Button';
+import Button from '../../atoms/Button/Button';
 import { connect } from 'react-redux';
 import { ApplicationState, ConnectedReduxProps } from '../../redux/reducers/root.reducer';
 import { fetchWeatherAction, resetWeatherAction } from '../../redux/actions/weather/weather.actions';

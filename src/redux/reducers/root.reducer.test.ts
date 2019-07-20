@@ -1,10 +1,10 @@
-import { ApplicationState, initialState } from './root.reducer';
+import { ApplicationState, storeInitialState } from './root.reducer';
 import { configureStore } from '../store';
 import { Store } from 'redux';
 import { weatherInitialState } from './weather/weather.reducer';
 
 describe('root reducer', () => {
-    let store: Store<ApplicationState> = configureStore();
+    let store: Store<ApplicationState> = configureStore(storeInitialState);
     const initialRouter = {
         router: {
             action: 'POP',
@@ -18,8 +18,7 @@ describe('root reducer', () => {
     };
     it('should return an initial state with all the reducers combined', () => {
         expect(store.getState()).toEqual({
-            ...initialState,
-            // todo: add this type to the initial rootReducer so it is part of initial state
+            ...storeInitialState,
             ...initialRouter,
         });
     });

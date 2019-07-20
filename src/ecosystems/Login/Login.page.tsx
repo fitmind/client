@@ -2,6 +2,7 @@ import React, { FormEvent } from 'react';
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { withRouter, RouteComponentProps } from 'react-router';
 import styled from 'styled-components';
+
 interface LoginStateProps {
     email: string;
     password: string;
@@ -20,7 +21,7 @@ export class LoginPage extends React.Component<RouteComponentProps, LoginStatePr
                     <Col>
                         <CardWrapper>
                             <Card border="secondary">
-                                <Card.Header as="h5">Admin Login</Card.Header>
+                                <Card.Header as="h5">Login</Card.Header>
                                 <Card.Body>
                                     <Card.Text>Please enter with your admin login credentials</Card.Text>
                                     <Form onSubmit={this.onSubmit}>

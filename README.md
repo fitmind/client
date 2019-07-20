@@ -66,3 +66,7 @@ yarn lint
 ```bash
 yarn lint:fix
 ```
+
+### Preferred helper library:
+
+-   [Ramda JS](https://ramdajs.com/docs/#)
