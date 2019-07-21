@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { weatherResponse } from '../../../interfaces/weather-response';
+import { weatherResponse } from '../../../interfaces/responses/weather-response';
 import { apiFetchWeather } from '../../api';
 
 export const WEATHER_ACTIONS = {

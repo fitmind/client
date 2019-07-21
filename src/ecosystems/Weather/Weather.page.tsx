@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { ApplicationState, ConnectedReduxProps } from '../../redux/reducers/root.reducer';
 import { fetchWeatherAction, resetWeatherAction } from '../../redux/actions/weather/weather.actions';
 import styled from 'styled-components';
-import { weatherResponse } from '../../interfaces/weather-response';
+import { weatherResponse } from '../../interfaces/responses/weather-response';
 
 interface PropsFromState {
     weather?: weatherResponse;

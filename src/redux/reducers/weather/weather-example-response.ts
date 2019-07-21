@@ -1,4 +1,4 @@
-import { weatherResponse } from '../../../interfaces/weather-response';
+import { weatherResponse } from '../../../interfaces/responses/weather-response';
 
 export const WeatherExampleResponse: weatherResponse = {
     coord: { lon: -0.13, lat: 51.51 },

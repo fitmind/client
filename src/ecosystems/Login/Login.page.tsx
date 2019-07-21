@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { withRouter, RouteComponentProps } from 'react-router';
 import styled from 'styled-components';
@@ -6,6 +6,8 @@ import CONFIG from '../../config';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { ConnectedReduxProps } from '../../redux/reducers/root.reducer';
+import { userLoginAction } from '../../redux/actions/server/server.actions';
 
 const LoginSchema = Yup.object().shape({
     password: Yup.string()
@@ -17,17 +19,19 @@ const LoginSchema = Yup.object().shape({
         .required('Required'),
 });
 
-export class LoginPage extends React.Component<RouteComponentProps> {
+interface PropsFromDispatch {
+    userLoginAction: typeof userLoginAction;
+}
+
+type LoginPageAllProps = PropsFromDispatch & RouteComponentProps & ConnectedReduxProps;
+
+export class LoginPage extends React.Component<LoginPageAllProps> {
     public componentDidMount() {
         // Needs to logout both types of user
     }
-    public onSubmit = (e: FormEvent) => {
-        e.preventDefault();
-        this.props.history.push('/dashboard');
-    };
     public render() {
         return (
-            <Container fluid={true}>
+            <Container fluid>
                 <Row>
                     <Col md={4} />
                     <Col>
@@ -39,9 +43,9 @@ export class LoginPage extends React.Component<RouteComponentProps> {
                                     <Formik
                                         initialValues={{ email: 'hola@gmail.com', password: '' }}
                                         validationSchema={LoginSchema}
-                                        onSubmit={(values, actions) => {
-                                            console.log(values);
-                                            console.log(actions);
+                                        onSubmit={(values, { setSubmitting }) => {
+                                            this.props.userLoginAction(values);
+                                            setSubmitting(false);
                                         }}
                                         render={({
                                             values,
@@ -117,14 +121,16 @@ export class LoginPage extends React.Component<RouteComponentProps> {
     }
 }
 
-const LoginPageWithRouter = withRouter(
+const mapDispatchToProps = {
+    userLoginAction,
+};
+
+export default withRouter(
     connect(
         null,
-        null,
+        mapDispatchToProps,
     )(LoginPage),
 );
-
-export default LoginPageWithRouter;
 
 const CardWrapper = styled.div`
     margin-top: 5rem;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import LoginPageWithRouter from '../../ecosystems/Login/Login.page';
 import CONFIG from '../../config';
 import NotFoundPage from '../../ecosystems/NotFound/NotFound.page';
@@ -7,10 +7,14 @@ import ExpertReviewPage from '../../ecosystems/ExpertReview/ExpertReview.page';
 import ListingReviewPage from '../../ecosystems/ListingReview/ListingReview.page';
 import NavBar from '../../molecules/Navbar/Navbar';
 import Home from '../../ecosystems/Home/Home.page';
+import LoadingComponent from '../../atoms/Loading/Loading';
+import Notification from '../../atoms/Notification/Notification';
 
 const AppRouter: React.FC = () => (
     <div>
         <NavBar />
+        <LoadingComponent />
+        <Notification />
         <Switch>
             <Route path={CONFIG.routes.home} exact component={Home} />
             <Route path={CONFIG.routes.customerLogin} exact component={LoginPageWithRouter} />
@@ -21,4 +25,4 @@ const AppRouter: React.FC = () => (
     </div>
 );
 
-export default withRouter(AppRouter);
+export default AppRouter;

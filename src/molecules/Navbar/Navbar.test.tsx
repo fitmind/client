@@ -4,10 +4,9 @@ import renderer from 'react-test-renderer';
 import NavBar from './Navbar';
 import { Router } from 'react-router';
 import store, { history, configureStore } from '../../redux/store';
-import { ServerInitialState } from '../../redux/reducers/server-reducer/server.reducer';
 import { Provider } from 'react-redux';
 import { storeInitialState } from '../../redux/reducers/root.reducer';
-import { merge, mergeDeepRight } from 'ramda';
+import { mergeDeepRight } from 'ramda';
 
 describe('NavBar', () => {
     it('renders without crashing', () => {

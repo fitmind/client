@@ -3,7 +3,7 @@ import { weatherReducer, weatherInitialState } from './weather/weather.reducer';
 import { History } from 'history';
 import { connectRouter, RouterState } from 'connected-react-router';
 import { Dispatch } from 'react';
-import { weatherResponse } from '../../interfaces/weather-response';
+import { weatherResponse } from '../../interfaces/responses/weather-response';
 import { UIReducer, UIInitialState, UIState } from './ui/ui.reducer';
 import { ServerReducer, ServerInitialState, ServerStateInterface } from './server-reducer/server.reducer';
 

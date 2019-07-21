@@ -1,6 +1,6 @@
 import { WEATHER_ACTIONS } from '../../actions/weather/weather.actions';
 import { Reducer } from 'redux';
-import { weatherResponse } from '../../../interfaces/weather-response';
+import { weatherResponse } from '../../../interfaces/responses/weather-response';
 
 export const weatherInitialState: weatherResponse = {};
 

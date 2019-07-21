@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading Component should match the snapshot when the notification is blank 1`] = `
+<div
+  className="sc-bdVaJa kmXoBq"
+/>
+`;
+
+exports[`Loading Component should match the snapshot when the notification is error 1`] = `
+<div
+  className="sc-bdVaJa kmXoBq"
+>
+  <div
+    className="fade alert alert-danger alert-dismissible show"
+    role="alert"
+  >
+    <button
+      className="close"
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+      >
+        ×
+      </span>
+      <span
+        className="sr-only"
+      >
+        Close alert
+      </span>
+    </button>
+    <div
+      className="alert-heading h4"
+    >
+      Welcome Diego
+    </div>
+    <p>
+      some body in the text
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Loading Component should match the snapshot when the notification is positive 1`] = `
+<div
+  className="sc-bdVaJa kmXoBq"
+>
+  <div
+    className="fade alert alert-success alert-dismissible show"
+    role="alert"
+  >
+    <button
+      className="close"
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+      >
+        ×
+      </span>
+      <span
+        className="sr-only"
+      >
+        Close alert
+      </span>
+    </button>
+    <div
+      className="alert-heading h4"
+    >
+      Welcome Diego
+    </div>
+    <p>
+      some body in the text
+    </p>
+  </div>
+</div>
+`;

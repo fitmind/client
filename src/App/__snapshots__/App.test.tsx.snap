@@ -82,6 +82,10 @@ exports[`App should match the snapshot 1`] = `
       </button>
     </div>
   </nav>
+  <div />
+  <div
+    className="sc-EHOje hgnFSS"
+  />
   <div
     className="jumbotron"
   >
