@@ -1,4 +1,3 @@
-import { UiActionTypes } from '../../actions/ui/ui.actions';
 import { Reducer } from 'redux';
 import { ServerActions, ServerActionTypes } from '../../actions/server/server.actions';
 
