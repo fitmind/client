@@ -1,7 +1,7 @@
 import { Navbar, Nav, Button, ButtonGroup } from 'react-bootstrap';
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
-import CONFIG from '../../config';
+import CONFIG from '../../config/config';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../redux/reducers/root.reducer';
 import { expertUserInterface, customerUserInterface } from '../../redux/reducers/server-reducer/server.reducer';

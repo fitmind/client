@@ -2,12 +2,11 @@ import React from 'react';
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { withRouter, RouteComponentProps } from 'react-router';
 import styled from 'styled-components';
-import CONFIG from '../../config';
+import CONFIG from '../../config/config';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { ConnectedReduxProps } from '../../redux/reducers/root.reducer';
-import { userLoginAction } from '../../redux/actions/server/server.actions';
 
 const LoginSchema = Yup.object().shape({
     password: Yup.string()
@@ -19,16 +18,9 @@ const LoginSchema = Yup.object().shape({
         .required('Required'),
 });
 
-interface PropsFromDispatch {
-    userLoginAction: typeof userLoginAction;
-}
+type LoginPageAllProps = RouteComponentProps & ConnectedReduxProps;
 
-type LoginPageAllProps = PropsFromDispatch & RouteComponentProps & ConnectedReduxProps;
-
-export class LoginPage extends React.Component<LoginPageAllProps> {
-    public componentDidMount() {
-        // Needs to logout both types of user
-    }
+export class ExpertLoginPage extends React.Component<LoginPageAllProps> {
     public render() {
         return (
             <Container fluid>
@@ -37,14 +29,14 @@ export class LoginPage extends React.Component<LoginPageAllProps> {
                     <Col>
                         <CardWrapper>
                             <Card>
-                                <Card.Header as="h5">Login</Card.Header>
+                                <Card.Header as="h5">Expert Login</Card.Header>
                                 <Card.Body>
-                                    <Card.Text>Please enter with your admin login credentials</Card.Text>
                                     <Formik
-                                        initialValues={{ email: 'hola@gmail.com', password: '' }}
+                                        initialValues={{ email: '', password: '' }}
                                         validationSchema={LoginSchema}
                                         onSubmit={(values, { setSubmitting }) => {
-                                            this.props.userLoginAction(values);
+                                            console.log(values);
+                                            console.log('I NEED TO BE HOOKED UP');
                                             setSubmitting(false);
                                         }}
                                         render={({
@@ -102,15 +94,19 @@ export class LoginPage extends React.Component<LoginPageAllProps> {
                                                 >
                                                     Login
                                                 </Button>
+                                                <Button
+                                                    variant="outline-secondary"
+                                                    onClick={() => this.props.history.push(CONFIG.routes.expertSignUp)}
+                                                    type="submit"
+                                                    block={true}
+                                                    disabled={isSubmitting}
+                                                >
+                                                    Register
+                                                </Button>
                                             </Form>
                                         )}
                                     />
                                 </Card.Body>
-                                <Card.Footer className="text-muted">
-                                    <InnerFooter onClick={() => this.props.history.push(CONFIG.routes.customerSignUp)}>
-                                        To Sign Up click here
-                                    </InnerFooter>
-                                </Card.Footer>
                             </Card>
                         </CardWrapper>
                     </Col>
@@ -121,15 +117,11 @@ export class LoginPage extends React.Component<LoginPageAllProps> {
     }
 }
 
-const mapDispatchToProps = {
-    userLoginAction,
-};
-
 export default withRouter(
     connect(
         null,
-        mapDispatchToProps,
-    )(LoginPage),
+        null,
+    )(ExpertLoginPage),
 );
 
 const CardWrapper = styled.div`

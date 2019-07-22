@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import CustomerDashboard from './CustomerDashboard.page';
+import ListingsPage from './Listings.page';
 
 describe('Customer Dashboard page', () => {
     it('renders without crashing', () => {
-        shallow(<CustomerDashboard />);
+        shallow(<ListingsPage />);
     });
 });

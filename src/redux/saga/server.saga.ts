@@ -4,7 +4,7 @@ import { setLoadingTrue, setLoadingFalse, setNotification } from '../actions/ui/
 import { ServerActions, setCustomerUserAction, userLoginActionInterface } from '../actions/server/server.actions';
 import { apiLoginCustomerUser, apiGetUserMe } from '../api';
 import { CustomerUserResponse } from '../../interfaces/responses/customer-user-response';
-import CONFIG from '../../config';
+import CONFIG from '../../config/config';
 
 export function* loginUser(action: userLoginActionInterface) {
     yield put(setLoadingTrue());
@@ -15,7 +15,7 @@ export function* loginUser(action: userLoginActionInterface) {
                 const userResponse: CustomerUserResponse = yield call(apiGetUserMe);
                 yield put(setCustomerUserAction(userResponse));
                 yield put(push(CONFIG.routes.customerDashboard));
-                yield put(setNotification({ type: 'positive', header: `Welcome ${userResponse.name}`, body: '' }));
+                yield put(setNotification({ type: 'positive', body: `Welcome ${userResponse.name}` }));
             } catch (settingCustomerError) {
                 yield put(setNotification({ type: 'error', header: ``, body: 'Error setting the user' }));
             }

@@ -5,11 +5,11 @@ const CONFIG = {
         listing: '/listing/:id',
         NavigateToListing: (id: number): string => `/listing/${id}`,
         customerLogin: '/login',
-        customerSignUp: '/sign-up',
+        customerSignUp: '/register',
         customerDashboard: '/dashboard',
         expert: '/expert/:id',
         expertLogin: '/experts-login',
-        expertSignUp: '/experts-sign-up',
+        expertSignUp: '/experts-register',
         expertDashboard: '/experts/dashboard',
     },
 };
