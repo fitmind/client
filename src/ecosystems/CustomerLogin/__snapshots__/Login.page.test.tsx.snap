@@ -52,7 +52,7 @@ exports[`LoginPage should match the snapshot 1`] = `
                   onChange={[Function]}
                   placeholder="Enter email"
                   type="email"
-                  value="hola@gmail.com"
+                  value=""
                 />
                 <div
                   className="valid-feedback"
@@ -103,17 +103,15 @@ exports[`LoginPage should match the snapshot 1`] = `
               >
                 Login
               </button>
+              <button
+                className="btn btn-outline-secondary btn-block"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Register
+              </button>
             </form>
-          </div>
-          <div
-            className="text-muted card-footer"
-          >
-            <span
-              className="sc-bwzfXH ivdGIV"
-              onClick={[Function]}
-            >
-              To Sign Up click here
-            </span>
           </div>
         </div>
       </div>

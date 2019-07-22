@@ -97,9 +97,7 @@ export class ExpertLoginPage extends React.Component<LoginPageAllProps> {
                                                 <Button
                                                     variant="outline-secondary"
                                                     onClick={() => this.props.history.push(CONFIG.routes.expertSignUp)}
-                                                    type="submit"
                                                     block={true}
-                                                    disabled={isSubmitting}
                                                 >
                                                     Register
                                                 </Button>
@@ -126,8 +124,4 @@ export default withRouter(
 
 const CardWrapper = styled.div`
     margin-top: 5rem;
-`;
-
-const InnerFooter = styled.span`
-    cursor: pointer;
 `;

@@ -99,15 +99,19 @@ export class LoginPage extends React.Component<LoginPageAllProps> {
                                                 >
                                                     Login
                                                 </Button>
+                                                <Button
+                                                    variant="outline-secondary"
+                                                    block={true}
+                                                    onClick={() =>
+                                                        this.props.history.push(CONFIG.routes.customerSignUp)
+                                                    }
+                                                >
+                                                    Register
+                                                </Button>
                                             </Form>
                                         )}
                                     />
                                 </Card.Body>
-                                <Card.Footer className="text-muted">
-                                    <InnerFooter onClick={() => this.props.history.push(CONFIG.routes.customerSignUp)}>
-                                        To Sign Up click here
-                                    </InnerFooter>
-                                </Card.Footer>
                             </Card>
                         </CardWrapper>
                     </Col>
@@ -131,8 +135,4 @@ export default withRouter(
 
 const CardWrapper = styled.div`
     margin-top: 5rem;
-`;
-
-const InnerFooter = styled.span`
-    cursor: pointer;
 `;

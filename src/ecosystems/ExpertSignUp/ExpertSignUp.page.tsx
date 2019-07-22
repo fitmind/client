@@ -1,8 +1,7 @@
 import React from 'react';
-import { Jumbotron, Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
-import CONFIG from '../../config/config';
 import styled from 'styled-components';
 import * as Yup from 'yup';
 
