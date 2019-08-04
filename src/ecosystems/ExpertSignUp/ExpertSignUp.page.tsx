@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import styled from 'styled-components';
 import * as Yup from 'yup';
+import CONFIG from '../../config/config';
 
 const ExpertSignUpSchema = Yup.object().shape({
     email: Yup.string()
@@ -24,7 +25,18 @@ const ExpertSignUpSchema = Yup.object().shape({
     passwordConfirm: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
         .required('Password confirm is required'),
-    // expertise: [],
+    expertise: Yup.string().required('Required'),
+    monday: Yup.string().required('Required'),
+    tuesday: Yup.string().required('Required'),
+    wednesday: Yup.string().required('Required'),
+    thursday: Yup.string().required('Required'),
+    friday: Yup.string().required('Required'),
+    saturday: Yup.string().required('Required'),
+    sunday: Yup.string().required('Required'),
+    // expertise: Yup.array()
+    //     .of(Yup.string())
+    //     .min(1)
+    //     .required('Required'),
     description: Yup.string()
         .min(6, 'Too Short!')
         .max(700, 'Too Long!')
@@ -47,8 +59,15 @@ const ExpertSignUpPage: React.FC = () => (
                                     lastName: '',
                                     password: '',
                                     passwordConfirm: '',
-                                    expertise: [],
+                                    expertise: '',
                                     description: '',
+                                    monday: '',
+                                    tuesday: '',
+                                    wednesday: '',
+                                    thursday: '',
+                                    friday: '',
+                                    saturday: '',
+                                    sunday: '',
                                 }}
                                 validationSchema={ExpertSignUpSchema}
                                 onSubmit={(values, { setSubmitting }) => {
@@ -150,6 +169,48 @@ const ExpertSignUpPage: React.FC = () => (
                                                 {errors.passwordConfirm}
                                             </Form.Control.Feedback>
                                             <Form.Text className="text-muted">Passwords need to match</Form.Text>
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Label>Expertise</Form.Label>
+                                            <Form.Control
+                                                as="select"
+                                                // multiple <-- weird
+                                                name="expertise"
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.expertise}
+                                                isValid={touched.expertise && !errors.expertise}
+                                                isInvalid={!!errors.expertise}
+                                            >
+                                                {' '}
+                                                {Object.keys(CONFIG.expertises).map((key: string) => (
+                                                    <option value={CONFIG.expertises[key].value}>
+                                                        {CONFIG.expertises[key].display}
+                                                    </option>
+                                                ))}
+                                                <option value="YOGA">Yoga</option>
+                                                <option value="PERSONAL_TRAINER">Personal Trainer</option>
+                                                <option value="LIFE_COACH">Life Coach</option>
+                                                <option value="NUTRITIONIST">Nutritionist</option>
+                                            </Form.Control>
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Label>Your Description</Form.Label>
+                                            <Form.Control
+                                                as="textarea"
+                                                rows={4}
+                                                type="text"
+                                                name="description"
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.description}
+                                                isValid={touched.description && !errors.description}
+                                                isInvalid={!!errors.description}
+                                            />
+                                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                            <Form.Control.Feedback type="invalid">
+                                                {errors.description}
+                                            </Form.Control.Feedback>
                                         </Form.Group>
                                         <Button
                                             variant="outline-primary"
