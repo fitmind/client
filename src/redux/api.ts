@@ -13,13 +13,13 @@ export async function apiFetchWeather(): Promise<weatherResponse> {
 }
 
 export async function apiGetUserMe(): Promise<CustomerUserResponse> {
-    const res = await fetch(`${API_URL}/user/me`, { method: 'get', headers: { Accept: 'application/json' } });
+    const res = await fetch(`${API_URL}user/me`, { method: 'get', headers: { Accept: 'application/json' } });
     return await res.json();
 }
 
 // Sets cookie for the customer user
 export async function apiLoginCustomerUser(action: userLoginActionInterface) {
-    const res = await fetch(`${API_URL}/user/login`, {
+    const res = await fetch(`${API_URL}user/login`, {
         method: 'post',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: action.email, password: action.password }),
