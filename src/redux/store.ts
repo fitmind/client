@@ -3,12 +3,12 @@ import { ApplicationState, storeInitialState, createRootReducer } from './reduce
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from './saga/root.saga';
-import { createHashHistory, History } from 'history';
+import { History, createBrowserHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router';
 
 // We use hash history because this example is going to be hosted statically.
 // Normally you would use browser history.
-export const history: History = createHashHistory();
+export const history: History = createBrowserHistory();
 
 export const configureStore = (initialState: ApplicationState): Store<ApplicationState> => {
     const sagaMiddleware = createSagaMiddleware();
