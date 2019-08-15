@@ -33,28 +33,31 @@ exports[`App should match the snapshot 1`] = `
       >
         <a
           className="nav-link"
-          data-rb-event-key="#home"
-          href="#home"
+          data-rb-event-key={null}
+          href="#"
           onClick={[Function]}
           onKeyDown={[Function]}
+          role="button"
         >
           Listings
         </a>
         <a
           className="nav-link"
-          data-rb-event-key="#link"
-          href="#link"
+          data-rb-event-key={null}
+          href="#"
           onClick={[Function]}
           onKeyDown={[Function]}
+          role="button"
         >
           About
         </a>
         <a
           className="nav-link"
-          data-rb-event-key="#link"
-          href="#link"
+          data-rb-event-key={null}
+          href="#"
           onClick={[Function]}
           onKeyDown={[Function]}
+          role="button"
         >
           Contact
         </a>
