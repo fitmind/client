@@ -5,4 +5,6 @@ export interface CustomerUserResponse {
     createdAt: string;
     description: string;
     interestedInExperiseAreas: string[];
+    phone: string;
+    pictureUrl: string;
 }

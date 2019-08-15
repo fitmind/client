@@ -10,7 +10,7 @@ export function* loginUser(action: userLoginActionInterface) {
     yield put(setLoadingTrue());
     try {
         const loginResponse = yield call(apiLoginCustomerUser, action);
-        if (loginResponse.status === 200) {
+        if (loginResponse.status === 201) {
             try {
                 const userResponse: CustomerUserResponse = yield call(apiGetUserMe);
                 yield put(setCustomerUserAction(userResponse));
