@@ -32,28 +32,31 @@ exports[`NavBar should match the snapshots should match when no one is logged in
     >
       <a
         className="nav-link"
-        data-rb-event-key="#home"
-        href="#home"
+        data-rb-event-key={null}
+        href="#"
         onClick={[Function]}
         onKeyDown={[Function]}
+        role="button"
       >
         Listings
       </a>
       <a
         className="nav-link"
-        data-rb-event-key="#link"
-        href="#link"
+        data-rb-event-key={null}
+        href="#"
         onClick={[Function]}
         onKeyDown={[Function]}
+        role="button"
       >
         About
       </a>
       <a
         className="nav-link"
-        data-rb-event-key="#link"
-        href="#link"
+        data-rb-event-key={null}
+        href="#"
         onClick={[Function]}
         onKeyDown={[Function]}
+        role="button"
       >
         Contact
       </a>
@@ -115,28 +118,31 @@ exports[`NavBar should match the snapshots should match when the customer is log
     >
       <a
         className="nav-link"
-        data-rb-event-key="#home"
-        href="#home"
+        data-rb-event-key={null}
+        href="#"
         onClick={[Function]}
         onKeyDown={[Function]}
+        role="button"
       >
         Listings
       </a>
       <a
         className="nav-link"
-        data-rb-event-key="#link"
-        href="#link"
+        data-rb-event-key={null}
+        href="#"
         onClick={[Function]}
         onKeyDown={[Function]}
+        role="button"
       >
         About
       </a>
       <a
         className="nav-link"
-        data-rb-event-key="#link"
-        href="#link"
+        data-rb-event-key={null}
+        href="#"
         onClick={[Function]}
         onKeyDown={[Function]}
+        role="button"
       >
         Contact
       </a>
@@ -198,28 +204,31 @@ exports[`NavBar should match the snapshots should match when the expert is logge
     >
       <a
         className="nav-link"
-        data-rb-event-key="#home"
-        href="#home"
+        data-rb-event-key={null}
+        href="#"
         onClick={[Function]}
         onKeyDown={[Function]}
+        role="button"
       >
         Listings
       </a>
       <a
         className="nav-link"
-        data-rb-event-key="#link"
-        href="#link"
+        data-rb-event-key={null}
+        href="#"
         onClick={[Function]}
         onKeyDown={[Function]}
+        role="button"
       >
         About
       </a>
       <a
         className="nav-link"
-        data-rb-event-key="#link"
-        href="#link"
+        data-rb-event-key={null}
+        href="#"
         onClick={[Function]}
         onKeyDown={[Function]}
+        role="button"
       >
         Contact
       </a>

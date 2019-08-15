@@ -19,9 +19,9 @@ const NavBar: React.FC<allProps> = ({ expert, customerUser, history }) => (
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-                <Nav.Link href="#home">Listings</Nav.Link>
-                <Nav.Link href="#link">About</Nav.Link>
-                <Nav.Link href="#link">Contact</Nav.Link>
+                <Nav.Link>Listings</Nav.Link>
+                <Nav.Link>About</Nav.Link>
+                <Nav.Link>Contact</Nav.Link>
             </Nav>
             {customerUser._id && (
                 <ButtonGroup className="mr-2">
