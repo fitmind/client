@@ -11,26 +11,27 @@ interface PropsFromState {
 
 const PositiveAlertDismissible: React.FC<NotificationInterface> = ({ header, body }) => {
     const [show, setShow] = useState(true);
-    if (show) {
-        return (
+    return (
+        show && (
             <Alert variant="success" onClose={() => setShow(false)} dismissible>
                 {header && <Alert.Heading>{header}</Alert.Heading>}
                 {body && <p>{body}</p>}
             </Alert>
-        );
-    }
+        )
+    );
 };
 
 const NegativeAlertDismissible: React.FC<NotificationInterface> = ({ header, body }) => {
     const [show, setShow] = useState(true);
-    if (show) {
-        return (
+
+    return (
+        show && (
             <Alert variant="danger" onClose={() => setShow(false)} dismissible>
                 {header && <Alert.Heading>{header}</Alert.Heading>}
                 {body && <p>{body}</p>}
             </Alert>
-        );
-    }
+        )
+    );
 };
 
 const Notification: React.FC<PropsFromState> = ({ notification }) => (
