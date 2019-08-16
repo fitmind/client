@@ -4,6 +4,8 @@ import { CustomerUserResponse } from '../../../interfaces/responses/customer-use
 export const ServerActions = {
     LOGIN_CUSTOMER_USER: 'LOGIN_CUSTOMER_USER',
     SET_CUSTOMER_USER: 'SET_CUSTOMER_USER',
+    LOGOUT_USER: 'LOGOUT_USER',
+    LOGOUT_USER_SUCCESS: 'LOGOUT_USER_SUCCESS',
 };
 
 export interface ServerActionTypes {
@@ -36,4 +38,15 @@ export interface setCustomerUserActionInterface extends Action<'SET_CUSTOMER_USE
 export const setCustomerUserAction = (customerUser: CustomerUserResponse): setCustomerUserActionInterface => ({
     type: 'SET_CUSTOMER_USER',
     customerUser,
+});
+
+export interface userLogoutActionInterface extends Action<'LOGOUT_USER'> {}
+
+export const userLogoutAction = () => ({
+    type: 'LOGOUT_USER',
+});
+export interface userLogoutSuccessActionInterface extends Action<'LOGOUT_USER_SUCCESS'> {}
+
+export const userLogoutSuccessAction = () => ({
+    type: 'LOGOUT_USER_SUCCESS',
 });

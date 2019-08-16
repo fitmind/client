@@ -168,6 +168,14 @@ exports[`NavBar should match the snapshots should match when the customer is log
     >
       Experts
     </button>
+    <button
+      className="btn btn-outline-secondary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Logout
+    </button>
   </div>
 </nav>
 `;

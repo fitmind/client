@@ -26,6 +26,8 @@ export const ServerReducer: Reducer<ServerStateInterface> = (
     switch (action.type) {
         case ServerActions.SET_CUSTOMER_USER:
             return { ...state, customerUser: action.customerUser };
+        case ServerActions.LOGOUT_USER_SUCCESS:
+            return { ...state, customerUser: {} };
         default:
             return state;
     }
