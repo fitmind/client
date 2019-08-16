@@ -26,3 +26,11 @@ export async function apiLoginCustomerUser(action: userLoginActionInterface) {
     });
     return res;
 }
+
+export async function apiCustomerDashboard() {
+    const res = await fetch(`${API_URL}user/dashboard`, {
+        method: 'get',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+    });
+    return res;
+}
