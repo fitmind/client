@@ -115,13 +115,11 @@ exports[`Expert SignUp page should match the snapshot 1`] = `
               >
                 <label
                   className="form-label"
-                  htmlFor="formBasicPassword"
                 >
                   Password
                 </label>
                 <input
                   className="form-control"
-                  id="formBasicPassword"
                   name="password"
                   onBlur={[Function]}
                   onChange={[Function]}
@@ -147,13 +145,11 @@ exports[`Expert SignUp page should match the snapshot 1`] = `
               >
                 <label
                   className="form-label"
-                  htmlFor="formBasicPassword"
                 >
                   Password Confirmation
                 </label>
                 <input
                   className="form-control"
-                  id="formBasicPassword"
                   name="passwordConfirm"
                   onBlur={[Function]}
                   onChange={[Function]}
