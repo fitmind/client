@@ -8,7 +8,7 @@ import {
     userLogoutSuccessAction,
     userLogoutActionInterface,
 } from '../actions/server/server.actions';
-import { apiLoginCustomerUser, apiGetUserMe } from '../api';
+import { apiLoginCustomerUser, apiGetUserMe, apiLogoutCustomerUser } from '../api';
 import { CustomerUserResponse } from '../../interfaces/responses/customer-user-response';
 import CONFIG from '../../config/config';
 
@@ -36,6 +36,7 @@ export function* loginUser(action: userLoginActionInterface) {
 export function* logoutUser(action: userLogoutActionInterface) {
     yield put(setLoadingTrue());
     try {
+        yield call(apiLogoutCustomerUser, action);
         yield put(push(CONFIG.routes.home));
         yield put(setNotification({ type: 'positive', body: `See you soon!` }));
     } catch (logoutUserError) {

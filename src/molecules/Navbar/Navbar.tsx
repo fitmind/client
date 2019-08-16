@@ -46,7 +46,7 @@ const NavBar: React.FC<allProps> = ({ expert, customerUser, history, userLogoutA
                     Dashboard
                 </Button>
             )}
-            {!expert._id && (
+            {!customerUser._id && !expert._id && (
                 <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.expertLogin)}>
                     Experts
                 </Button>
