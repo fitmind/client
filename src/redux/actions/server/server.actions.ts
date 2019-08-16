@@ -4,6 +4,7 @@ import { CustomerUserResponse } from '../../../interfaces/responses/customer-use
 export const ServerActions = {
     LOGIN_CUSTOMER_USER: 'LOGIN_CUSTOMER_USER',
     SET_CUSTOMER_USER: 'SET_CUSTOMER_USER',
+    SIGNUP_CUSTOMER_USER: 'SIGNUP_CUSTOMER_USER',
 };
 
 export interface ServerActionTypes {
@@ -36,4 +37,41 @@ export interface setCustomerUserActionInterface extends Action<'SET_CUSTOMER_USE
 export const setCustomerUserAction = (customerUser: CustomerUserResponse): setCustomerUserActionInterface => ({
     type: 'SET_CUSTOMER_USER',
     customerUser,
+});
+
+export interface customerSignUpActionInterface extends Action<'SIGNUP_CUSTOMER_USER'> {
+    email: string;
+    firstName: string;
+    lastName: string;
+    password: string;
+    interestedInExperiseAreas: string[];
+    description: string;
+    phone: string;
+}
+
+export const customerSignUpAction = ({
+    email,
+    firstName,
+    lastName,
+    password,
+    interestedInExperiseAreas,
+    description,
+    phone,
+}: {
+    email: string;
+    firstName: string;
+    lastName: string;
+    password: string;
+    interestedInExperiseAreas: string[];
+    description: string;
+    phone: string;
+}): customerSignUpActionInterface => ({
+    type: 'SIGNUP_CUSTOMER_USER',
+    email,
+    firstName,
+    lastName,
+    password,
+    interestedInExperiseAreas,
+    description,
+    phone,
 });
