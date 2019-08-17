@@ -14,18 +14,12 @@ export interface ServerActionTypes {
     customerUser?: CustomerUserResponse;
 }
 
-export interface userLoginActionInterface extends Action<'LOGIN_CUSTOMER_USER'> {
+export interface UserLoginActionInterface extends Action<'LOGIN_CUSTOMER_USER'> {
     email: string;
     password: string;
 }
 
-export const userLoginAction = ({
-    email,
-    password,
-}: {
-    email: string;
-    password: string;
-}): userLoginActionInterface => ({
+export const userLoginAction = ({ email, password }): UserLoginActionInterface => ({
     type: 'LOGIN_CUSTOMER_USER',
     email,
     password,
@@ -40,13 +34,14 @@ export const setCustomerUserAction = (customerUser: CustomerUserResponse): setCu
     customerUser,
 });
 
-export interface userLogoutActionInterface extends Action<'LOGOUT_USER'> {}
+export type UserLogoutActionInterface = Action<'LOGOUT_USER'>;
 
-export const userLogoutAction = () => ({
+export const userLogoutAction = (): UserLogoutActionInterface => ({
     type: 'LOGOUT_USER',
 });
-export interface userLogoutSuccessActionInterface extends Action<'LOGOUT_USER_SUCCESS'> {}
 
-export const userLogoutSuccessAction = () => ({
+export type UserLogoutSuccessActionInterface = Action<'LOGOUT_USER_SUCCESS'>;
+
+export const userLogoutSuccessAction = (): UserLogoutSuccessActionInterface => ({
     type: 'LOGOUT_USER_SUCCESS',
 });

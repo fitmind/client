@@ -1,11 +1,19 @@
-import { apiFetchWeather } from './api';
-import { WeatherExampleResponse } from './reducers/weather/weather-example-response';
+import { CustomerLoginExampleResponse } from './reducers/server-reducer/server-example-responses/user-login-example-response';
+import { apiLoginCustomerUser } from './api';
+import { userLoginAction } from './actions/server/server.actions';
 
 describe('api', () => {
-    test('api fetch weather', done => {
-        window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ json: () => WeatherExampleResponse }));
-        apiFetchWeather().then(res => {
-            expect(res).toEqual(WeatherExampleResponse);
+    // todo: need to write the rest of the api tests
+    test('api apiLoginCustomerUser', done => {
+        const mockLogin = userLoginAction({
+            email: 'test@fitmind.io',
+            password: 'asd@123',
+        });
+        window.fetch = jest
+            .fn()
+            .mockImplementation(() => Promise.resolve({ json: () => CustomerLoginExampleResponse }));
+        apiLoginCustomerUser(mockLogin).then(res => {
+            expect(res).toEqual(CustomerLoginExampleResponse);
             done();
         });
     });
