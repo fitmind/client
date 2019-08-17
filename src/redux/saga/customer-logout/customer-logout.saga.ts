@@ -1,4 +1,4 @@
-import { fork, takeEvery, all, call, put } from 'redux-saga/effects';
+import { takeEvery, call, put } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import { setLoadingTrue, setLoadingFalse, setNotification } from '../../actions/ui/ui.actions';
 import { ServerActions, userLogoutSuccessAction } from '../../actions/server/server.actions';
@@ -22,9 +22,3 @@ export function* logoutUser() {
 export function* watchLogoutUser() {
     yield takeEvery(ServerActions.LOGOUT_USER, logoutUser);
 }
-
-function* customerLogoutSaga() {
-    yield all([fork(watchLogoutUser)]);
-}
-
-export default customerLogoutSaga;

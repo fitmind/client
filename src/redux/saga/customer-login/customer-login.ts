@@ -1,4 +1,4 @@
-import { fork, takeEvery, all, call, put } from 'redux-saga/effects';
+import { takeEvery, call, put } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import { ServerActions, setCustomerUserAction, UserLoginActionInterface } from '../../actions/server/server.actions';
 import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/ui/ui.actions';
@@ -43,9 +43,3 @@ export function* loginUserSaga(action: UserLoginActionInterface) {
 export function* watchLoginUserSaga() {
     yield takeEvery(ServerActions.LOGIN_CUSTOMER_USER, loginUserSaga);
 }
-
-function* customerLoginSaga() {
-    yield all([fork(watchLoginUserSaga)]);
-}
-
-export default customerLoginSaga;

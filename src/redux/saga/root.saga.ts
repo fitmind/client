@@ -1,7 +1,7 @@
-import { all, fork } from 'redux-saga/effects';
-import customerLogoutSaga from './customer-logout/customer-logout.saga';
-import customerLoginSaga from './customer-login/customer-login';
+import { all } from 'redux-saga/effects';
+import { watchLogoutUser } from './customer-logout/customer-logout.saga';
+import { watchLoginUserSaga } from './customer-login/customer-login';
 
 export function* rootSaga() {
-    yield all([fork(customerLoginSaga), fork(customerLogoutSaga)]);
+    yield all([watchLoginUserSaga(), watchLogoutUser()]);
 }
