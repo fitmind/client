@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { ApplicationState } from '../../redux/reducers/root.reducer';
 import { Alert } from 'react-bootstrap';
 import styled from 'styled-components';
-import { NotificationInterface } from '../../interfaces/Notification.interface';
+import { NotificationInterface, NotificationType } from '../../interfaces/Notification.interface';
 
 interface PropsFromState {
     notification: NotificationInterface;
@@ -36,8 +36,8 @@ const NegativeAlertDismissible: React.FC<NotificationInterface> = ({ header, bod
 
 const Notification: React.FC<PropsFromState> = ({ notification }) => (
     <Wrapper>
-        {notification.type === 'positive' && <PositiveAlertDismissible {...notification} />}
-        {notification.type === 'error' && <NegativeAlertDismissible {...notification} />}
+        {notification.type === NotificationType.positive && <PositiveAlertDismissible {...notification} />}
+        {notification.type === NotificationType.negative && <NegativeAlertDismissible {...notification} />}
     </Wrapper>
 );
 

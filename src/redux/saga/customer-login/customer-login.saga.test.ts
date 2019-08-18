@@ -5,13 +5,13 @@ import { CustomerUserExampleResponse } from '../../reducers/server-reducer/serve
 
 import { setCustomerUserAction, userLoginAction } from '../../actions/server/server.actions';
 import * as matchers from 'redux-saga-test-plan/matchers';
-import { apiGetUserDashboard, apiLoginCustomerUser } from '../../api';
+import { apiGetUserDashboard, apiGetUserMe, apiLoginCustomerUser } from '../../api';
 import {
     loginUserSaga,
     userDashboardFailedNotification,
     userLoginFailedNotification,
     userLoginPositiveNotification,
-} from './customer-login';
+} from './customer-login.saga';
 import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/ui/ui.actions';
 import { push } from 'connected-react-router';
 import CONFIG from '../../../config/config';
@@ -24,9 +24,9 @@ describe('customer login saga', () => {
     });
 
     it('it logs in', () => {
-        return expectSaga(loginUserSaga, apiLoginCustomerUser)
+        return expectSaga(loginUserSaga)
             .provide([
-                [call(apiLoginCustomerUser, mockLogin), CustomerLoginExampleResponse],
+                [matchers.call.fn(apiLoginCustomerUser), CustomerLoginExampleResponse],
                 [call(apiGetUserDashboard), CustomerUserExampleResponse],
             ])
             .put(setLoadingTrue())
@@ -51,7 +51,7 @@ describe('customer login saga', () => {
         it('should fail when the get user dashboard response fails', () => {
             return expectSaga(loginUserSaga, apiLoginCustomerUser)
                 .provide([
-                    [call(apiLoginCustomerUser, mockLogin), CustomerLoginExampleResponse],
+                    [matchers.call.fn(apiLoginCustomerUser), CustomerLoginExampleResponse],
                     [matchers.call.fn(apiGetUserDashboard), throwError(error)],
                 ])
                 .put(setLoadingTrue())

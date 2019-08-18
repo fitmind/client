@@ -51,9 +51,9 @@ const NavBar: React.FC<allProps> = ({ expert, customerUser, history, userLogoutA
                     Experts
                 </Button>
             )}
-            {(expert._id || customerUser._id) && (
+            {customerUser._id && (
                 <Button variant="outline-secondary" onClick={() => userLogoutAction()}>
-                    Logout
+                    Customer Logout
                 </Button>
             )}
         </Navbar.Collapse>
