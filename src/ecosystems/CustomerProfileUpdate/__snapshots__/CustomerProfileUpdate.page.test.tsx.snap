@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Customer Profile Update page should match the snapshot 1`] = `
+<div
+  className="container-fluid"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-4"
+    />
+    <div
+      className="col-md-4"
+    >
+      <div
+        className="sc-bwzfXH kUNjUS"
+      >
+        <div
+          className="card"
+        >
+          <h5
+            className="card-header"
+          >
+            Edit your Profile
+          </h5>
+          <div
+            className="card-body"
+          >
+            <div
+              className="sc-bdVaJa kmXoBq"
+            >
+              <img
+                className="rounded"
+              />
+              <form
+                className=""
+              >
+                <div
+                  className="form-group"
+                >
+                  <label
+                    className="form-label"
+                  >
+                    Description of yourself *
+                  </label>
+                  <textarea
+                    className="form-control"
+                    rows="6"
+                  />
+                </div>
+                <div
+                  className="form-group"
+                >
+                  <label
+                    className="form-label"
+                  >
+                    Phone number *
+                  </label>
+                  <input
+                    className="form-control"
+                    placeholder="Enter phone"
+                    type="text"
+                  />
+                </div>
+                <div
+                  className="form-group"
+                >
+                  <label
+                    className="form-label"
+                  >
+                    Coaches you are looking for *
+                  </label>
+                  <select
+                    className="form-control"
+                    multiple={true}
+                  >
+                    <option
+                      value="YOGA_COACH"
+                    >
+                      Yoga Teacher
+                    </option>
+                    <option
+                      value="PERSONAL_COACH"
+                    >
+                      Personal Trainer
+                    </option>
+                    <option
+                      value="NUTRITIONIST"
+                    >
+                      Nutritionist
+                    </option>
+                    <option
+                      value="LIFE_COACH"
+                    >
+                      Life Coach
+                    </option>
+                  </select>
+                </div>
+                <button
+                  className="btn btn-primary"
+                  disabled={false}
+                  type="button"
+                >
+                  Update Profile
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
