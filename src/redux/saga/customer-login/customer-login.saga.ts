@@ -2,7 +2,7 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import { ServerActions, setCustomerUserAction, UserLoginActionInterface } from '../../actions/server/server.actions';
 import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/ui/ui.actions';
-import { apiGetUserDashboard, apiLoginCustomerUser } from '../../api';
+import { apiLoginCustomerUser, apiGetUserMe } from '../../api';
 import { CustomerUserResponse } from '../../../interfaces/responses/customer-user-response';
 import CONFIG from '../../../config/config';
 import { NotificationInterface, NotificationType } from '../../../interfaces/Notification.interface';
@@ -27,7 +27,7 @@ export function* loginUserSaga(action: UserLoginActionInterface) {
         const loginResponse: CustomerLoginResponse = yield call(apiLoginCustomerUser, action);
         if (loginResponse) {
             try {
-                const userResponse: CustomerUserResponse = yield call(apiGetUserDashboard);
+                const userResponse: CustomerUserResponse = yield call(apiGetUserMe);
                 yield put(setCustomerUserAction(userResponse));
                 yield put(push(CONFIG.routes.customerDashboard));
                 yield put(setNotification(userLoginPositiveNotification));

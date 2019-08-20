@@ -31,13 +31,12 @@ export async function apiLoginCustomerUser({
     return await response.json();
 }
 
-export async function apiGetUserMe({ email, password }: UserLoginActionInterface): Promise<CustomerLoginResponse> {
-    const response = await fetch(`${API_URL}/user/login`, {
-        method: 'POST',
+export async function apiGetUserMe(): Promise<CustomerUserResponse> {
+    const response = await fetch(`${API_URL}/user/me`, {
+        method: 'GET',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
         mode,
         credentials,
-        body: JSON.stringify({ email, password }),
     });
     return await response.json();
 }
@@ -61,7 +60,7 @@ export async function apiSignUpCustomerUser(action: CustomerSignUpActionInterfac
             firstName: action.firstName,
             lastName: action.lastName,
             password: action.password,
-            interestedInExperiseAreas: action.interestedInExperiseAreas,
+            interestedInExpertiseAreas: action.interestedInExpertiseAreas,
             description: action.description,
             phone: action.phone,
         }),
