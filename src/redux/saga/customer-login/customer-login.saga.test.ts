@@ -27,12 +27,12 @@ describe('customer login saga', () => {
         return expectSaga(loginUserSaga)
             .provide([
                 [matchers.call.fn(apiLoginCustomerUser), CustomerLoginExampleResponse],
-                [call(apiGetUserDashboard), CustomerUserExampleResponse],
+                [call(apiGetUserMe), CustomerUserExampleResponse],
             ])
             .put(setLoadingTrue())
             .put(setCustomerUserAction(CustomerUserExampleResponse))
-            .put(setNotification(userLoginPositiveNotification))
             .put(push(CONFIG.routes.customerDashboard))
+            .put(setNotification(userLoginPositiveNotification))
             .put(setLoadingFalse())
             .run();
     });
