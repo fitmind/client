@@ -25,7 +25,10 @@ const ExpertSignUpSchema = Yup.object().shape({
     passwordConfirm: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
         .required('Password confirm is required'),
-    expertise: Yup.string().required('Required'),
+    expertise: Yup.array()
+        .of(Yup.string())
+        .min(1)
+        .required('Required'),
     monday: Yup.string().required('Required'),
     tuesday: Yup.string().required('Required'),
     wednesday: Yup.string().required('Required'),
@@ -33,13 +36,15 @@ const ExpertSignUpSchema = Yup.object().shape({
     friday: Yup.string().required('Required'),
     saturday: Yup.string().required('Required'),
     sunday: Yup.string().required('Required'),
-    // expertise: Yup.array()
-    //     .of(Yup.string())
-    //     .min(1)
-    //     .required('Required'),
     description: Yup.string()
         .min(6, 'Too Short!')
         .max(700, 'Too Long!')
+        .required('Required'),
+    phone: Yup.string()
+        .matches(
+            /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+            'Invalid',
+        )
         .required('Required'),
 });
 
@@ -59,7 +64,7 @@ const ExpertSignUpPage: React.FC = () => (
                                     lastName: '',
                                     password: '',
                                     passwordConfirm: '',
-                                    expertise: '',
+                                    expertise: [],
                                     description: '',
                                     monday: '',
                                     tuesday: '',
@@ -68,6 +73,7 @@ const ExpertSignUpPage: React.FC = () => (
                                     friday: '',
                                     saturday: '',
                                     sunday: '',
+                                    phone: '',
                                 }}
                                 validationSchema={ExpertSignUpSchema}
                                 onSubmit={(values, { setSubmitting }) => {
@@ -83,6 +89,7 @@ const ExpertSignUpPage: React.FC = () => (
                                     handleChange,
                                     handleSubmit,
                                     isSubmitting,
+                                    setFieldValue,
                                 }) => (
                                     <Form noValidate onSubmit={handleSubmit}>
                                         <Form.Group>
@@ -134,7 +141,7 @@ const ExpertSignUpPage: React.FC = () => (
                                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                             <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
                                         </Form.Group>
-                                        <Form.Group controlId="formBasicPassword">
+                                        <Form.Group>
                                             <Form.Label>Password</Form.Label>
                                             <Form.Control
                                                 type="password"
@@ -153,7 +160,7 @@ const ExpertSignUpPage: React.FC = () => (
                                                 Password needs to have numbers and letters
                                             </Form.Text>
                                         </Form.Group>
-                                        <Form.Group controlId="formBasicPassword">
+                                        <Form.Group>
                                             <Form.Label>Password Confirmation</Form.Label>
                                             <Form.Control
                                                 type="password"
@@ -174,24 +181,26 @@ const ExpertSignUpPage: React.FC = () => (
                                             <Form.Label>Expertise</Form.Label>
                                             <Form.Control
                                                 as="select"
-                                                // multiple <-- weird
+                                                multiple={true}
                                                 name="expertise"
-                                                onChange={handleChange}
+                                                onChange={evt =>
+                                                    setFieldValue(
+                                                        'expertise',
+                                                        [].slice
+                                                            .call((evt.target as HTMLSelectElement).selectedOptions)
+                                                            .map(option => option.value),
+                                                    )
+                                                }
                                                 onBlur={handleBlur}
-                                                value={values.expertise}
                                                 isValid={touched.expertise && !errors.expertise}
                                                 isInvalid={!!errors.expertise}
                                             >
                                                 {' '}
                                                 {Object.keys(CONFIG.expertises).map((key: string) => (
-                                                    <option value={CONFIG.expertises[key].value}>
+                                                    <option key={key} value={CONFIG.expertises[key].value}>
                                                         {CONFIG.expertises[key].display}
                                                     </option>
                                                 ))}
-                                                <option value="YOGA">Yoga</option>
-                                                <option value="PERSONAL_TRAINER">Personal Trainer</option>
-                                                <option value="LIFE_COACH">Life Coach</option>
-                                                <option value="NUTRITIONIST">Nutritionist</option>
                                             </Form.Control>
                                         </Form.Group>
                                         <Form.Group>
@@ -211,6 +220,21 @@ const ExpertSignUpPage: React.FC = () => (
                                             <Form.Control.Feedback type="invalid">
                                                 {errors.description}
                                             </Form.Control.Feedback>
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Label>Phone</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                name="phone"
+                                                placeholder="Enter phone"
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.phone}
+                                                isValid={touched.phone && !errors.phone}
+                                                isInvalid={!!errors.phone}
+                                            />
+                                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                            <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
                                         </Form.Group>
                                         <Button
                                             variant="outline-primary"

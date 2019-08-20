@@ -15,19 +15,19 @@ const CONFIG = {
     expertises: {
         yoga: {
             value: 'YOGA_COACH',
-            display: 'yoga coach',
+            display: 'Yoga Teacher',
         },
         personalTrainer: {
             value: 'PERSONAL_COACH',
-            display: 'personal coach',
+            display: 'Personal Trainer',
         },
         nutritionist: {
             value: 'NUTRITIONIST',
-            display: 'nutritionist',
+            display: 'Nutritionist',
         },
         lifeCoach: {
             value: 'LIFE_COACH',
-            display: 'life coach',
+            display: 'Life Coach',
         },
     },
 };
