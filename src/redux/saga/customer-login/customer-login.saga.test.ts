@@ -42,7 +42,7 @@ describe('customer login saga', () => {
                 .run();
         });
 
-        it('should fail when the get user dashboard response fails', () => {
+        it('should fail when the get user response fails', () => {
             return expectSaga(loginUserSaga, apiLoginCustomerUser)
                 .provide([
                     [matchers.call.fn(apiLoginCustomerUser), CustomerLoginExampleResponse],
