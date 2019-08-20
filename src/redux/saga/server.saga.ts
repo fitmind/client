@@ -4,14 +4,14 @@ import { setLoadingTrue, setLoadingFalse, setNotification } from '../actions/ui/
 import {
     ServerActions,
     setCustomerUserAction,
-    userLoginActionInterface,
-    customerSignUpActionInterface,
+    UserLoginActionInterface,
+    CustomerSignUpActionInterface,
 } from '../actions/server/server.actions';
 import { apiLoginCustomerUser, apiGetUserMe, apiSignUpCustomerUser } from '../api';
 import { CustomerUserResponse } from '../../interfaces/responses/customer-user-response';
 import CONFIG from '../../config/config';
 
-export function* loginUser(action: userLoginActionInterface) {
+export function* loginUser(action: UserLoginActionInterface) {
     yield put(setLoadingTrue());
     try {
         const loginResponse = yield call(apiLoginCustomerUser, action);
@@ -32,7 +32,7 @@ export function* loginUser(action: userLoginActionInterface) {
     }
 }
 
-export function* signUpCustomer(action: customerSignUpActionInterface) {
+export function* signUpCustomer(action: CustomerSignUpActionInterface) {
     yield put(setLoadingTrue());
     try {
         const signUpCustomerResponse = yield call(apiSignUpCustomerUser, action);

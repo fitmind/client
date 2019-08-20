@@ -41,5 +41,5 @@ export async function apiSignUpCustomerUser(action: CustomerSignUpActionInterfac
             phone: action.phone,
         }),
     });
-    return res;
+    return res.json();
 }
