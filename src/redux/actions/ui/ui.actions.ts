@@ -15,8 +15,8 @@ export interface UiActionTypes {
     notification?: NotificationInterface;
 }
 
-export interface setLoadingFalseAction extends Action<'LOADING_FALSE'> {}
-export interface setLoadingTrueAction extends Action<'LOADING_TRUE'> {}
+export type setLoadingFalseAction = Action<'LOADING_FALSE'>;
+export type setLoadingTrueAction = Action<'LOADING_TRUE'>;
 
 export const setLoadingFalse = (): setLoadingFalseAction => ({
     type: 'LOADING_FALSE',

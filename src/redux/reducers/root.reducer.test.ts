@@ -1,7 +1,6 @@
 import { ApplicationState, storeInitialState } from './root.reducer';
 import { configureStore } from '../store';
 import { Store } from 'redux';
-import { weatherInitialState } from './weather/weather.reducer';
 
 describe('root reducer', () => {
     let store: Store<ApplicationState> = configureStore(storeInitialState);
@@ -21,9 +20,5 @@ describe('root reducer', () => {
             ...storeInitialState,
             ...initialRouter,
         });
-    });
-
-    it('should return the initial state from the weather reducer', () => {
-        expect(store.getState().weather).toEqual(weatherInitialState);
     });
 });

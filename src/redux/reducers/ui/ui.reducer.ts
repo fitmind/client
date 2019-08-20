@@ -1,6 +1,6 @@
 import { UIActions, UiActionTypes } from '../../actions/ui/ui.actions';
 import { Reducer } from 'redux';
-import { NotificationInterface } from '../../../interfaces/Notification.interface';
+import { NotificationInterface, NotificationType } from '../../../interfaces/Notification.interface';
 
 export interface UIState {
     loading: boolean;
@@ -8,8 +8,8 @@ export interface UIState {
     notification?: NotificationInterface;
 }
 
-export const emptyNotification = {
-    type: '',
+export const emptyNotification: NotificationInterface = {
+    type: NotificationType.neutral,
     header: '',
     body: '',
 };
