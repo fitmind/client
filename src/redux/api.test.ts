@@ -3,9 +3,10 @@ import { CustomerSignUpExampleResponse } from './reducers/server-reducer/server-
 import { customerSignUpAction } from './actions/server/server.actions';
 import { CustomerLoginExampleResponse } from './reducers/server-reducer/server-example-responses/user-login-example-response';
 import { apiLoginCustomerUser, apiLogoutCustomerUser, apiGetUserMe, apiGetUserDashboard } from './api';
-import { userLoginAction, userLogoutAction } from './actions/server/server.actions';
+import { userLoginAction } from './actions/server/server.actions';
 import { CustomerLogoutExampleResponse } from './reducers/server-reducer/server-example-responses/user-logout-example-response';
 import { CustomerUserExampleResponse } from './reducers/server-reducer/server-example-responses/user-me-example-response';
+import { CustomerDashboardExampleResponse } from './reducers/server-reducer/server-example-responses/user-dashboard-example-response';
 
 describe('api', () => {
     test('api apiLoginCustomerUser', done => {
@@ -33,21 +34,19 @@ describe('api', () => {
     });
 
     test('api apiGetUserMe', done => {
-        const mockLogin = userLoginAction({
-            email: 'test@fitmind.io',
-            password: 'asd@123',
-        });
         window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ json: () => CustomerUserExampleResponse }));
-        apiGetUserMe(mockLogin).then(res => {
+        apiGetUserMe().then(res => {
             expect(res).toEqual(CustomerUserExampleResponse);
             done();
         });
     });
 
     test('api apiGetUserDashboard', done => {
-        window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ json: () => CustomerUserExampleResponse }));
+        window.fetch = jest
+            .fn()
+            .mockImplementation(() => Promise.resolve({ json: () => CustomerDashboardExampleResponse }));
         apiGetUserDashboard().then(res => {
-            expect(res).toEqual(CustomerUserExampleResponse);
+            expect(res).toEqual(CustomerDashboardExampleResponse);
             done();
         });
     });
