@@ -1,6 +1,6 @@
 import { weatherResponse } from '../interfaces/responses/weather-response';
 import { CustomerUserResponse } from '../interfaces/responses/customer-user-response';
-import { userLoginActionInterface, customerSignUpActionInterface } from './actions/server/server.actions';
+import { UserLoginActionInterface, CustomerSignUpActionInterface } from './actions/server/server.actions';
 
 const WEATHER_API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 const URL = 'http://api.openweathermap.org/data/2.5/weather?q=london&APPID=';
@@ -18,7 +18,7 @@ export async function apiGetUserMe(): Promise<CustomerUserResponse> {
 }
 
 // Sets cookie for the customer user
-export async function apiLoginCustomerUser(action: userLoginActionInterface) {
+export async function apiLoginCustomerUser(action: UserLoginActionInterface) {
     const res = await fetch(`${API_URL}user/login`, {
         method: 'post',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
@@ -27,7 +27,7 @@ export async function apiLoginCustomerUser(action: userLoginActionInterface) {
     return res;
 }
 
-export async function apiSignUpCustomerUser(action: customerSignUpActionInterface) {
+export async function apiSignUpCustomerUser(action: CustomerSignUpActionInterface) {
     const res = await fetch(`${API_URL}user/register`, {
         method: 'post',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },

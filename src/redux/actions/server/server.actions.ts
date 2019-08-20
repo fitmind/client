@@ -13,7 +13,7 @@ export interface ServerActionTypes {
     customerUser?: CustomerUserResponse;
 }
 
-export interface userLoginActionInterface extends Action<'LOGIN_CUSTOMER_USER'> {
+export interface UserLoginActionInterface extends Action<'LOGIN_CUSTOMER_USER'> {
     email: string;
     password: string;
 }
@@ -24,7 +24,7 @@ export const userLoginAction = ({
 }: {
     email: string;
     password: string;
-}): userLoginActionInterface => ({
+}): UserLoginActionInterface => ({
     type: 'LOGIN_CUSTOMER_USER',
     email,
     password,
@@ -39,7 +39,7 @@ export const setCustomerUserAction = (customerUser: CustomerUserResponse): setCu
     customerUser,
 });
 
-export interface customerSignUpActionInterface extends Action<'SIGNUP_CUSTOMER_USER'> {
+export interface CustomerSignUpActionInterface extends Action<'SIGNUP_CUSTOMER_USER'> {
     email: string;
     firstName: string;
     lastName: string;
@@ -65,7 +65,7 @@ export const customerSignUpAction = ({
     interestedInExperiseAreas: string[];
     description: string;
     phone: string;
-}): customerSignUpActionInterface => ({
+}): CustomerSignUpActionInterface => ({
     type: 'SIGNUP_CUSTOMER_USER',
     email,
     firstName,
