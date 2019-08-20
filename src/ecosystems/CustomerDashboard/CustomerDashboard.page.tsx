@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { ApplicationState } from '../../redux/reducers/root.reducer';
 import { customerUserInterface, customerDashboardInterface } from '../../redux/reducers/server-reducer/server.reducer';
 import { fetchCustomerDashboardAction } from '../../redux/actions/server/server.actions';
+import { bookingInterface } from '../../interfaces/responses/customer-dashboard-response';
 
 interface PropsFromState {
     customerUser: customerUserInterface;
@@ -24,27 +25,10 @@ export class CustomerDashboard extends React.Component<CustomerDashboardPageAllP
         this.props.fetchCustomerDashboardAction();
     }
 
-    renderUpcomingBookings = () => {
+    renderBookings = (bookings: bookingInterface[]) => {
         const rows = [];
 
-        this.props.customerDashboard.upcomingBookings.forEach((booking, index) => {
-            rows.push(
-                <tr key={booking._id}>
-                    <td>{index + 1}</td>
-                    <td>{booking.client}</td>
-                    <td>{booking.time}</td>
-                    <td>{booking.email}</td>
-                    <td>{booking.listing}</td>
-                    <td>{booking.price}</td>
-                </tr>,
-            );
-        });
-        return rows;
-    };
-    renderPastBookings = () => {
-        const rows = [];
-
-        this.props.customerDashboard.pastBookings.forEach((booking, index) => {
+        bookings.forEach((booking, index) => {
             rows.push(
                 <tr key={booking._id}>
                     <td>{index + 1}</td>
@@ -95,7 +79,7 @@ export class CustomerDashboard extends React.Component<CustomerDashboardPageAllP
                                 <tbody>
                                     {this.props.customerDashboard &&
                                         this.props.customerDashboard.upcomingBookings &&
-                                        this.renderUpcomingBookings()}
+                                        this.renderBookings(this.props.customerDashboard.upcomingBookings)}
                                 </tbody>
                             </Table>
                             <h3>Past Apppintments</h3>
@@ -113,7 +97,7 @@ export class CustomerDashboard extends React.Component<CustomerDashboardPageAllP
                                 <tbody>
                                     {this.props.customerDashboard &&
                                         this.props.customerDashboard.pastBookings &&
-                                        this.renderPastBookings()}
+                                        this.renderBookings(this.props.customerDashboard.pastBookings)}
                                 </tbody>
                             </Table>
                         </CardWrapper>
