@@ -3,6 +3,8 @@ import { CustomerDashboardExampleResponse } from './server-example-responses/use
 
 import { fetchCustomerDashboardAction, setCustomerDashboardAction } from '../../actions/server/server.actions';
 
+import { userLogoutAction, userLogoutSuccessAction } from '../../actions/server/server.actions';
+
 describe('server reducer', () => {
     it('should have an initial state and it should return it if the action type is not recognised', () => {
         expect(ServerReducer(ServerInitialState, { type: '' })).toEqual(ServerInitialState);
@@ -21,5 +23,18 @@ describe('server reducer', () => {
         expect(ServerReducer(ServerInitialState, setCustomerDashboardAction(CustomerDashboardExampleResponse))).toEqual(
             expectedResponse,
         );
+    });
+
+    it('should handle User Logout action', () => {
+        expect(ServerReducer(ServerInitialState, userLogoutAction())).toEqual(ServerInitialState);
+    });
+
+    it('should handle User Logout Success action', () => {
+        const expectedResponse = {
+            expertUser: {},
+            customerUser: {},
+            customerDashboard: {},
+        };
+        expect(ServerReducer(ServerInitialState, userLogoutSuccessAction())).toEqual(expectedResponse);
     });
 });

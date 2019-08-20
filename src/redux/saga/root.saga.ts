@@ -1,7 +1,8 @@
-import weatherSaga from './weather.saga';
-import { all, fork } from 'redux-saga/effects';
-import serverSaga from './server.saga';
+import { all } from 'redux-saga/effects';
+import { watchLogoutUserSaga } from './customer-logout/customer-logout.saga';
+import { watchLoginUserSaga } from './customer-login/customer-login.saga';
+import { watchCustomerDashboardSaga } from './customer-dashboard/customer-dashboard.saga';
 
 export function* rootSaga() {
-    yield all([fork(weatherSaga), fork(serverSaga)]);
+    yield all([watchLoginUserSaga(), watchLogoutUserSaga(), watchCustomerDashboardSaga()]);
 }

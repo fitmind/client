@@ -166,7 +166,7 @@ exports[`NavBar should match the snapshots should match when the customer is log
       onClick={[Function]}
       type="button"
     >
-      Experts
+      Customer Logout
     </button>
   </div>
 </nav>

@@ -7,6 +7,8 @@ export const ServerActions = {
     SET_CUSTOMER_USER: 'SET_CUSTOMER_USER',
     FETCH_CUSTOMER_DASHBOARD: 'FETCH_CUSTOMER_DASHBOARD',
     SET_CUSTOMER_DASHBOARD: 'SET_CUSTOMER_DASHBOARD',
+    LOGOUT_USER: 'LOGOUT_USER',
+    LOGOUT_USER_SUCCESS: 'LOGOUT_USER_SUCCESS',
 };
 
 export interface ServerActionTypes {
@@ -16,18 +18,12 @@ export interface ServerActionTypes {
     customerDashboard?: CustomerDashboardResponse;
 }
 
-export interface userLoginActionInterface extends Action<'LOGIN_CUSTOMER_USER'> {
+export interface UserLoginActionInterface extends Action<'LOGIN_CUSTOMER_USER'> {
     email: string;
     password: string;
 }
 
-export const userLoginAction = ({
-    email,
-    password,
-}: {
-    email: string;
-    password: string;
-}): userLoginActionInterface => ({
+export const userLoginAction = ({ email, password }): UserLoginActionInterface => ({
     type: 'LOGIN_CUSTOMER_USER',
     email,
     password,
@@ -57,4 +53,15 @@ export const setCustomerDashboardAction = (
 ): setCustomerDashboardActionInterface => ({
     type: 'SET_CUSTOMER_DASHBOARD',
     customerDashboard,
+});
+export type UserLogoutActionInterface = Action<'LOGOUT_USER'>;
+
+export const userLogoutAction = (): UserLogoutActionInterface => ({
+    type: 'LOGOUT_USER',
+});
+
+export type UserLogoutSuccessActionInterface = Action<'LOGOUT_USER_SUCCESS'>;
+
+export const userLogoutSuccessAction = (): UserLogoutSuccessActionInterface => ({
+    type: 'LOGOUT_USER_SUCCESS',
 });

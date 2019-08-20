@@ -1,6 +1,8 @@
 import {
     ServerActions,
     userLoginAction,
+    userLogoutAction,
+    userLogoutSuccessAction,
     fetchCustomerDashboardAction,
     setCustomerDashboardAction,
 } from './server.actions';
@@ -84,6 +86,23 @@ describe('server actions', () => {
                 customerDashboard: customerDashboardResponse,
             };
             expect(setCustomerDashboardAction(customerDashboardResponse)).toEqual(expectedAction);
+        });
+    });
+    describe('userLogoutAction', () => {
+        it('should return the correct type and data', () => {
+            const expectedAction = {
+                type: ServerActions.LOGOUT_USER,
+            };
+            expect(userLogoutAction()).toEqual(expectedAction);
+        });
+    });
+
+    describe('userLogoutSuccessAction', () => {
+        it('should return the correct type and data', () => {
+            const expectedAction = {
+                type: ServerActions.LOGOUT_USER_SUCCESS,
+            };
+            expect(userLogoutSuccessAction()).toEqual(expectedAction);
         });
     });
 });

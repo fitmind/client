@@ -43,6 +43,8 @@ export const ServerReducer: Reducer<ServerStateInterface> = (
             return { ...state, customerUser: action.customerUser };
         case ServerActions.SET_CUSTOMER_DASHBOARD:
             return { ...state, customerDashboard: action.customerDashboard };
+        case ServerActions.LOGOUT_USER_SUCCESS:
+            return { ...state, customerUser: {} };
         default:
             return state;
     }
