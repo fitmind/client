@@ -36,6 +36,7 @@ describe('server actions', () => {
             const customerDashboardResponse = {
                 upcomingBookings: [
                     {
+                        _id: '123',
                         client: 'Diego',
                         time: '3:30 PM, 3 May',
                         email: 'diego@gmail.com',
@@ -43,6 +44,7 @@ describe('server actions', () => {
                         price: '30 €',
                     },
                     {
+                        _id: '1234',
                         client: 'Mark',
                         time: '5:30 PM, 3 May',
                         email: 'mark@gmail.com',
@@ -50,6 +52,7 @@ describe('server actions', () => {
                         price: '50 €',
                     },
                     {
+                        _id: '1235',
                         client: 'Ada',
                         time: '8:30 AM, 4 May',
                         email: 'ada@gmail.com',
@@ -59,6 +62,7 @@ describe('server actions', () => {
                 ],
                 pastBookings: [
                     {
+                        _id: '1236',
                         client: 'Adam',
                         time: '1:30 PM, 3 May',
                         email: 'diego@gmail.com',
@@ -66,6 +70,7 @@ describe('server actions', () => {
                         price: '30 €',
                     },
                     {
+                        _id: '1237',
                         client: 'Smith',
                         time: '2:30 PM, 3 May',
                         email: 'mark@gmail.com',
@@ -73,6 +78,7 @@ describe('server actions', () => {
                         price: '50 €',
                     },
                     {
+                        _id: '1238',
                         client: 'Ada',
                         time: '4:30 AM, 4 May',
                         email: 'ada@gmail.com',

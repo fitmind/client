@@ -6,7 +6,6 @@ import { ConnectedReduxProps } from '../../redux/reducers/root.reducer';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../redux/reducers/root.reducer';
 import { customerUserInterface, customerDashboardInterface } from '../../redux/reducers/server-reducer/server.reducer';
-import { fetchCustomerDashboardAction } from '../../redux/actions/server/server.actions';
 import CONFIG from '../../config/config';
 
 interface PropsFromState {
@@ -14,17 +13,9 @@ interface PropsFromState {
     customerDashboard: customerDashboardInterface;
 }
 
-interface PropsFromDispatch {
-    fetchCustomerDashboardAction: typeof fetchCustomerDashboardAction;
-}
-
-type CustomerDashboardPageAllProps = PropsFromDispatch & RouteComponentProps & ConnectedReduxProps & PropsFromState;
+type CustomerDashboardPageAllProps = RouteComponentProps & ConnectedReduxProps & PropsFromState;
 
 export class CustomerDashboard extends React.Component<CustomerDashboardPageAllProps> {
-    componentDidMount() {
-        this.props.fetchCustomerDashboardAction();
-    }
-
     renderUpcomingBookings = () => {
         const rows = [];
 
@@ -72,7 +63,7 @@ export class CustomerDashboard extends React.Component<CustomerDashboardPageAllP
                                 <Card.Header as="h5">Edit your Profile</Card.Header>
                                 <Card.Body>
                                     <CenterContainer>
-                                        <Image src={customerUser.phoneUrl} rounded />
+                                        <Image src={customerUser.pictureUrl} rounded />
                                         <Form>
                                             <Form.Group>
                                                 <Form.Label>Description of yourself *</Form.Label>
@@ -126,9 +117,6 @@ const CardWrapper = styled.div`
     margin-top: 5rem;
 `;
 
-const mapDispatchToProps = {
-    fetchCustomerDashboardAction,
-};
 const mapStateToProps = (state: ApplicationState) => ({
     customerUser: state.server.customerUser,
     customerDashboard: state.server.customerDashboard,
@@ -136,6 +124,6 @@ const mapStateToProps = (state: ApplicationState) => ({
 export default withRouter(
     connect(
         mapStateToProps,
-        mapDispatchToProps,
+        {},
     )(CustomerDashboard),
 );

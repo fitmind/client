@@ -7,6 +7,7 @@ const CONFIG = {
         customerLogin: '/login',
         customerSignUp: '/register',
         customerDashboard: '/dashboard',
+        customerProfileUpdate: '/edit',
         expert: '/expert/:id',
         expertLogin: '/experts-login',
         expertSignUp: '/experts-register',

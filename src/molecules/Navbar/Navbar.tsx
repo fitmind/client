@@ -52,6 +52,11 @@ const NavBar: React.FC<allProps> = ({ expert, customerUser, history, userLogoutA
                 </Button>
             )}
             {customerUser._id && (
+                <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.customerProfileUpdate)}>
+                    Edit Profile
+                </Button>
+            )}
+            {customerUser._id && (
                 <Button variant="outline-secondary" onClick={() => userLogoutAction()}>
                     Customer Logout
                 </Button>

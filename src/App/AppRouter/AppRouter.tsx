@@ -14,6 +14,7 @@ import ExpertDashboardPage from '../../ecosystems/ExpertDashboard/ExpertDashboar
 import ListingsPage from '../../ecosystems/Listings/Listings.page';
 import ListingSinglePage from '../../ecosystems/ListingsSingle/ListingsSingle.page';
 import ExpertSignUpPage from '../../ecosystems/ExpertSignUp/ExpertSignUp.page';
+import CustomerProfileUpdatePage from '../../ecosystems/CustomerProfileUpdate/CustomerProfileUpdate.page';
 
 const AppRouter: React.FC = () => (
     <div>
@@ -23,6 +24,7 @@ const AppRouter: React.FC = () => (
         <Switch>
             <Route path={CONFIG.routes.home} exact component={Home} />
             <Route path={CONFIG.routes.customerLogin} exact component={LoginPage} />
+            <Route path={CONFIG.routes.customerProfileUpdate} exact component={CustomerProfileUpdatePage} />
             <Route path={CONFIG.routes.customerDashboard} exact component={CustomerDashboard} />
             <Route path={CONFIG.routes.customerSignUp} exact component={CustomerSignUpPage} />
             <Route path={CONFIG.routes.expertLogin} exact component={ExpertLoginPage} />
