@@ -51,13 +51,3 @@ export async function apiLogoutCustomerUser() {
     });
     return await res.json();
 }
-
-export async function apiCustomerDashboard() {
-    const res = await fetch(`${API_URL}/user/dashboard`, {
-        method: 'get',
-        mode,
-        credentials,
-        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-    });
-    return res.json();
-}

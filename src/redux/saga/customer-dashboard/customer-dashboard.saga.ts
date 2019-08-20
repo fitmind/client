@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { ServerActions, setCustomerDashboardAction } from '../../actions/server/server.actions';
 import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/ui/ui.actions';
-import { apiCustomerDashboard } from '../../api';
+import { apiGetUserDashboard } from '../../api';
 import { NotificationInterface, NotificationType } from '../../../interfaces/Notification.interface';
 
 export const userDashboardFetchFailedNotification: NotificationInterface = {
@@ -15,7 +15,7 @@ export const userDashboardSetFailedNotification: NotificationInterface = {
 export function* fetchCustomerDashboardSaga() {
     yield put(setLoadingTrue());
     try {
-        const fetchCustomerDashboardResponse = yield call(apiCustomerDashboard);
+        const fetchCustomerDashboardResponse = yield call(apiGetUserDashboard);
         if (fetchCustomerDashboardResponse) {
             try {
                 yield put(setCustomerDashboardAction(fetchCustomerDashboardResponse));
@@ -24,7 +24,7 @@ export function* fetchCustomerDashboardSaga() {
             }
         }
     } catch (fetchCustomerDashboardError) {
-        yield put(setNotification(userDashboardSetFailedNotification));
+        yield put(setNotification(userDashboardFetchFailedNotification));
     } finally {
         yield put(setLoadingFalse());
     }

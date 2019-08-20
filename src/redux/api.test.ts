@@ -1,6 +1,6 @@
 import { CustomerLoginExampleResponse } from './reducers/server-reducer/server-example-responses/user-login-example-response';
 import { apiLoginCustomerUser, apiLogoutCustomerUser, apiGetUserMe, apiGetUserDashboard } from './api';
-import { userLoginAction, userLogoutAction } from './actions/server/server.actions';
+import { userLoginAction } from './actions/server/server.actions';
 import { CustomerLogoutExampleResponse } from './reducers/server-reducer/server-example-responses/user-logout-example-response';
 import { CustomerUserExampleResponse } from './reducers/server-reducer/server-example-responses/user-me-example-response';
 describe('api', () => {
