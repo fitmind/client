@@ -35,6 +35,8 @@ export async function apiGetUserMe({ email, password }: UserLoginActionInterface
     const response = await fetch(`${API_URL}/user/login`, {
         method: 'POST',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        mode,
+        credentials,
         body: JSON.stringify({ email, password }),
     });
     return await response.json();
