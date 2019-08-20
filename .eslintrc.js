@@ -20,6 +20,7 @@ module.exports = {
         // "@typescript-eslint/explicit-function-return-type": "off",
         'react/prop-types': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/class-name-casing': 'on',
     },
     settings: {
         react: {
