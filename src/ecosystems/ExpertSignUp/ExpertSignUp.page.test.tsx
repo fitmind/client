@@ -1,15 +1,31 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ExpertSignUpPage from './ExpertSignUp.page';
+import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
-import store from '../../redux/store';
+import store, { history } from '../../redux/store';
+import { Router } from 'react-router';
+import ExpertSignUpPage from './ExpertSignUp.page';
 
-describe('Customer Dashboard page', () => {
+describe('Expert SignUp page', () => {
     it('renders without crashing', () => {
         shallow(
             <Provider store={store}>
-                <ExpertSignUpPage />
+                <Router history={history}>
+                    <ExpertSignUpPage />
+                </Router>
             </Provider>,
         );
+    });
+
+    it('should match the snapshot', () => {
+        const component = renderer.create(
+            <Provider store={store}>
+                <Router history={history}>
+                    <ExpertSignUpPage />
+                </Router>
+            </Provider>,
+        );
+        let tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
     });
 });
