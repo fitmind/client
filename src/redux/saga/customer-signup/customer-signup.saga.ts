@@ -21,7 +21,7 @@ export function* signUpCustomerSaga(action: CustomerSignUpActionInterface) {
         const signUpCustomerResponse = yield call(apiSignUpCustomerUser, action);
         if (signUpCustomerResponse) {
             yield put(setNotification(userSignUpPositiveNotification));
-            yield put(push(CONFIG.routes.home));
+            yield put(push(CONFIG.routes.customerLogin));
         }
     } catch (signUpCustomerError) {
         yield put(setNotification(userSignUpFailedNotification));

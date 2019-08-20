@@ -53,7 +53,7 @@ export async function apiLogoutCustomerUser() {
 }
 
 export async function apiSignUpCustomerUser(action: CustomerSignUpActionInterface) {
-    const res = await fetch(`${API_URL}user/register`, {
+    const res = await fetch(`${API_URL}/user/register`, {
         method: 'post',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify({
