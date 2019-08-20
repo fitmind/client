@@ -44,7 +44,7 @@ exports[`Customer Dashboard page should match the snapshot 1`] = `
         className="sc-htpNat fYCKZt"
       >
         <h3>
-          Upcomimg Apppintments
+          Upcoming Appointments
         </h3>
         <div
           className="table-responsive-md"
@@ -78,7 +78,7 @@ exports[`Customer Dashboard page should match the snapshot 1`] = `
           </table>
         </div>
         <h3>
-          Past Apppintments
+          Past Appointments
         </h3>
         <div
           className="table-responsive-md"
