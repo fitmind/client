@@ -28,7 +28,7 @@ const CustomerSignUpSchema = Yup.object().shape({
     passwordConfirm: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
         .required('Password confirm is required'),
-    interestedInExperiseAreas: Yup.array()
+    interestedInExpertiseAreas: Yup.array()
         .of(Yup.string())
         .min(1)
         .required('Required'),
@@ -68,7 +68,7 @@ export class CustomerSignUpPage extends React.Component<CustomerSignUpPageAllPro
                                             lastName: '',
                                             password: '',
                                             passwordConfirm: '',
-                                            interestedInExperiseAreas: [],
+                                            interestedInExpertiseAreas: [],
                                             description: '',
                                             phone: '',
                                         }}
@@ -196,10 +196,10 @@ export class CustomerSignUpPage extends React.Component<CustomerSignUpPageAllPro
                                                         }
                                                         onBlur={handleBlur}
                                                         isValid={
-                                                            touched.interestedInExperiseAreas &&
-                                                            !errors.interestedInExperiseAreas
+                                                            touched.interestedInExpertiseAreas &&
+                                                            !errors.interestedInExpertiseAreas
                                                         }
-                                                        isInvalid={!!errors.interestedInExperiseAreas}
+                                                        isInvalid={!!errors.interestedInExpertiseAreas}
                                                     >
                                                         {' '}
                                                         {Object.keys(CONFIG.expertises).map((key: string) => (

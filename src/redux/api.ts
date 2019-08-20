@@ -60,7 +60,7 @@ export async function apiSignUpCustomerUser(action: CustomerSignUpActionInterfac
             firstName: action.firstName,
             lastName: action.lastName,
             password: action.password,
-            interestedInExperiseAreas: action.interestedInExperiseAreas,
+            interestedInExpertiseAreas: action.interestedInExpertiseAreas,
             description: action.description,
             phone: action.phone,
         }),

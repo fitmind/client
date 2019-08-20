@@ -21,11 +21,11 @@ interface PropsFromDispatch {
 type CustomerDashboardPageAllProps = PropsFromDispatch & RouteComponentProps & ConnectedReduxProps & PropsFromState;
 
 export class CustomerDashboard extends React.Component<CustomerDashboardPageAllProps> {
-    componentDidMount() {
+    public componentDidMount() {
         this.props.fetchCustomerDashboardAction();
     }
 
-    renderBookings = (bookings: bookingInterface[]) => {
+    public renderBookings = (bookings: bookingInterface[]) => {
         const rows = [];
 
         bookings.forEach((booking, index) => {
@@ -43,7 +43,7 @@ export class CustomerDashboard extends React.Component<CustomerDashboardPageAllP
         return rows;
     };
 
-    render() {
+    public render() {
         const { customerUser } = this.props;
         return (
             <Container fluid>
@@ -64,7 +64,7 @@ export class CustomerDashboard extends React.Component<CustomerDashboardPageAllP
                     <Col md={1} />
                     <Col md={10}>
                         <CardWrapper>
-                            <h3>Upcomimg Apppintments</h3>
+                            <h3>Upcoming Appointments</h3>
                             <Table responsive="md">
                                 <thead>
                                     <tr>
@@ -82,7 +82,7 @@ export class CustomerDashboard extends React.Component<CustomerDashboardPageAllP
                                         this.renderBookings(this.props.customerDashboard.upcomingBookings)}
                                 </tbody>
                             </Table>
-                            <h3>Past Apppintments</h3>
+                            <h3>Past Appointments</h3>
                             <Table responsive="md">
                                 <thead>
                                     <tr>
