@@ -39,7 +39,7 @@ export const setCustomerUserAction = (customerUser: CustomerUserResponse): setCu
     customerUser,
 });
 
-export interface fetchCustomerDashboardActionInterface extends Action<'FETCH_CUSTOMER_DASHBOARD'> {}
+export type fetchCustomerDashboardActionInterface = Action<'FETCH_CUSTOMER_DASHBOARD'>;
 
 export const fetchCustomerDashboardAction = (): fetchCustomerDashboardActionInterface => ({
     type: 'FETCH_CUSTOMER_DASHBOARD',
