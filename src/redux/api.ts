@@ -1,6 +1,6 @@
 import { CustomerUserResponse } from '../interfaces/responses/customer-user-response';
+import { UserLoginActionInterface, CustomerSignUpActionInterface } from './actions/server/server.actions';
 import { CustomerLoginResponse } from '../interfaces/responses/customer-login-response';
-import { UserLoginActionInterface } from './actions/server/server.actions';
 
 const API_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -50,4 +50,21 @@ export async function apiLogoutCustomerUser() {
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
     });
     return await res.json();
+}
+
+export async function apiSignUpCustomerUser(action: CustomerSignUpActionInterface) {
+    const res = await fetch(`${API_URL}/user/register`, {
+        method: 'post',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            email: action.email,
+            firstName: action.firstName,
+            lastName: action.lastName,
+            password: action.password,
+            interestedInExperiseAreas: action.interestedInExperiseAreas,
+            description: action.description,
+            phone: action.phone,
+        }),
+    });
+    return res.json();
 }
