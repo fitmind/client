@@ -189,22 +189,22 @@ exports[`Expert SignUp page should match the snapshot 1`] = `
                   <option
                     value="YOGA_COACH"
                   >
-                    yoga coach
+                    Yoga Teacher
                   </option>
                   <option
                     value="PERSONAL_COACH"
                   >
-                    personal coach
+                    Personal Trainer
                   </option>
                   <option
                     value="NUTRITIONIST"
                   >
-                    nutritionist
+                    Nutritionist
                   </option>
                   <option
                     value="LIFE_COACH"
                   >
-                    life coach
+                    Life Coach
                   </option>
                 </select>
               </div>
