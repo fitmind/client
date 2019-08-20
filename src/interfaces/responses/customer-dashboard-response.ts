@@ -1,5 +1,5 @@
 export interface bookingInterface {
-    _id?: string;
+    _id: string;
     client?: string;
     time?: string;
     email?: string;
