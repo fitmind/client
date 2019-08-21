@@ -57,7 +57,7 @@ describe('api', () => {
             firstName: 'Fitmind',
             lastName: 'User',
             password: 'asd@123',
-            interestedInExperiseAreas: ['YOGA_TEACHER'],
+            interestedInExpertiseAreas: ['YOGA_TEACHER'],
             description: 'blahblah',
             phone: '123123123',
         });
