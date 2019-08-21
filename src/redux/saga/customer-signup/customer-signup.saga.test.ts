@@ -26,7 +26,7 @@ describe('customer Signup saga', () => {
     describe('it should handle errors', () => {
         const error = new Error('error');
         it('should fail when the login response fails', () => {
-            return expectSaga(signUpCustomerSaga, apiSignUpCustomerUser)
+            return expectSaga(signUpCustomerSaga)
                 .provide([[matchers.call.fn(apiSignUpCustomerUser), throwError(error)]])
                 .put(setLoadingTrue())
                 .put(setNotification(userSignUpFailedNotification))

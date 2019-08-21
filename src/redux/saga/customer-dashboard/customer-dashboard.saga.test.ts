@@ -11,7 +11,7 @@ import { throwError } from 'redux-saga-test-plan/providers';
 describe('customer dashboard saga', () => {
     it('it fetches dashboard', () => {
         return expectSaga(fetchCustomerDashboardSaga)
-            .provide([[call(apiGetUserDashboard), CustomerDashboardExampleResponse]])
+            .provide([[call(apiGetUserDashboard), { json: () => CustomerDashboardExampleResponse, status: 200 }]])
             .put(setLoadingTrue())
             .put(setCustomerDashboardAction(CustomerDashboardExampleResponse))
             .put(setLoadingFalse())
