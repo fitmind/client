@@ -1,56 +1,19 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router';
-import { Container, Row, Col, Card, Button, Image, Form } from 'react-bootstrap';
-import styled from 'styled-components';
-import { ConnectedReduxProps } from '../../redux/reducers/root.reducer';
+import { Button, Card, Col, Container, Form, Image, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { ApplicationState } from '../../redux/reducers/root.reducer';
-import { customerUserInterface, customerDashboardInterface } from '../../redux/reducers/server-reducer/server.reducer';
+import { RouteComponentProps, withRouter } from 'react-router';
+import styled from 'styled-components';
 import CONFIG from '../../config/config';
+import { ApplicationState, ConnectedReduxProps } from '../../redux/reducers/root.reducer';
+import { customerUserInterface } from '../../redux/reducers/server-reducer/server.reducer';
 
 interface PropsFromState {
     customerUser: customerUserInterface;
-    customerDashboard: customerDashboardInterface;
 }
 
-type CustomerDashboardPageAllProps = RouteComponentProps & ConnectedReduxProps & PropsFromState;
+type CustomerProfilePageAllProps = RouteComponentProps & ConnectedReduxProps & PropsFromState;
 
-export class CustomerDashboard extends React.Component<CustomerDashboardPageAllProps> {
-    renderUpcomingBookings = () => {
-        const rows = [];
-
-        this.props.customerDashboard.upcomingBookings.forEach((booking, index) => {
-            rows.push(
-                <tr key={booking._id}>
-                    <td>{index + 1}</td>
-                    <td>{booking.client}</td>
-                    <td>{booking.time}</td>
-                    <td>{booking.email}</td>
-                    <td>{booking.listing}</td>
-                    <td>{booking.price}</td>
-                </tr>,
-            );
-        });
-        return rows;
-    };
-    renderPastBookings = () => {
-        const rows = [];
-
-        this.props.customerDashboard.pastBookings.forEach((booking, index) => {
-            rows.push(
-                <tr key={booking._id}>
-                    <td>{index + 1}</td>
-                    <td>{booking.client}</td>
-                    <td>{booking.time}</td>
-                    <td>{booking.email}</td>
-                    <td>{booking.listing}</td>
-                    <td>{booking.price}</td>
-                </tr>,
-            );
-        });
-        return rows;
-    };
-
+export class CustomerProfileUpdate extends React.Component<CustomerProfilePageAllProps> {
     render() {
         const { customerUser } = this.props;
         return (
@@ -119,11 +82,10 @@ const CardWrapper = styled.div`
 
 const mapStateToProps = (state: ApplicationState) => ({
     customerUser: state.server.customerUser,
-    customerDashboard: state.server.customerDashboard,
 });
 export default withRouter(
     connect(
         mapStateToProps,
         {},
-    )(CustomerDashboard),
+    )(CustomerProfileUpdate),
 );
