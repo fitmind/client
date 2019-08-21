@@ -1,4 +1,3 @@
-import { CustomerUserResponse } from '../interfaces/responses/customer-user-response';
 import { UserLoginActionInterface, CustomerSignUpActionInterface } from './actions/server/server.actions';
 import { CustomerLoginResponse } from '../interfaces/responses/customer-login-response';
 
@@ -7,14 +6,14 @@ const API_URL = process.env.REACT_APP_SERVER_URL;
 const mode = 'cors';
 const credentials = 'include';
 
-export async function apiGetUserDashboard(): Promise<CustomerUserResponse> {
+export async function apiGetUserDashboard() {
     const res = await fetch(`${API_URL}/user/dashboard`, {
         method: 'get',
         mode,
         credentials,
         headers: { Accept: 'application/json' },
     });
-    return await res.json();
+    return res;
 }
 
 export async function apiLoginCustomerUser({
@@ -31,14 +30,14 @@ export async function apiLoginCustomerUser({
     return await response.json();
 }
 
-export async function apiGetUserMe(): Promise<CustomerUserResponse> {
+export async function apiGetUserMe() {
     const response = await fetch(`${API_URL}/user/me`, {
         method: 'GET',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
         mode,
         credentials,
     });
-    return await response.json();
+    return await response;
 }
 
 export async function apiLogoutCustomerUser() {

@@ -4,12 +4,19 @@ import { watchLogoutUserSaga } from './customer-logout/customer-logout.saga';
 import { watchLoginUserSaga } from './customer-login/customer-login.saga';
 import { watchCustomerDashboardSaga } from './customer-dashboard/customer-dashboard.saga';
 import { watchSignUpUserSaga } from './customer-signup/customer-signup.saga';
+import { watchCustomerUserSaga } from './customer-user/customer-user.saga';
 
 describe('root saga', () => {
     it('should react to the actions being called', () => {
         const generator = rootSaga();
         expect(generator.next().value).toEqual(
-            all([watchLoginUserSaga(), watchLogoutUserSaga(), watchCustomerDashboardSaga(), watchSignUpUserSaga()]),
+            all([
+                watchLoginUserSaga(),
+                watchLogoutUserSaga(),
+                watchCustomerDashboardSaga(),
+                watchSignUpUserSaga(),
+                watchCustomerUserSaga(),
+            ]),
         );
     });
 });

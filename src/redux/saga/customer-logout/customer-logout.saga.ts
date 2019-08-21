@@ -19,7 +19,7 @@ export function* logoutUserSaga() {
     yield put(setLoadingTrue());
     try {
         yield call(apiLogoutCustomerUser);
-        yield put(push(CONFIG.routes.home));
+        yield put(push(CONFIG.routes.customerLogin));
         yield put(setNotification(userLogoutPositiveNotification));
         yield put(userLogoutSuccessAction());
     } catch (logoutUserError) {

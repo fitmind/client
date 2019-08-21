@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { ConnectedReduxProps } from '../../redux/reducers/root.reducer';
-import { userLoginAction } from '../../redux/actions/server/server.actions';
+import { userLoginAction, userLogoutAction } from '../../redux/actions/server/server.actions';
 
 const LoginSchema = Yup.object().shape({
     password: Yup.string()
@@ -21,11 +21,16 @@ const LoginSchema = Yup.object().shape({
 
 interface PropsFromDispatch {
     userLoginAction: typeof userLoginAction;
+    userLogoutAction: typeof userLogoutAction;
 }
 
 type LoginPageAllProps = PropsFromDispatch & RouteComponentProps & ConnectedReduxProps;
 
 export class LoginPage extends React.Component<LoginPageAllProps> {
+    public componentDidMount() {
+        this.props.userLogoutAction();
+    }
+
     public render() {
         return (
             <Container fluid>
@@ -124,6 +129,7 @@ export class LoginPage extends React.Component<LoginPageAllProps> {
 
 const mapDispatchToProps = {
     userLoginAction,
+    userLogoutAction,
 };
 
 export default withRouter(

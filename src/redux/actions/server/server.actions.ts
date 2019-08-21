@@ -5,6 +5,7 @@ import { CustomerDashboardResponse } from '../../../interfaces/responses/custome
 export const ServerActions = {
     LOGIN_CUSTOMER_USER: 'LOGIN_CUSTOMER_USER',
     SET_CUSTOMER_USER: 'SET_CUSTOMER_USER',
+    FETCH_CUSTOMER_USER: 'FETCH_CUSTOMER_USER',
     FETCH_CUSTOMER_DASHBOARD: 'FETCH_CUSTOMER_DASHBOARD',
     SET_CUSTOMER_DASHBOARD: 'SET_CUSTOMER_DASHBOARD',
     SIGNUP_CUSTOMER_USER: 'SIGNUP_CUSTOMER_USER',
@@ -28,6 +29,12 @@ export const userLoginAction = ({ email, password }): UserLoginActionInterface =
     type: 'LOGIN_CUSTOMER_USER',
     email,
     password,
+});
+
+export type fetchCustomerUserActionInterface = Action<'FETCH_CUSTOMER_USER'>;
+
+export const fetchCustomerUserAction = (): fetchCustomerUserActionInterface => ({
+    type: 'FETCH_CUSTOMER_USER',
 });
 
 export interface setCustomerUserActionInterface extends Action<'SET_CUSTOMER_USER'> {

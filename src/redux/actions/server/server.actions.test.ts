@@ -5,6 +5,7 @@ import {
     userLogoutSuccessAction,
     fetchCustomerDashboardAction,
     setCustomerDashboardAction,
+    fetchCustomerUserAction,
 } from './server.actions';
 
 describe('server actions', () => {
@@ -28,6 +29,15 @@ describe('server actions', () => {
                 type: ServerActions.FETCH_CUSTOMER_DASHBOARD,
             };
             expect(fetchCustomerDashboardAction()).toEqual(expectedAction);
+        });
+    });
+
+    describe('fetchCustomerUserdAction', () => {
+        it('should return the correct type and data', () => {
+            const expectedAction = {
+                type: ServerActions.FETCH_CUSTOMER_USER,
+            };
+            expect(fetchCustomerUserAction()).toEqual(expectedAction);
         });
     });
 

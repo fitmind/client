@@ -36,7 +36,7 @@ describe('api', () => {
     test('api apiGetUserMe', done => {
         window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ json: () => CustomerUserExampleResponse }));
         apiGetUserMe().then(res => {
-            expect(res).toEqual(CustomerUserExampleResponse);
+            expect(res.json()).toEqual(CustomerUserExampleResponse);
             done();
         });
     });
@@ -46,7 +46,7 @@ describe('api', () => {
             .fn()
             .mockImplementation(() => Promise.resolve({ json: () => CustomerDashboardExampleResponse }));
         apiGetUserDashboard().then(res => {
-            expect(res).toEqual(CustomerDashboardExampleResponse);
+            expect(res.json()).toEqual(CustomerDashboardExampleResponse);
             done();
         });
     });
