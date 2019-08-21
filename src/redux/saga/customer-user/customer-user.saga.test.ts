@@ -7,6 +7,8 @@ import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/
 import { throwError } from 'redux-saga-test-plan/providers';
 import { CustomerUserExampleResponse } from '../../reducers/server-reducer/server-example-responses/user-me-example-response';
 import { fetchCustomerUserSaga, userFetchFailedNotification } from './customer-user.saga';
+import CONFIG from '../../../config/config';
+import { push } from 'connected-react-router';
 
 describe('customer user saga', () => {
     it('it fetches user', () => {
@@ -14,6 +16,15 @@ describe('customer user saga', () => {
             .provide([[call(apiGetUserMe), { json: () => CustomerUserExampleResponse, status: 200 }]])
             .put(setLoadingTrue())
             .put(setCustomerUserAction(CustomerUserExampleResponse))
+            .put(setLoadingFalse())
+            .run();
+    });
+
+    it('it should handle error 401', () => {
+        return expectSaga(fetchCustomerUserSaga)
+            .provide([[call(apiGetUserMe), { json: () => CustomerUserExampleResponse, status: 401 }]])
+            .put(setLoadingTrue())
+            .put(push(CONFIG.routes.customerLogin))
             .put(setLoadingFalse())
             .run();
     });

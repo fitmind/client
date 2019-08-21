@@ -37,8 +37,7 @@ exports[`App should match the snapshot 1`] = `
           href="#"
           onClick={[Function]}
           onKeyDown={[Function]}
-          role="tab"
-          tabIndex={-1}
+          role="button"
         >
           Listings
         </a>
@@ -48,8 +47,7 @@ exports[`App should match the snapshot 1`] = `
           href="#"
           onClick={[Function]}
           onKeyDown={[Function]}
-          role="tab"
-          tabIndex={-1}
+          role="button"
         >
           About
         </a>
@@ -59,8 +57,7 @@ exports[`App should match the snapshot 1`] = `
           href="#"
           onClick={[Function]}
           onKeyDown={[Function]}
-          role="tab"
-          tabIndex={-1}
+          role="button"
         >
           Contact
         </a>
