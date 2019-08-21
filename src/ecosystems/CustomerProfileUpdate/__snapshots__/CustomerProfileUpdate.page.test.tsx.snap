@@ -35,6 +35,8 @@ exports[`Customer Profile Update page should match the snapshot 1`] = `
               />
               <form
                 className=""
+                noValidate={true}
+                onSubmit={[Function]}
               >
                 <div
                   className="form-group"
@@ -42,26 +44,24 @@ exports[`Customer Profile Update page should match the snapshot 1`] = `
                   <label
                     className="form-label"
                   >
-                    Description of yourself *
+                    Your Description
                   </label>
                   <textarea
                     className="form-control"
-                    rows="6"
-                  />
-                </div>
-                <div
-                  className="form-group"
-                >
-                  <label
-                    className="form-label"
-                  >
-                    Phone number *
-                  </label>
-                  <input
-                    className="form-control"
-                    placeholder="Enter phone"
+                    name="description"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    rows={4}
                     type="text"
                   />
+                  <div
+                    className="valid-feedback"
+                  >
+                    Looks good!
+                  </div>
+                  <div
+                    className="invalid-feedback"
+                  />
                 </div>
                 <div
                   className="form-group"
@@ -69,12 +69,16 @@ exports[`Customer Profile Update page should match the snapshot 1`] = `
                   <label
                     className="form-label"
                   >
-                    Coaches you are looking for *
+                    What type of coaching are you looking at?
                   </label>
                   <select
                     className="form-control"
                     multiple={true}
+                    name="interestedInExpertiseAreas"
+                    onBlur={[Function]}
+                    onChange={[Function]}
                   >
+                     
                     <option
                       value="YOGA_COACH"
                     >
@@ -97,12 +101,37 @@ exports[`Customer Profile Update page should match the snapshot 1`] = `
                     </option>
                   </select>
                 </div>
-                <button
-                  className="btn btn-primary"
-                  disabled={false}
-                  type="button"
+                <div
+                  className="form-group"
                 >
-                  Update Profile
+                  <label
+                    className="form-label"
+                  >
+                    Phone
+                  </label>
+                  <input
+                    className="form-control"
+                    name="phone"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    placeholder="Enter phone"
+                    type="text"
+                  />
+                  <div
+                    className="valid-feedback"
+                  >
+                    Looks good!
+                  </div>
+                  <div
+                    className="invalid-feedback"
+                  />
+                </div>
+                <button
+                  className="btn btn-outline-primary btn-block"
+                  disabled={false}
+                  type="submit"
+                >
+                  Register
                 </button>
               </form>
             </div>
