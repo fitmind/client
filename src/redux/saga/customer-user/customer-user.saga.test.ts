@@ -1,9 +1,8 @@
 import { expectSaga } from 'redux-saga-test-plan';
 import { call } from 'redux-saga/effects';
-import { CustomerDashboardExampleResponse } from '../../reducers/server-reducer/server-example-responses/user-dashboard-example-response';
 
-import { setCustomerDashboardAction, setCustomerUserAction } from '../../actions/server/server.actions';
-import { apiGetUserDashboard, apiGetUserMe } from '../../api';
+import { setCustomerUserAction } from '../../actions/server/server.actions';
+import { apiGetUserMe } from '../../api';
 import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/ui/ui.actions';
 import { throwError } from 'redux-saga-test-plan/providers';
 import { CustomerUserExampleResponse } from '../../reducers/server-reducer/server-example-responses/user-me-example-response';
@@ -12,7 +11,7 @@ import { fetchCustomerUserSaga, userFetchFailedNotification } from './customer-u
 describe('customer user saga', () => {
     it('it fetches user', () => {
         return expectSaga(fetchCustomerUserSaga)
-            .provide([[call(apiGetUserMe), CustomerUserExampleResponse]])
+            .provide([[call(apiGetUserMe), { json: () => CustomerUserExampleResponse, status: 200 }]])
             .put(setLoadingTrue())
             .put(setCustomerUserAction(CustomerUserExampleResponse))
             .put(setLoadingFalse())
