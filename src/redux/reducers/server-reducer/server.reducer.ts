@@ -12,7 +12,7 @@ export interface customerUserInterface {
     createdAt?: string;
     description?: string;
     email?: string;
-    interestedInExperiseAreas?: string[];
+    interestedInExpertiseAreas?: string[];
     phone?: string;
     pictureUrl?: string;
 }
