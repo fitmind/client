@@ -21,6 +21,7 @@ export function* profileUpdateCustomerSaga(action: CustomerProfileUpdateActionIn
         const profileUpdateCustomerResponse = yield call(apiProfileUpdateCustomerUser, action);
         if (profileUpdateCustomerResponse.status === 401) {
             yield put(push(CONFIG.routes.customerLogin));
+            yield put(setNotification(userProfileUpdateFailedNotification));
         } else if (profileUpdateCustomerResponse.status === 201) {
             const profileUpdateCustomerResponseJson = yield profileUpdateCustomerResponse.json();
             if (profileUpdateCustomerResponseJson) {

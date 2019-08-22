@@ -5,7 +5,12 @@ import CONFIG from '../../../config/config';
 import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/ui/ui.actions';
 import { apiProfileUpdateCustomerUser } from '../../api';
 import { CustomerProfileUpdateExampleResponse } from '../../reducers/server-reducer/server-example-responses/user-profile-update-example-response';
-import { profileUpdateCustomerSaga, userProfileUpdatePositiveNotification } from './customer-profile-update.saga';
+import {
+    profileUpdateCustomerSaga,
+    userProfileUpdatePositiveNotification,
+    userProfileUpdateFailedNotification,
+} from './customer-profile-update.saga';
+import { throwError } from 'redux-saga-test-plan/providers';
 
 describe('customer Profile Update saga', () => {
     it('it updates profile', () => {
@@ -13,7 +18,7 @@ describe('customer Profile Update saga', () => {
             .provide([
                 [
                     matchers.call.fn(apiProfileUpdateCustomerUser),
-                    { json: () => CustomerProfileUpdateExampleResponse, status: 200 },
+                    { json: () => CustomerProfileUpdateExampleResponse, status: 201 },
                 ],
             ])
             .put(setLoadingTrue())
@@ -21,5 +26,32 @@ describe('customer Profile Update saga', () => {
             .put(push(CONFIG.routes.home))
             .put(setLoadingFalse())
             .run();
+    });
+
+    it('it should handle error 401', () => {
+        return expectSaga(profileUpdateCustomerSaga)
+            .provide([
+                [
+                    matchers.call.fn(apiProfileUpdateCustomerUser),
+                    { json: () => CustomerProfileUpdateExampleResponse, status: 401 },
+                ],
+            ])
+            .put(setLoadingTrue())
+            .put(push(CONFIG.routes.customerLogin))
+            .put(setNotification(userProfileUpdateFailedNotification))
+            .put(setLoadingFalse())
+            .run();
+    });
+
+    describe('it should handle errors', () => {
+        const error = new Error('error');
+        it('should fail when the customer dashboard response fails', () => {
+            return expectSaga(profileUpdateCustomerSaga)
+                .provide([[matchers.call.fn(apiProfileUpdateCustomerUser), throwError(error)]])
+                .put(setLoadingTrue())
+                .put(setNotification(userProfileUpdateFailedNotification))
+                .put(setLoadingFalse())
+                .run();
+        });
     });
 });
