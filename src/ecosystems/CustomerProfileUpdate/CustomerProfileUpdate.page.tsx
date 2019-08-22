@@ -20,7 +20,7 @@ const CustomerProfileUpdateSchema = Yup.object().shape({
         .min(2, 'Too Short!')
         .max(24, 'Too Long!')
         .required('Required'),
-    interestedInExperiseAreas: Yup.array()
+    interestedInExpertiseAreas: Yup.array()
         .of(Yup.string())
         .min(1)
         .required('Required'),
@@ -162,7 +162,19 @@ export class CustomerProfileUpdate extends React.Component<CustomerProfilePageAl
                                                         >
                                                             {' '}
                                                             {Object.keys(CONFIG.expertises).map((key: string) => (
-                                                                <option key={key} value={CONFIG.expertises[key].value}>
+                                                                <option
+                                                                    key={key}
+                                                                    value={CONFIG.expertises[key].value}
+                                                                    selected={
+                                                                        values &&
+                                                                        values.interestedInExpertiseAreas &&
+                                                                        values.interestedInExpertiseAreas.indexOf(
+                                                                            CONFIG.expertises[key].value,
+                                                                        ) != -1
+                                                                            ? true
+                                                                            : false
+                                                                    }
+                                                                >
                                                                     {CONFIG.expertises[key].display}
                                                                 </option>
                                                             ))}
