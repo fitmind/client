@@ -44,6 +44,56 @@ exports[`Customer Profile Update page should match the snapshot 1`] = `
                   <label
                     className="form-label"
                   >
+                    First Name
+                  </label>
+                  <input
+                    className="form-control"
+                    name="firstName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    placeholder="your name"
+                    type="text"
+                  />
+                  <div
+                    className="valid-feedback"
+                  >
+                    Looks good!
+                  </div>
+                  <div
+                    className="invalid-feedback"
+                  />
+                </div>
+                <div
+                  className="form-group"
+                >
+                  <label
+                    className="form-label"
+                  >
+                    Last Name
+                  </label>
+                  <input
+                    className="form-control"
+                    name="lastName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    placeholder="your last name"
+                    type="text"
+                  />
+                  <div
+                    className="valid-feedback"
+                  >
+                    Looks good!
+                  </div>
+                  <div
+                    className="invalid-feedback"
+                  />
+                </div>
+                <div
+                  className="form-group"
+                >
+                  <label
+                    className="form-label"
+                  >
                     Your Description
                   </label>
                   <textarea
@@ -131,7 +181,7 @@ exports[`Customer Profile Update page should match the snapshot 1`] = `
                   disabled={false}
                   type="submit"
                 >
-                  Register
+                  Update Profile
                 </button>
               </form>
             </div>

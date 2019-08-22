@@ -11,6 +11,7 @@ export const ServerActions = {
     SIGNUP_CUSTOMER_USER: 'SIGNUP_CUSTOMER_USER',
     LOGOUT_USER: 'LOGOUT_USER',
     LOGOUT_USER_SUCCESS: 'LOGOUT_USER_SUCCESS',
+    PROFILE_UPDATE_CUSTOMER_USER: 'PROFILE_UPDATE_CUSTOMER_USER',
 };
 
 export interface ServerActionTypes {
@@ -95,6 +96,39 @@ export const customerSignUpAction = ({
     firstName,
     lastName,
     password,
+    interestedInExpertiseAreas,
+    description,
+    phone,
+});
+
+export interface CustomerProfileUpdateActionInterface extends Action<'PROFILE_UPDATE_CUSTOMER_USER'> {
+    _id?: string;
+    firstName?: string;
+    lastName?: string;
+    interestedInExpertiseAreas?: string[];
+    description?: string;
+    phone?: string;
+}
+
+export const customerProfileUpdateAction = ({
+    _id,
+    firstName,
+    lastName,
+    interestedInExpertiseAreas,
+    description,
+    phone,
+}: {
+    _id?: string;
+    firstName?: string;
+    lastName?: string;
+    interestedInExpertiseAreas?: string[];
+    description?: string;
+    phone?: string;
+}): CustomerProfileUpdateActionInterface => ({
+    type: 'PROFILE_UPDATE_CUSTOMER_USER',
+    _id,
+    firstName,
+    lastName,
     interestedInExpertiseAreas,
     description,
     phone,

@@ -5,6 +5,7 @@ import { watchLoginUserSaga } from './customer-login/customer-login.saga';
 import { watchCustomerDashboardSaga } from './customer-dashboard/customer-dashboard.saga';
 import { watchSignUpUserSaga } from './customer-signup/customer-signup.saga';
 import { watchCustomerUserSaga } from './customer-user/customer-user.saga';
+import { watchProfileUpdateUserSaga } from './customer-profile-update/customer-profile-update.saga';
 
 describe('root saga', () => {
     it('should react to the actions being called', () => {
@@ -16,6 +17,7 @@ describe('root saga', () => {
                 watchCustomerDashboardSaga(),
                 watchSignUpUserSaga(),
                 watchCustomerUserSaga(),
+                watchProfileUpdateUserSaga(),
             ]),
         );
     });

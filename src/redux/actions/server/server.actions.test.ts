@@ -6,6 +6,7 @@ import {
     fetchCustomerDashboardAction,
     setCustomerDashboardAction,
     fetchCustomerUserAction,
+    customerProfileUpdateAction,
 } from './server.actions';
 
 describe('server actions', () => {
@@ -20,6 +21,24 @@ describe('server actions', () => {
                 ...values,
             };
             expect(userLoginAction(values)).toEqual(expectedAction);
+        });
+    });
+
+    describe('customerProfileUpdateAction', () => {
+        it('should return the correct type and data', () => {
+            const values = {
+                _id: '123',
+                firstName: 'Fitmind Updated',
+                lastName: 'User Updated',
+                interestedInExpertiseAreas: ['LIFE_COACH'],
+                description: 'blahhhh',
+                phone: '12412421',
+            };
+            const expectedAction = {
+                type: ServerActions.PROFILE_UPDATE_CUSTOMER_USER,
+                ...values,
+            };
+            expect(customerProfileUpdateAction(values)).toEqual(expectedAction);
         });
     });
 

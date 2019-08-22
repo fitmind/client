@@ -8,7 +8,8 @@ export interface expertUserInterface {
 
 export interface customerUserInterface {
     _id?: string;
-    name?: string;
+    firstName?: string;
+    lastName?: string;
     createdAt?: string;
     description?: string;
     email?: string;

@@ -6,13 +6,21 @@ import styled from 'styled-components';
 import CONFIG from '../../config/config';
 import { ApplicationState, ConnectedReduxProps } from '../../redux/reducers/root.reducer';
 import { customerUserInterface } from '../../redux/reducers/server-reducer/server.reducer';
-import { fetchCustomerUserAction } from '../../redux/actions/server/server.actions';
+import { fetchCustomerUserAction, customerProfileUpdateAction } from '../../redux/actions/server/server.actions';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 const CustomerProfileUpdateSchema = Yup.object().shape({
-    interestedInExpertiseAreas: Yup.array()
+    firstName: Yup.string()
+        .min(2, 'Too Short!')
+        .max(24, 'Too Long!')
+        .required('Required'),
+    lastName: Yup.string()
+        .min(2, 'Too Short!')
+        .max(24, 'Too Long!')
+        .required('Required'),
+    interestedInExperiseAreas: Yup.array()
         .of(Yup.string())
         .min(1)
         .required('Required'),
@@ -33,6 +41,7 @@ interface PropsFromState {
 
 interface PropsFromDispatch {
     fetchCustomerUserAction: typeof fetchCustomerUserAction;
+    customerProfileUpdateAction: typeof customerProfileUpdateAction;
 }
 type CustomerProfilePageAllProps = RouteComponentProps & ConnectedReduxProps & PropsFromState & PropsFromDispatch;
 
@@ -58,7 +67,7 @@ export class CustomerProfileUpdate extends React.Component<CustomerProfilePageAl
                                             initialValues={customerUser}
                                             validationSchema={CustomerProfileUpdateSchema}
                                             onSubmit={(values, { setSubmitting }) => {
-                                                // this.props.customerProfileUpdateAction(values);
+                                                this.props.customerProfileUpdateAction(values);
                                                 setSubmitting(false);
                                             }}
                                             render={({
@@ -72,6 +81,40 @@ export class CustomerProfileUpdate extends React.Component<CustomerProfilePageAl
                                                 setFieldValue,
                                             }) => (
                                                 <Form noValidate onSubmit={handleSubmit}>
+                                                    <Form.Group>
+                                                        <Form.Label>First Name</Form.Label>
+                                                        <Form.Control
+                                                            type="text"
+                                                            name="firstName"
+                                                            placeholder="your name"
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={values.firstName}
+                                                            isValid={touched.firstName && !errors.firstName}
+                                                            isInvalid={!!errors.firstName}
+                                                        />
+                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                        <Form.Control.Feedback type="invalid">
+                                                            {errors.firstName}
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group>
+                                                        <Form.Label>Last Name</Form.Label>
+                                                        <Form.Control
+                                                            type="text"
+                                                            name="lastName"
+                                                            placeholder="your last name"
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={values.lastName}
+                                                            isValid={touched.lastName && !errors.lastName}
+                                                            isInvalid={!!errors.lastName}
+                                                        />
+                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                        <Form.Control.Feedback type="invalid">
+                                                            {errors.lastName}
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
                                                     <Form.Group>
                                                         <Form.Label>Your Description</Form.Label>
                                                         <Form.Control
@@ -109,6 +152,7 @@ export class CustomerProfileUpdate extends React.Component<CustomerProfilePageAl
                                                                         .map(option => option.value),
                                                                 )
                                                             }
+                                                            values={customerUser.interestedInExpertiseAreas}
                                                             onBlur={handleBlur}
                                                             isValid={
                                                                 touched.interestedInExpertiseAreas &&
@@ -148,7 +192,7 @@ export class CustomerProfileUpdate extends React.Component<CustomerProfilePageAl
                                                         block={true}
                                                         disabled={isSubmitting}
                                                     >
-                                                        Register
+                                                        Update Profile
                                                     </Button>
                                                 </Form>
                                             )}
@@ -180,6 +224,7 @@ export default withRouter(
         mapStateToProps,
         {
             fetchCustomerUserAction,
+            customerProfileUpdateAction,
         },
     )(CustomerProfileUpdate),
 );

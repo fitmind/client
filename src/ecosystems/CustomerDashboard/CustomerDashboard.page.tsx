@@ -53,7 +53,7 @@ export class CustomerDashboard extends React.Component<CustomerDashboardPageAllP
                     <Col md={4} />
                     <Col>
                         <GreetingContainer>
-                            <Greet>Welcome {customerUser.name}!</Greet>
+                            <Greet>Welcome {customerUser.firstName}!</Greet>
                             <h5>
                                 Here you will be able to look at your upcoming and past appointments. Message your
                                 coaches and get insights on your improvements!
