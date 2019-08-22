@@ -41,7 +41,7 @@ export async function apiGetUserMe() {
         mode,
         credentials,
     });
-    return await response;
+    return response;
 }
 
 export async function apiLogoutCustomerUser() {
