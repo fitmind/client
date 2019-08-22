@@ -170,7 +170,7 @@ export class CustomerProfileUpdate extends React.Component<CustomerProfilePageAl
                                                                         values.interestedInExpertiseAreas &&
                                                                         values.interestedInExpertiseAreas.indexOf(
                                                                             CONFIG.expertises[key].value,
-                                                                        ) != -1
+                                                                        ) !== -1
                                                                             ? true
                                                                             : false
                                                                     }
