@@ -1,5 +1,8 @@
-import { CustomerUserResponse } from '../interfaces/responses/customer-user-response';
-import { UserLoginActionInterface, CustomerSignUpActionInterface } from './actions/server/server.actions';
+import {
+    UserLoginActionInterface,
+    CustomerSignUpActionInterface,
+    CustomerProfileUpdateActionInterface,
+} from './actions/server/server.actions';
 import { CustomerLoginResponse } from '../interfaces/responses/customer-login-response';
 
 const API_URL = process.env.REACT_APP_SERVER_URL;
@@ -7,14 +10,14 @@ const API_URL = process.env.REACT_APP_SERVER_URL;
 const mode = 'cors';
 const credentials = 'include';
 
-export async function apiGetUserDashboard(): Promise<CustomerUserResponse> {
+export async function apiGetUserDashboard() {
     const res = await fetch(`${API_URL}/user/dashboard`, {
         method: 'get',
         mode,
         credentials,
         headers: { Accept: 'application/json' },
     });
-    return await res.json();
+    return res;
 }
 
 export async function apiLoginCustomerUser({
@@ -31,14 +34,14 @@ export async function apiLoginCustomerUser({
     return await response.json();
 }
 
-export async function apiGetUserMe(): Promise<CustomerUserResponse> {
+export async function apiGetUserMe() {
     const response = await fetch(`${API_URL}/user/me`, {
         method: 'GET',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
         mode,
         credentials,
     });
-    return await response.json();
+    return response;
 }
 
 export async function apiLogoutCustomerUser() {
@@ -66,4 +69,21 @@ export async function apiSignUpCustomerUser(action: CustomerSignUpActionInterfac
         }),
     });
     return res.json();
+}
+
+export async function apiProfileUpdateCustomerUser(action: CustomerProfileUpdateActionInterface) {
+    const res = await fetch(`${API_URL}/user/me`, {
+        method: 'put',
+        mode,
+        credentials,
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            firstName: action.firstName,
+            lastName: action.lastName,
+            interestedInExpertiseAreas: action.interestedInExpertiseAreas,
+            description: action.description,
+            phone: action.phone,
+        }),
+    });
+    return res;
 }

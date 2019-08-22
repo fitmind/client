@@ -185,7 +185,7 @@ exports[`Customer SignUp page should match the snapshot 1`] = `
                 <select
                   className="form-control"
                   multiple={true}
-                  name="interestedInExperiseAreas"
+                  name="interestedInExpertiseAreas"
                   onBlur={[Function]}
                   onChange={[Function]}
                 >

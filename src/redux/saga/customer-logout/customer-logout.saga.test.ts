@@ -17,7 +17,7 @@ describe('customer logout saga', () => {
         return expectSaga(logoutUserSaga, apiLogoutCustomerUser)
             .provide([[call(apiLogoutCustomerUser), logoutResponse]])
             .put(setLoadingTrue())
-            .put(push(CONFIG.routes.home))
+            .put(push(CONFIG.routes.customerLogin))
             .put(setNotification(userLogoutPositiveNotification))
             .put(userLogoutSuccessAction())
             .put(setLoadingFalse())

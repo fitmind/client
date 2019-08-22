@@ -3,6 +3,8 @@ import { ServerActions, setCustomerDashboardAction } from '../../actions/server/
 import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/ui/ui.actions';
 import { apiGetUserDashboard } from '../../api';
 import { NotificationInterface, NotificationType } from '../../../interfaces/Notification.interface';
+import { push } from 'connected-react-router';
+import CONFIG from '../../../config/config';
 
 export const userDashboardFetchFailedNotification: NotificationInterface = {
     type: NotificationType.negative,
@@ -16,11 +18,16 @@ export function* fetchCustomerDashboardSaga() {
     yield put(setLoadingTrue());
     try {
         const fetchCustomerDashboardResponse = yield call(apiGetUserDashboard);
-        if (fetchCustomerDashboardResponse) {
-            try {
-                yield put(setCustomerDashboardAction(fetchCustomerDashboardResponse));
-            } catch (settingCustomerError) {
-                yield put(setNotification(userDashboardSetFailedNotification));
+        if (fetchCustomerDashboardResponse.status === 401) {
+            yield put(push(CONFIG.routes.customerLogin));
+        } else if (fetchCustomerDashboardResponse.status === 200) {
+            const fetchCustomerDashboardResponseJson = yield fetchCustomerDashboardResponse.json();
+            if (fetchCustomerDashboardResponseJson) {
+                try {
+                    yield put(setCustomerDashboardAction(fetchCustomerDashboardResponseJson));
+                } catch (settingCustomerError) {
+                    yield put(setNotification(userDashboardSetFailedNotification));
+                }
             }
         }
     } catch (fetchCustomerDashboardError) {

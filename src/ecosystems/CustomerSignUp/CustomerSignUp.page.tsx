@@ -182,10 +182,10 @@ export class CustomerSignUpPage extends React.Component<CustomerSignUpPageAllPro
                                                     <Form.Control
                                                         as="select"
                                                         multiple={true}
-                                                        name="interestedInExperiseAreas"
+                                                        name="interestedInExpertiseAreas"
                                                         onChange={evt =>
                                                             setFieldValue(
-                                                                'interestedInExperiseAreas',
+                                                                'interestedInExpertiseAreas',
                                                                 [].slice
                                                                     .call(
                                                                         (evt.target as HTMLSelectElement)

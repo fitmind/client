@@ -4,7 +4,7 @@ export interface CustomerUserResponse {
     _id: string;
     createdAt: string;
     description: string;
-    interestedInExperiseAreas: string[];
+    interestedInExpertiseAreas: string[];
     phone: string;
     pictureUrl: string;
 }

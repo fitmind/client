@@ -5,6 +5,8 @@ import {
     userLogoutSuccessAction,
     fetchCustomerDashboardAction,
     setCustomerDashboardAction,
+    fetchCustomerUserAction,
+    customerProfileUpdateAction,
 } from './server.actions';
 
 describe('server actions', () => {
@@ -22,6 +24,24 @@ describe('server actions', () => {
         });
     });
 
+    describe('customerProfileUpdateAction', () => {
+        it('should return the correct type and data', () => {
+            const values = {
+                _id: '123',
+                firstName: 'Fitmind Updated',
+                lastName: 'User Updated',
+                interestedInExpertiseAreas: ['LIFE_COACH'],
+                description: 'blahhhh',
+                phone: '12412421',
+            };
+            const expectedAction = {
+                type: ServerActions.PROFILE_UPDATE_CUSTOMER_USER,
+                ...values,
+            };
+            expect(customerProfileUpdateAction(values)).toEqual(expectedAction);
+        });
+    });
+
     describe('fetchCustomerDashboardAction', () => {
         it('should return the correct type and data', () => {
             const expectedAction = {
@@ -31,11 +51,21 @@ describe('server actions', () => {
         });
     });
 
+    describe('fetchCustomerUserdAction', () => {
+        it('should return the correct type and data', () => {
+            const expectedAction = {
+                type: ServerActions.FETCH_CUSTOMER_USER,
+            };
+            expect(fetchCustomerUserAction()).toEqual(expectedAction);
+        });
+    });
+
     describe('setCustomerDashboardAction', () => {
         it('should return the correct type and data', () => {
             const customerDashboardResponse = {
                 upcomingBookings: [
                     {
+                        _id: '123',
                         client: 'Diego',
                         time: '3:30 PM, 3 May',
                         email: 'diego@gmail.com',
@@ -43,6 +73,7 @@ describe('server actions', () => {
                         price: '30 €',
                     },
                     {
+                        _id: '1234',
                         client: 'Mark',
                         time: '5:30 PM, 3 May',
                         email: 'mark@gmail.com',
@@ -50,6 +81,7 @@ describe('server actions', () => {
                         price: '50 €',
                     },
                     {
+                        _id: '1235',
                         client: 'Ada',
                         time: '8:30 AM, 4 May',
                         email: 'ada@gmail.com',
@@ -59,6 +91,7 @@ describe('server actions', () => {
                 ],
                 pastBookings: [
                     {
+                        _id: '1236',
                         client: 'Adam',
                         time: '1:30 PM, 3 May',
                         email: 'diego@gmail.com',
@@ -66,6 +99,7 @@ describe('server actions', () => {
                         price: '30 €',
                     },
                     {
+                        _id: '1237',
                         client: 'Smith',
                         time: '2:30 PM, 3 May',
                         email: 'mark@gmail.com',
@@ -73,6 +107,7 @@ describe('server actions', () => {
                         price: '50 €',
                     },
                     {
+                        _id: '1238',
                         client: 'Ada',
                         time: '4:30 AM, 4 May',
                         email: 'ada@gmail.com',

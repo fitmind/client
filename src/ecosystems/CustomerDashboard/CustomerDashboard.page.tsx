@@ -6,7 +6,7 @@ import { ConnectedReduxProps } from '../../redux/reducers/root.reducer';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../redux/reducers/root.reducer';
 import { customerUserInterface, customerDashboardInterface } from '../../redux/reducers/server-reducer/server.reducer';
-import { fetchCustomerDashboardAction } from '../../redux/actions/server/server.actions';
+import { fetchCustomerDashboardAction, fetchCustomerUserAction } from '../../redux/actions/server/server.actions';
 import { bookingInterface } from '../../interfaces/responses/customer-dashboard-response';
 
 interface PropsFromState {
@@ -16,6 +16,7 @@ interface PropsFromState {
 
 interface PropsFromDispatch {
     fetchCustomerDashboardAction: typeof fetchCustomerDashboardAction;
+    fetchCustomerUserAction: typeof fetchCustomerUserAction;
 }
 
 type CustomerDashboardPageAllProps = PropsFromDispatch & RouteComponentProps & ConnectedReduxProps & PropsFromState;
@@ -23,6 +24,7 @@ type CustomerDashboardPageAllProps = PropsFromDispatch & RouteComponentProps & C
 export class CustomerDashboard extends React.Component<CustomerDashboardPageAllProps> {
     public componentDidMount() {
         this.props.fetchCustomerDashboardAction();
+        this.props.fetchCustomerUserAction();
     }
 
     public renderBookings = (bookings: bookingInterface[]) => {
@@ -51,7 +53,7 @@ export class CustomerDashboard extends React.Component<CustomerDashboardPageAllP
                     <Col md={4} />
                     <Col>
                         <GreetingContainer>
-                            <Greet>Welcome {customerUser.name}!</Greet>
+                            <Greet>Welcome {customerUser.firstName}!</Greet>
                             <h5>
                                 Here you will be able to look at your upcoming and past appointments. Message your
                                 coaches and get insights on your improvements!
@@ -123,6 +125,7 @@ const CardWrapper = styled.div`
 
 const mapDispatchToProps = {
     fetchCustomerDashboardAction,
+    fetchCustomerUserAction,
 };
 const mapStateToProps = (state: ApplicationState) => ({
     customerUser: state.server.customerUser,
