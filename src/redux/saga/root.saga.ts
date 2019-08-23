@@ -5,6 +5,7 @@ import { watchCustomerDashboardSaga } from './customer-dashboard/customer-dashbo
 import { watchSignUpUserSaga } from './customer-signup/customer-signup.saga';
 import { watchCustomerUserSaga } from './customer-user/customer-user.saga';
 import { watchProfileUpdateUserSaga } from './customer-profile-update/customer-profile-update.saga';
+import { watchSignUpExpertSaga } from './expert-signup/expert-signup.saga';
 
 export function* rootSaga() {
     yield all([
@@ -14,5 +15,6 @@ export function* rootSaga() {
         watchSignUpUserSaga(),
         watchCustomerUserSaga(),
         watchProfileUpdateUserSaga(),
+        watchSignUpExpertSaga(),
     ]);
 }

@@ -7,6 +7,7 @@ import {
     setCustomerDashboardAction,
     fetchCustomerUserAction,
     customerProfileUpdateAction,
+    expertSignUpAction,
 } from './server.actions';
 
 describe('server actions', () => {
@@ -138,6 +139,24 @@ describe('server actions', () => {
                 type: ServerActions.LOGOUT_USER_SUCCESS,
             };
             expect(userLogoutSuccessAction()).toEqual(expectedAction);
+        });
+    });
+    describe('expertSignUpAction', () => {
+        it('should return the correct type and data', () => {
+            const values = {
+                email: 'fitmindexpert@fitmind.io',
+                firstName: 'Fitmind',
+                lastName: 'Expert',
+                password: 'secret',
+                expertise: ['LIFE_COACH'],
+                description: 'blahhhh',
+                phone: '12412421',
+            };
+            const expectedAction = {
+                type: ServerActions.SIGNUP_EXPERT_USER,
+                ...values,
+            };
+            expect(expertSignUpAction(values)).toEqual(expectedAction);
         });
     });
 });

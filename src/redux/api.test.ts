@@ -1,6 +1,6 @@
-import { apiSignUpCustomerUser, apiProfileUpdateCustomerUser } from './api';
+import { apiSignUpCustomerUser, apiProfileUpdateCustomerUser, apiSignUpExpertUser } from './api';
 import { CustomerSignUpExampleResponse } from './reducers/server-reducer/server-example-responses/user-signup-example-response';
-import { customerSignUpAction, customerProfileUpdateAction } from './actions/server/server.actions';
+import { customerSignUpAction, customerProfileUpdateAction, expertSignUpAction } from './actions/server/server.actions';
 import { CustomerLoginExampleResponse } from './reducers/server-reducer/server-example-responses/user-login-example-response';
 import { apiLoginCustomerUser, apiLogoutCustomerUser, apiGetUserMe, apiGetUserDashboard } from './api';
 import { userLoginAction } from './actions/server/server.actions';
@@ -8,6 +8,7 @@ import { CustomerLogoutExampleResponse } from './reducers/server-reducer/server-
 import { CustomerUserExampleResponse } from './reducers/server-reducer/server-example-responses/user-me-example-response';
 import { CustomerDashboardExampleResponse } from './reducers/server-reducer/server-example-responses/user-dashboard-example-response';
 import { CustomerProfileUpdateExampleResponse } from './reducers/server-reducer/server-example-responses/user-profile-update-example-response';
+import { ExpertSignUpExampleResponse } from './reducers/server-reducer/server-example-responses/expert-signup-example-response';
 
 describe('api', () => {
     test('api apiLoginCustomerUser', done => {
@@ -84,6 +85,22 @@ describe('api', () => {
             .mockImplementation(() => Promise.resolve({ json: () => CustomerProfileUpdateExampleResponse }));
         apiProfileUpdateCustomerUser(mockSignup).then(res => {
             expect(res.json()).toEqual(CustomerProfileUpdateExampleResponse);
+            done();
+        });
+    });
+    test('api apiSignUpExpertUser', done => {
+        const mockSignup = expertSignUpAction({
+            email: 'hello@fitmind.io',
+            firstName: 'Fitmind',
+            lastName: 'User',
+            password: 'asd@123',
+            expertise: ['YOGA_TEACHER'],
+            description: 'blahblah',
+            phone: '123123123',
+        });
+        window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ json: () => ExpertSignUpExampleResponse }));
+        apiSignUpExpertUser(mockSignup).then(res => {
+            expect(res).toEqual(ExpertSignUpExampleResponse);
             done();
         });
     });
