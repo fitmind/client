@@ -1,11 +1,12 @@
-import React from 'react';
-import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
-import { withRouter, RouteComponentProps } from 'react-router';
-import styled from 'styled-components';
-import CONFIG from '../../config/config';
-import { connect } from 'react-redux';
 import { Formik } from 'formik';
+import React from 'react';
+import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router';
+import styled from 'styled-components';
 import * as Yup from 'yup';
+import CONFIG from '../../config/config';
+import { expertLoginAction } from '../../redux/actions/server/server.actions';
 import { ConnectedReduxProps } from '../../redux/reducers/root.reducer';
 
 const LoginSchema = Yup.object().shape({
@@ -18,7 +19,11 @@ const LoginSchema = Yup.object().shape({
         .required('Required'),
 });
 
-type LoginPageAllProps = RouteComponentProps & ConnectedReduxProps;
+interface PropsFromDispatch {
+    expertLoginAction: typeof expertLoginAction;
+}
+
+type LoginPageAllProps = RouteComponentProps & ConnectedReduxProps & PropsFromDispatch;
 
 export class ExpertLoginPage extends React.Component<LoginPageAllProps> {
     public render() {
@@ -35,8 +40,7 @@ export class ExpertLoginPage extends React.Component<LoginPageAllProps> {
                                         initialValues={{ email: '', password: '' }}
                                         validationSchema={LoginSchema}
                                         onSubmit={(values, { setSubmitting }) => {
-                                            console.log(values);
-                                            console.log('I NEED TO BE HOOKED UP');
+                                            this.props.expertLoginAction(values);
                                             setSubmitting(false);
                                         }}
                                         render={({
@@ -115,10 +119,14 @@ export class ExpertLoginPage extends React.Component<LoginPageAllProps> {
     }
 }
 
+const mapDispatchToProps = {
+    expertLoginAction,
+};
+
 export default withRouter(
     connect(
         null,
-        null,
+        mapDispatchToProps,
     )(ExpertLoginPage),
 );
 

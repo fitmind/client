@@ -1,13 +1,27 @@
-import { apiSignUpCustomerUser, apiProfileUpdateCustomerUser } from './api';
-import { CustomerSignUpExampleResponse } from './reducers/server-reducer/server-example-responses/user-signup-example-response';
-import { customerSignUpAction, customerProfileUpdateAction } from './actions/server/server.actions';
+import {
+    customerProfileUpdateAction,
+    customerSignUpAction,
+    expertLoginAction,
+    userLoginAction,
+} from './actions/server/server.actions';
+import {
+    apiGetExpertMe,
+    apiGetUserDashboard,
+    apiGetUserMe,
+    apiLoginCustomerUser,
+    apiLoginExpertUser,
+    apiLogoutCustomerUser,
+    apiProfileUpdateCustomerUser,
+    apiSignUpCustomerUser,
+} from './api';
+import { ExpertLoginExampleResponse } from './reducers/server-reducer/server-example-responses/expert-login-example-response';
+import { ExpertUserExampleResponse } from './reducers/server-reducer/server-example-responses/expert-me-example-response';
+import { CustomerDashboardExampleResponse } from './reducers/server-reducer/server-example-responses/user-dashboard-example-response';
 import { CustomerLoginExampleResponse } from './reducers/server-reducer/server-example-responses/user-login-example-response';
-import { apiLoginCustomerUser, apiLogoutCustomerUser, apiGetUserMe, apiGetUserDashboard } from './api';
-import { userLoginAction } from './actions/server/server.actions';
 import { CustomerLogoutExampleResponse } from './reducers/server-reducer/server-example-responses/user-logout-example-response';
 import { CustomerUserExampleResponse } from './reducers/server-reducer/server-example-responses/user-me-example-response';
-import { CustomerDashboardExampleResponse } from './reducers/server-reducer/server-example-responses/user-dashboard-example-response';
 import { CustomerProfileUpdateExampleResponse } from './reducers/server-reducer/server-example-responses/user-profile-update-example-response';
+import { CustomerSignUpExampleResponse } from './reducers/server-reducer/server-example-responses/user-signup-example-response';
 
 describe('api', () => {
     test('api apiLoginCustomerUser', done => {
@@ -84,6 +98,25 @@ describe('api', () => {
             .mockImplementation(() => Promise.resolve({ json: () => CustomerProfileUpdateExampleResponse }));
         apiProfileUpdateCustomerUser(mockSignup).then(res => {
             expect(res.json()).toEqual(CustomerProfileUpdateExampleResponse);
+            done();
+        });
+    });
+
+    test('api apiLoginExpertUser', done => {
+        const mockLogin = expertLoginAction({
+            email: 'test@fitmind.io',
+            password: 'asd@123',
+        });
+        window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ json: () => ExpertLoginExampleResponse }));
+        apiLoginExpertUser(mockLogin).then(res => {
+            expect(res).toEqual(ExpertLoginExampleResponse);
+            done();
+        });
+    });
+    test('api apiGetExpertMe', done => {
+        window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ json: () => ExpertUserExampleResponse }));
+        apiGetExpertMe().then(res => {
+            expect(res.json()).toEqual(ExpertUserExampleResponse);
             done();
         });
     });

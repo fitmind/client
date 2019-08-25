@@ -1,6 +1,7 @@
 import { Action } from 'redux';
-import { CustomerUserResponse } from '../../../interfaces/responses/customer-user-response';
 import { CustomerDashboardResponse } from '../../../interfaces/responses/customer-dashboard-response';
+import { CustomerUserResponse } from '../../../interfaces/responses/customer-user-response';
+import { ExpertUserResponse } from '../../../interfaces/responses/expert-user-response';
 
 export const ServerActions = {
     LOGIN_CUSTOMER_USER: 'LOGIN_CUSTOMER_USER',
@@ -12,6 +13,8 @@ export const ServerActions = {
     LOGOUT_USER: 'LOGOUT_USER',
     LOGOUT_USER_SUCCESS: 'LOGOUT_USER_SUCCESS',
     PROFILE_UPDATE_CUSTOMER_USER: 'PROFILE_UPDATE_CUSTOMER_USER',
+    LOGIN_EXPERT_USER: 'LOGIN_EXPERT_USER',
+    SET_EXPERT_USER: 'SET_EXPERT_USER',
 };
 
 export interface ServerActionTypes {
@@ -19,6 +22,7 @@ export interface ServerActionTypes {
     errorMessage?: string;
     customerUser?: CustomerUserResponse;
     customerDashboard?: CustomerDashboardResponse;
+    expertUser?: ExpertUserResponse;
 }
 
 export interface UserLoginActionInterface extends Action<'LOGIN_CUSTOMER_USER'> {
@@ -143,4 +147,24 @@ export type UserLogoutSuccessActionInterface = Action<'LOGOUT_USER_SUCCESS'>;
 
 export const userLogoutSuccessAction = (): UserLogoutSuccessActionInterface => ({
     type: 'LOGOUT_USER_SUCCESS',
+});
+
+export interface ExpertLoginActionInterface extends Action<'LOGIN_EXPERT_USER'> {
+    email: string;
+    password: string;
+}
+
+export const expertLoginAction = ({ email, password }): ExpertLoginActionInterface => ({
+    type: 'LOGIN_EXPERT_USER',
+    email,
+    password,
+});
+
+export interface setExpertUserActionInterface extends Action<'SET_EXPERT_USER'> {
+    expertUser: ExpertUserResponse;
+}
+
+export const setExpertUserAction = (expertUser: ExpertUserResponse): setExpertUserActionInterface => ({
+    type: 'SET_EXPERT_USER',
+    expertUser,
 });
