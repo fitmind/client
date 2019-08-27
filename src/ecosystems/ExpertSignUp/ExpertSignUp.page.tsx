@@ -8,6 +8,7 @@ import * as Yup from 'yup';
 import CONFIG from '../../config/config';
 import { expertSignUpAction } from '../../redux/actions/server/server.actions';
 import { ConnectedReduxProps } from '../../redux/reducers/root.reducer';
+import MultiSelect from '@kenshooui/react-multi-select';
 
 const ExpertSignUpSchema = Yup.object().shape({
     email: Yup.string()
@@ -85,6 +86,7 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                             saturday: '',
                                             sunday: '',
                                             phone: '',
+                                            availibility: [],
                                         }}
                                         validationSchema={ExpertSignUpSchema}
                                         onSubmit={(values, { setSubmitting }) => {
@@ -254,6 +256,20 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                                     <Form.Control.Feedback type="invalid">
                                                         {errors.phone}
                                                     </Form.Control.Feedback>
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label>Weekly Availibility</Form.Label>
+                                                    <MultiSelect
+                                                        name="phone"
+                                                        items={[
+                                                            { id: 0, label: 'item 1' },
+                                                            { id: 2, label: 'item 2', disabled: true },
+                                                            { id: 3, label: 'item 3', disabled: false },
+                                                            { id: 4, label: 'item 4' },
+                                                        ]}
+                                                        selectedItems={[{ id: 2, label: 'item 2', disabled: true }]}
+                                                        onChange={handleChange}
+                                                    />
                                                 </Form.Group>
                                                 <Button
                                                     variant="outline-primary"
