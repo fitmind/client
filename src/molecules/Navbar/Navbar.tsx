@@ -10,6 +10,7 @@ import { userLogoutAction } from '../../redux/actions/server/server.actions';
 interface PropsFromState {
     expert: expertUserInterface;
     customerUser: customerUserInterface;
+    expertUser: expertUserInterface;
 }
 
 interface PropsFromDispatch {
@@ -17,7 +18,7 @@ interface PropsFromDispatch {
 }
 type allProps = PropsFromState & RouteComponentProps & PropsFromDispatch;
 
-const NavBar: React.FC<allProps> = ({ expert, customerUser, history, userLogoutAction }) => (
+const NavBar: React.FC<allProps> = ({ expert, customerUser, history, userLogoutAction, expertUser }) => (
     <Navbar bg="light" expand="lg">
         <Navbar.Brand onClick={() => history.push(CONFIG.routes.home)}>Fitmind</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -27,6 +28,7 @@ const NavBar: React.FC<allProps> = ({ expert, customerUser, history, userLogoutA
                 <Nav.Link>About</Nav.Link>
                 <Nav.Link>Contact</Nav.Link>
             </Nav>
+
             {customerUser._id && (
                 <ButtonGroup className="mr-2">
                     <Button variant="outline-primary" onClick={() => history.push(CONFIG.routes.customerDashboard)}>
@@ -61,6 +63,14 @@ const NavBar: React.FC<allProps> = ({ expert, customerUser, history, userLogoutA
                     Customer Logout
                 </Button>
             )}
+            {expertUser._id && (
+                <Button
+                    variant="outline-secondary"
+                    onClick={() => console.log('Will be hooked up in the next feat/logout')}
+                >
+                    Expert Logout
+                </Button>
+            )}
         </Navbar.Collapse>
     </Navbar>
 );
@@ -72,6 +82,7 @@ const mapDispatchToProps = {
 const mapStateToProps = (state: ApplicationState) => ({
     expert: state.server.expertUser,
     customerUser: state.server.customerUser,
+    expertUser: state.server.expertUser,
 });
 
 export default withRouter(

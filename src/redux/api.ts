@@ -1,9 +1,11 @@
-import {
-    UserLoginActionInterface,
-    CustomerSignUpActionInterface,
-    CustomerProfileUpdateActionInterface,
-} from './actions/server/server.actions';
 import { CustomerLoginResponse } from '../interfaces/responses/customer-login-response';
+import { ExpertLoginResponse } from '../interfaces/responses/expert-login-response';
+import {
+    CustomerProfileUpdateActionInterface,
+    CustomerSignUpActionInterface,
+    ExpertLoginActionInterface,
+    UserLoginActionInterface,
+} from './actions/server/server.actions';
 
 const API_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -86,4 +88,28 @@ export async function apiProfileUpdateCustomerUser(action: CustomerProfileUpdate
         }),
     });
     return res;
+}
+
+export async function apiLoginExpertUser({
+    email,
+    password,
+}: ExpertLoginActionInterface): Promise<ExpertLoginResponse> {
+    const response = await fetch(`${API_URL}/expert/login`, {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        mode,
+        credentials,
+        body: JSON.stringify({ email, password }),
+    });
+    return await response.json();
+}
+
+export async function apiGetExpertMe() {
+    const response = await fetch(`${API_URL}/expert/me`, {
+        method: 'GET',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        mode,
+        credentials,
+    });
+    return response;
 }
