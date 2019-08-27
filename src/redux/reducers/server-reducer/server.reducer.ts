@@ -39,7 +39,6 @@ export const ServerReducer: Reducer<ServerStateInterface> = (
     state: ServerStateInterface = ServerInitialState,
     action: ServerActionTypes,
 ) => {
-    console.log(action);
     switch (action.type) {
         case ServerActions.SET_CUSTOMER_USER:
             return { ...state, customerUser: action.customerUser };
