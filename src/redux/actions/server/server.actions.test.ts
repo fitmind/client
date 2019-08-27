@@ -162,13 +162,24 @@ describe('server actions', () => {
             const expertUserMeResponse = {
                 _id: '123123',
                 email: 'expert@fitmind.io',
-                name: 'Expert1',
+                firstName: 'Expert1',
+                lastName: 'User',
+                approvedStatus: 'APPROVED',
                 createdAt: new Date().toISOString().slice(0, 10),
                 description: 'description',
                 expertise: ['PERSONAL_COACH', 'YOGA_COACH'],
                 phone: '123123123',
                 pictureUrl:
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBx76lQwzW2cAsjz5JqgVp_ReTpVji6G_pMO6crXSJn9NETq3F',
+                weeklyAvailability: {
+                    monday: ['00:00'],
+                    tuesday: ['00:00'],
+                    wednesday: ['00:00'],
+                    thursday: ['00:00'],
+                    friday: ['00:00'],
+                    saturday: ['00:00'],
+                    sunday: ['00:00'],
+                },
             };
             const expectedAction = {
                 type: ServerActions.SET_EXPERT_USER,
