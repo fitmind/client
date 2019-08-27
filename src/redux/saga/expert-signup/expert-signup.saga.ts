@@ -18,12 +18,43 @@ export const expertSignUpFailedNotification: NotificationInterface = {
 export function* signUpExpertSaga(action: ExpertSignUpActionInterface) {
     yield put(setLoadingTrue());
     try {
+        let transformedAvailibility = {};
+        let transformedAvailibilityMonday = action.weeklyAvailability['monday'].map(availibility => {
+            return availibility.id;
+        });
+        let transformedAvailibilityTuesday = action.weeklyAvailability['tuesday'].map(availibility => {
+            return availibility.id;
+        });
+        let transformedAvailibilityWednessday = action.weeklyAvailability['wednessday'].map(availibility => {
+            return availibility.id;
+        });
+        let transformedAvailibilityThrusday = action.weeklyAvailability['thursday'].map(availibility => {
+            return availibility.id;
+        });
+        let transformedAvailibilityFriday = action.weeklyAvailability['friday'].map(availibility => {
+            return availibility.id;
+        });
+        let transformedAvailibilitySaturday = action.weeklyAvailability['saturday'].map(availibility => {
+            return availibility.id;
+        });
+        let transformedAvailibilitySunday = action.weeklyAvailability['sunday'].map(availibility => {
+            return availibility.id;
+        });
+        transformedAvailibility['monday'] = transformedAvailibilityMonday;
+        transformedAvailibility['tuesday'] = transformedAvailibilityTuesday;
+        transformedAvailibility['wednessday'] = transformedAvailibilityWednessday;
+        transformedAvailibility['thursday'] = transformedAvailibilityThrusday;
+        transformedAvailibility['friday'] = transformedAvailibilityFriday;
+        transformedAvailibility['saturday'] = transformedAvailibilitySaturday;
+        transformedAvailibility['sunday'] = transformedAvailibilitySunday;
+        action.weeklyAvailability = transformedAvailibility;
         const signUpExpertResponse = yield call(apiSignUpExpertUser, action);
         if (signUpExpertResponse) {
             yield put(setNotification(expertSignUpPositiveNotification));
             yield put(push(CONFIG.routes.expertLogin));
         }
     } catch (signUpExpertError) {
+        console.log(signUpExpertError);
         yield put(setNotification(expertSignUpFailedNotification));
     } finally {
         yield put(setLoadingFalse());

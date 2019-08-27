@@ -1,3 +1,5 @@
+import MultiSelect from '@kenshooui/react-multi-select';
+import '@kenshooui/react-multi-select/dist/style.css';
 import { Formik } from 'formik';
 import React from 'react';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
@@ -8,7 +10,6 @@ import * as Yup from 'yup';
 import CONFIG from '../../config/config';
 import { expertSignUpAction } from '../../redux/actions/server/server.actions';
 import { ConnectedReduxProps } from '../../redux/reducers/root.reducer';
-import MultiSelect from '@kenshooui/react-multi-select';
 
 const ExpertSignUpSchema = Yup.object().shape({
     email: Yup.string()
@@ -33,13 +34,6 @@ const ExpertSignUpSchema = Yup.object().shape({
         .of(Yup.string())
         .min(1)
         .required('Required'),
-    // monday: Yup.string().required('Required'),
-    // tuesday: Yup.string().required('Required'),
-    // wednesday: Yup.string().required('Required'),
-    // thursday: Yup.string().required('Required'),
-    // friday: Yup.string().required('Required'),
-    // saturday: Yup.string().required('Required'),
-    // sunday: Yup.string().required('Required'),
     description: Yup.string()
         .min(6, 'Too Short!')
         .max(700, 'Too Long!')
@@ -78,15 +72,16 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                             passwordConfirm: '',
                                             expertise: [],
                                             description: '',
-                                            monday: '',
-                                            tuesday: '',
-                                            wednesday: '',
-                                            thursday: '',
-                                            friday: '',
-                                            saturday: '',
-                                            sunday: '',
                                             phone: '',
-                                            availibility: [],
+                                            weeklyAvailability: {
+                                                monday: [],
+                                                tuesday: [],
+                                                wednessday: [],
+                                                thursday: [],
+                                                friday: [],
+                                                saturday: [],
+                                                sunday: [],
+                                            },
                                         }}
                                         validationSchema={ExpertSignUpSchema}
                                         onSubmit={(values, { setSubmitting }) => {
@@ -258,17 +253,87 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
                                                 <Form.Group>
-                                                    <Form.Label>Weekly Availibility</Form.Label>
+                                                    <Form.Label>Weekly Availibility(Monday)</Form.Label>
                                                     <MultiSelect
-                                                        name="phone"
-                                                        items={[
-                                                            { id: 0, label: 'item 1' },
-                                                            { id: 2, label: 'item 2', disabled: true },
-                                                            { id: 3, label: 'item 3', disabled: false },
-                                                            { id: 4, label: 'item 4' },
-                                                        ]}
-                                                        selectedItems={[{ id: 2, label: 'item 2', disabled: true }]}
-                                                        onChange={handleChange}
+                                                        showSearch={false}
+                                                        name="monday"
+                                                        items={CONFIG.oneDayAvailability}
+                                                        selectedItems={values.weeklyAvailability.monday}
+                                                        onChange={values => {
+                                                            setFieldValue('weeklyAvailability.monday', values);
+                                                        }}
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label>Weekly Availibility(Tuesday)</Form.Label>
+                                                    <MultiSelect
+                                                        showSearch={false}
+                                                        name="monday"
+                                                        items={CONFIG.oneDayAvailability}
+                                                        selectedItems={values.weeklyAvailability.tuesday}
+                                                        onChange={values => {
+                                                            setFieldValue('weeklyAvailability.tuesday', values);
+                                                        }}
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label>Weekly Availibility(Wednessday)</Form.Label>
+                                                    <MultiSelect
+                                                        showSearch={false}
+                                                        name="monday"
+                                                        items={CONFIG.oneDayAvailability}
+                                                        selectedItems={values.weeklyAvailability.wednessday}
+                                                        onChange={values => {
+                                                            setFieldValue('weeklyAvailability.wednessday', values);
+                                                        }}
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label>Weekly Availibility(Thursday)</Form.Label>
+                                                    <MultiSelect
+                                                        showSearch={false}
+                                                        name="monday"
+                                                        items={CONFIG.oneDayAvailability}
+                                                        selectedItems={values.weeklyAvailability.thursday}
+                                                        onChange={values => {
+                                                            setFieldValue('weeklyAvailability.thursday', values);
+                                                        }}
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label>Weekly Availibility(Friday)</Form.Label>
+                                                    <MultiSelect
+                                                        showSearch={false}
+                                                        name="monday"
+                                                        items={CONFIG.oneDayAvailability}
+                                                        selectedItems={values.weeklyAvailability.friday}
+                                                        onChange={values => {
+                                                            setFieldValue('weeklyAvailability.friday', values);
+                                                        }}
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label>Weekly Availibility(Saturday)</Form.Label>
+                                                    <MultiSelect
+                                                        showSearch={false}
+                                                        name="monday"
+                                                        items={CONFIG.oneDayAvailability}
+                                                        selectedItems={values.weeklyAvailability.saturday}
+                                                        onChange={values => {
+                                                            setFieldValue('weeklyAvailability.saturday', values);
+                                                        }}
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label>Weekly Availibility(Sunday)</Form.Label>
+                                                    <MultiSelect
+                                                        showSearch={false}
+                                                        name="monday"
+                                                        items={CONFIG.oneDayAvailability}
+                                                        selectedItems={values.weeklyAvailability.sunday}
+                                                        onChange={values => {
+                                                            setFieldValue('weeklyAvailability.sunday', values);
+                                                        }}
                                                     />
                                                 </Form.Group>
                                                 <Button

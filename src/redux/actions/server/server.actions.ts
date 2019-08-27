@@ -154,6 +154,7 @@ export interface ExpertSignUpActionInterface extends Action<'SIGNUP_EXPERT_USER'
     expertise: string[];
     description: string;
     phone: string;
+    weeklyAvailability: {};
 }
 
 export const expertSignUpAction = ({
@@ -164,6 +165,7 @@ export const expertSignUpAction = ({
     expertise,
     description,
     phone,
+    weeklyAvailability,
 }: {
     email: string;
     firstName: string;
@@ -172,6 +174,7 @@ export const expertSignUpAction = ({
     expertise: string[];
     description: string;
     phone: string;
+    weeklyAvailability: {};
 }): ExpertSignUpActionInterface => ({
     type: 'SIGNUP_EXPERT_USER',
     email,
@@ -181,4 +184,5 @@ export const expertSignUpAction = ({
     expertise,
     description,
     phone,
+    weeklyAvailability,
 });

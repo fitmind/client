@@ -84,6 +84,7 @@ export async function apiSignUpExpertUser(action: ExpertSignUpActionInterface) {
             expertise: action.expertise,
             description: action.description,
             phone: action.phone,
+            weeklyAvailability: action.weeklyAvailability,
         }),
     });
     return res.json();

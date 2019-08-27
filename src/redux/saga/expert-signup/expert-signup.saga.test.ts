@@ -14,7 +14,25 @@ import {
 
 describe('Expert Signup saga', () => {
     it('it signs up', () => {
-        return expectSaga(signUpExpertSaga)
+        const signUpData = {
+            description: 'adasda',
+            email: 'hemal.pandya1122.hp@gmail.com',
+            expertise: ['YOGA_COACH'],
+            firstName: 'asdas',
+            lastName: 'asdad',
+            password: 'asd@123',
+            phone: '21312312',
+            weeklyAvailability: {
+                monday: [{ id: '0:00', label: '12 am to 12:30 am' }],
+                tuesday: [],
+                wednessday: [],
+                thursday: [],
+                friday: [],
+                saturday: [],
+                sunday: [],
+            },
+        };
+        return expectSaga(signUpExpertSaga, signUpData)
             .provide([[matchers.call.fn(apiSignUpExpertUser), ExpertSignUpExampleResponse]])
             .put(setLoadingTrue())
             .put(setNotification(expertSignUpPositiveNotification))
@@ -25,8 +43,26 @@ describe('Expert Signup saga', () => {
 
     describe('it should handle errors', () => {
         const error = new Error('error');
+        const signUpData = {
+            description: 'adasda',
+            email: 'hemal.pandya1122.hp@gmail.com',
+            expertise: ['YOGA_COACH'],
+            firstName: 'asdas',
+            lastName: 'asdad',
+            password: 'asd@123',
+            phone: '21312312',
+            weeklyAvailability: {
+                monday: [{ id: '0:00', label: '12 am to 12:30 am' }],
+                tuesday: [],
+                wednessday: [],
+                thursday: [],
+                friday: [],
+                saturday: [],
+                sunday: [],
+            },
+        };
         it('should fail when the login response fails', () => {
-            return expectSaga(signUpExpertSaga)
+            return expectSaga(signUpExpertSaga, signUpData)
                 .provide([[matchers.call.fn(apiSignUpExpertUser), throwError(error)]])
                 .put(setLoadingTrue())
                 .put(setNotification(expertSignUpFailedNotification))
