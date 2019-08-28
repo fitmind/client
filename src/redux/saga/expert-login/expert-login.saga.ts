@@ -2,11 +2,10 @@ import { push } from 'connected-react-router';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import CONFIG from '../../../config/config';
 import { NotificationInterface, NotificationType } from '../../../interfaces/Notification.interface';
+import { ExpertLoginResponse } from '../../../interfaces/responses/expert-login-response';
 import { ExpertLoginActionInterface, ServerActions, setExpertUserAction } from '../../actions/server/server.actions';
 import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/ui/ui.actions';
 import { apiGetExpertMe, apiLoginExpertUser } from '../../api';
-import { ExpertLoginResponse } from '../../../interfaces/responses/expert-login-response';
-import { ExpertUserResponse } from '../../../interfaces/responses/expert-user-response';
 
 export const expertLoginPositiveNotification: NotificationInterface = {
     type: NotificationType.positive,
@@ -27,10 +26,22 @@ export function* loginExpertSaga(action: ExpertLoginActionInterface) {
         const loginResponse: ExpertLoginResponse = yield call(apiLoginExpertUser, action);
         if (loginResponse) {
             try {
-                const expertResponse: ExpertUserResponse = yield call(apiGetExpertMe);
-                yield put(setExpertUserAction(expertResponse));
-                yield put(push(CONFIG.routes.expertDashboard));
-                yield put(setNotification(expertLoginPositiveNotification));
+                const fetchExpertResponse = yield call(apiGetExpertMe);
+
+                if (fetchExpertResponse.status === 401) {
+                    yield put(push(CONFIG.routes.expertLogin));
+                } else if (fetchExpertResponse.status === 200) {
+                    const fetchExpertResponseJson = yield fetchExpertResponse.json();
+                    if (fetchExpertResponseJson) {
+                        try {
+                            yield put(setExpertUserAction(fetchExpertResponseJson));
+                            yield put(push(CONFIG.routes.expertDashboard));
+                            yield put(setNotification(expertLoginPositiveNotification));
+                        } catch (settingCustomerError) {
+                            yield put(setNotification(expertDashboardFailedNotification));
+                        }
+                    }
+                }
             } catch (settingExpertError) {
                 yield put(setNotification(expertDashboardFailedNotification));
             }

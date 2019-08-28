@@ -4,6 +4,16 @@ import { ServerActions, ServerActionTypes } from '../../actions/server/server.ac
 
 export interface expertUserInterface {
     _id?: string;
+    email?: string;
+    firstName?: string;
+    lastName?: string;
+    approvedStatus?: string;
+    createdAt?: string;
+    description?: string;
+    expertise?: string[];
+    phone?: string;
+    pictureUrl?: string;
+    weeklyAvailability?: {};
 }
 
 export interface customerUserInterface {
@@ -48,6 +58,8 @@ export const ServerReducer: Reducer<ServerStateInterface> = (
             return { ...state, customerUser: {} };
         case ServerActions.SET_EXPERT_USER:
             return { ...state, expertUser: action.expertUser };
+        case ServerActions.LOGOUT_EXPERT_SUCCESS:
+            return { ...state, expertUser: {} };
         default:
             return state;
     }

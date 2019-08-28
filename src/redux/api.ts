@@ -113,3 +113,13 @@ export async function apiGetExpertMe() {
     });
     return response;
 }
+
+export async function apiLogoutExpertUser() {
+    const res = await fetch(`${API_URL}/expert/logout`, {
+        method: 'post',
+        mode,
+        credentials,
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+    });
+    return await res.json();
+}
