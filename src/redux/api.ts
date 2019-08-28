@@ -123,3 +123,13 @@ export async function apiLogoutExpertUser() {
     });
     return await res.json();
 }
+
+export async function apiGetExpertDashboard() {
+    const res = await fetch(`${API_URL}/expert/dashboard`, {
+        method: 'get',
+        mode,
+        credentials,
+        headers: { Accept: 'application/json' },
+    });
+    return res;
+}

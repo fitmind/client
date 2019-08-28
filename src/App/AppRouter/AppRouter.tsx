@@ -10,7 +10,7 @@ import Notification from '../../atoms/Notification/Notification';
 import CustomerDashboard from '../../ecosystems/CustomerDashboard/CustomerDashboard.page';
 import CustomerSignUpPage from '../../ecosystems/CustomerSignUp/CustomerSignUp.page';
 import ExpertLoginPage from '../../ecosystems/ExpertLogin/ExpertLogin.page';
-import ExpertDashboardPage from '../../ecosystems/ExpertDashboard/ExpertDashboard';
+import ExpertDashboardPage from '../../ecosystems/ExpertDashboard/ExpertDashboard.page';
 import ListingsPage from '../../ecosystems/Listings/Listings.page';
 import ListingSinglePage from '../../ecosystems/ListingsSingle/ListingsSingle.page';
 import ExpertSignUpPage from '../../ecosystems/ExpertSignUp/ExpertSignUp.page';

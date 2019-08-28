@@ -1,14 +1,15 @@
 import {
+    customerProfileUpdateAction,
+    expertLoginAction,
+    fetchCustomerDashboardAction,
+    fetchCustomerUserAction,
     ServerActions,
+    setCustomerDashboardAction,
+    setExpertUserAction,
     userLoginAction,
     userLogoutAction,
     userLogoutSuccessAction,
-    fetchCustomerDashboardAction,
-    setCustomerDashboardAction,
-    fetchCustomerUserAction,
-    customerProfileUpdateAction,
-    expertLoginAction,
-    setExpertUserAction,
+    fetchExpertDashboardAction,
 } from './server.actions';
 
 describe('server actions', () => {
@@ -188,4 +189,22 @@ describe('server actions', () => {
             expect(setExpertUserAction(expertUserMeResponse)).toEqual(expectedAction);
         });
     });
+    describe('fetchExpertDashboardAction', () => {
+        it('should return the correct type and data', () => {
+            const expectedAction = {
+                type: ServerActions.FETCH_EXPERT_DASHBOARD,
+            };
+            expect(fetchExpertDashboardAction()).toEqual(expectedAction);
+        });
+    });
+
+    // describe('setExpertDashboardAction', () => {
+    //     it('should return the correct type and data', () => {
+    //         const expectedAction = {
+    //             type: ServerActions.SET_EXPERT_DASHBOARD,
+    //             expertDashboard: expertDashboardResponse,
+    //         };
+    //         expect(setExpertDashboardAction(ExpertDashboard)).toEqual(expectedAction);
+    //     });
+    // });
 });
