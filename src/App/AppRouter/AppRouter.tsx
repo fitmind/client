@@ -16,6 +16,7 @@ import ListingSinglePage from '../../ecosystems/ListingsSingle/ListingsSingle.pa
 import ExpertSignUpPage from '../../ecosystems/ExpertSignUp/ExpertSignUp.page';
 import CustomerProfileUpdatePage from '../../ecosystems/CustomerProfileUpdate/CustomerProfileUpdate.page';
 
+
 const AppRouter: React.FC = () => (
     <div>
         <NavBar />
@@ -30,6 +31,7 @@ const AppRouter: React.FC = () => (
             <Route path={CONFIG.routes.expertLogin} exact component={ExpertLoginPage} />
             <Route path={CONFIG.routes.expertDashboard} exact component={ExpertDashboardPage} />
             <Route path={CONFIG.routes.expertSignUp} exact component={ExpertSignUpPage} />
+            <Route path={CONFIG.routes.expertSignUp} exact component={Exper} />
             <Route path={CONFIG.routes.listings} exact component={ListingsPage} />
             <Route path={CONFIG.routes.listing} exact component={ListingSinglePage} />
             <Route component={NotFoundPage} />

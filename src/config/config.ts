@@ -12,6 +12,7 @@ const CONFIG = {
         expertLogin: '/experts-login',
         expertSignUp: '/experts-register',
         expertDashboard: '/experts/dashboard',
+        expertProfileUpdate: '/expert/edit',
     },
     expertises: {
         yoga: {

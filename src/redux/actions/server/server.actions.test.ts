@@ -3,13 +3,14 @@ import {
     expertLoginAction,
     fetchCustomerDashboardAction,
     fetchCustomerUserAction,
+    fetchExpertDashboardAction,
     ServerActions,
     setCustomerDashboardAction,
     setExpertUserAction,
     userLoginAction,
     userLogoutAction,
     userLogoutSuccessAction,
-    fetchExpertDashboardAction,
+    expertProfileUpdateAction,
 } from './server.actions';
 
 describe('server actions', () => {
@@ -198,6 +199,33 @@ describe('server actions', () => {
         });
     });
 
+    describe('expertProfileUpdateAction', () => {
+        it('should return the correct type and data', () => {
+            const values = {
+                _id: '123',
+                firstName: 'Fitmind Updated',
+                lastName: 'User Updated',
+                description: 'blahhhh',
+                phone: '12412421',
+                profilePictureUrl: 'string',
+                isAnExpertIn: ['PERSONAL_COACH'],
+                weeklyAvailability: {
+                    monday: ['0:00'],
+                    tuesday: ['0:00'],
+                    wednesday: ['0:00'],
+                    thursday: ['0:00'],
+                    friday: ['0:00'],
+                    saturday: ['0:00'],
+                    sunday: ['0:00'],
+                },
+            };
+            const expectedAction = {
+                type: ServerActions.PROFILE_UPDATE_EXPERT_USER,
+                ...values,
+            };
+            expect(expertProfileUpdateAction(values)).toEqual(expectedAction);
+        });
+    });
     // describe('setExpertDashboardAction', () => {
     //     it('should return the correct type and data', () => {
     //         const expectedAction = {

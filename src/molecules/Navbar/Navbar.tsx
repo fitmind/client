@@ -76,6 +76,11 @@ const NavBar: React.FC<allProps> = ({
                     Expert Logout
                 </Button>
             )}
+            {expertUser._id && (
+                <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.expertProfileUpdate)}>
+                    Edit Profile
+                </Button>
+            )}
         </Navbar.Collapse>
     </Navbar>
 );
