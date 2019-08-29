@@ -46,7 +46,7 @@ describe('Expert Signup saga', () => {
         const signUpData = {
             description: 'adasda',
             email: 'hemal.pandya1122.hp@gmail.com',
-            expertise: ['YOGA_COACH'],
+            isAnExpertIn: ['YOGA_COACH'],
             firstName: 'asdas',
             lastName: 'asdad',
             password: 'asd@123',

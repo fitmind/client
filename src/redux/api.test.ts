@@ -94,9 +94,18 @@ describe('api', () => {
             firstName: 'Fitmind',
             lastName: 'User',
             password: 'asd@123',
-            expertise: ['YOGA_TEACHER'],
+            isAnExpertIn: ['YOGA_TEACHER'],
             description: 'blahblah',
             phone: '123123123',
+            weeklyAvailability: {
+                monday: ['0:00'],
+                tuesday: ['0:00'],
+                wednesday: ['0:00'],
+                thursday: ['0:00'],
+                friday: ['0:00'],
+                saturday: ['0:00'],
+                sunday: ['0:00'],
+            },
         });
         window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ json: () => ExpertSignUpExampleResponse }));
         apiSignUpExpertUser(mockSignup).then(res => {

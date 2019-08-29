@@ -1,6 +1,6 @@
 import { Action } from 'redux';
-import { CustomerUserResponse } from '../../../interfaces/responses/customer-user-response';
 import { CustomerDashboardResponse } from '../../../interfaces/responses/customer-dashboard-response';
+import { CustomerUserResponse } from '../../../interfaces/responses/customer-user-response';
 
 export const ServerActions = {
     LOGIN_CUSTOMER_USER: 'LOGIN_CUSTOMER_USER',
@@ -151,10 +151,11 @@ export interface ExpertSignUpActionInterface extends Action<'SIGNUP_EXPERT_USER'
     firstName: string;
     lastName: string;
     password: string;
-    expertise: string[];
+    isAnExpertIn: string[];
     description: string;
     phone: string;
     weeklyAvailability: {};
+    profilePictureUrl?: string;
 }
 
 export const expertSignUpAction = ({
@@ -162,27 +163,30 @@ export const expertSignUpAction = ({
     firstName,
     lastName,
     password,
-    expertise,
+    isAnExpertIn,
     description,
     phone,
     weeklyAvailability,
+    profilePictureUrl,
 }: {
     email: string;
     firstName: string;
     lastName: string;
     password: string;
-    expertise: string[];
+    isAnExpertIn: string[];
     description: string;
     phone: string;
     weeklyAvailability: {};
+    profilePictureUrl?: string;
 }): ExpertSignUpActionInterface => ({
     type: 'SIGNUP_EXPERT_USER',
     email,
     firstName,
     lastName,
     password,
-    expertise,
+    isAnExpertIn,
     description,
     phone,
     weeklyAvailability,
+    profilePictureUrl,
 });

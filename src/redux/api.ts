@@ -81,7 +81,7 @@ export async function apiSignUpExpertUser(action: ExpertSignUpActionInterface) {
             firstName: action.firstName,
             lastName: action.lastName,
             password: action.password,
-            expertise: action.expertise,
+            isAnExpertIn: action.isAnExpertIn,
             description: action.description,
             phone: action.phone,
             weeklyAvailability: action.weeklyAvailability,

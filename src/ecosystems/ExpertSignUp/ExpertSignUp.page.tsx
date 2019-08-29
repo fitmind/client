@@ -30,7 +30,7 @@ const ExpertSignUpSchema = Yup.object().shape({
     passwordConfirm: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
         .required('Password confirm is required'),
-    expertise: Yup.array()
+    isAnExpertIn: Yup.array()
         .of(Yup.string())
         .min(1)
         .required('Required'),
@@ -70,7 +70,7 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                             lastName: '',
                                             password: '',
                                             passwordConfirm: '',
-                                            expertise: [],
+                                            isAnExpertIn: [],
                                             description: '',
                                             phone: '',
                                             weeklyAvailability: {
@@ -193,10 +193,10 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                                     <Form.Control
                                                         as="select"
                                                         multiple={true}
-                                                        name="expertise"
+                                                        name="isAnExpertIn"
                                                         onChange={evt =>
                                                             setFieldValue(
-                                                                'expertise',
+                                                                'isAnExpertIn',
                                                                 [].slice
                                                                     .call(
                                                                         (evt.target as HTMLSelectElement)
@@ -206,8 +206,8 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                                             )
                                                         }
                                                         onBlur={handleBlur}
-                                                        isValid={touched.expertise && !errors.expertise}
-                                                        isInvalid={!!errors.expertise}
+                                                        isValid={touched.isAnExpertIn && !errors.isAnExpertIn}
+                                                        isInvalid={!!errors.isAnExpertIn}
                                                     >
                                                         {' '}
                                                         {Object.keys(CONFIG.expertises).map((key: string) => (

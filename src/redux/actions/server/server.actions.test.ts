@@ -1,13 +1,13 @@
 import {
+    customerProfileUpdateAction,
+    expertSignUpAction,
+    fetchCustomerDashboardAction,
+    fetchCustomerUserAction,
     ServerActions,
+    setCustomerDashboardAction,
     userLoginAction,
     userLogoutAction,
     userLogoutSuccessAction,
-    fetchCustomerDashboardAction,
-    setCustomerDashboardAction,
-    fetchCustomerUserAction,
-    customerProfileUpdateAction,
-    expertSignUpAction,
 } from './server.actions';
 
 describe('server actions', () => {
@@ -148,9 +148,19 @@ describe('server actions', () => {
                 firstName: 'Fitmind',
                 lastName: 'Expert',
                 password: 'secret',
-                expertise: ['LIFE_COACH'],
                 description: 'blahhhh',
                 phone: '12412421',
+                profilePictureUrl: 'http://asdsa.com/adsad.jpg',
+                isAnExpertIn: ['LIFE_COACH'],
+                weeklyAvailability: {
+                    monday: ['0:00'],
+                    tuesday: ['0:00'],
+                    wednesday: ['0:00'],
+                    thursday: ['0:00'],
+                    friday: ['0:00'],
+                    saturday: ['0:00'],
+                    sunday: ['0:00'],
+                },
             };
             const expectedAction = {
                 type: ServerActions.SIGNUP_EXPERT_USER,
