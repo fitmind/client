@@ -54,7 +54,6 @@ export function* signUpExpertSaga(action: ExpertSignUpActionInterface) {
             yield put(push(CONFIG.routes.expertLogin));
         }
     } catch (signUpExpertError) {
-        console.log(signUpExpertError);
         yield put(setNotification(expertSignUpFailedNotification));
     } finally {
         yield put(setLoadingFalse());
