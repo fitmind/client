@@ -22,6 +22,7 @@ export const ServerActions = {
     FETCH_EXPERT_DASHBOARD: 'FETCH_EXPERT_DASHBOARD',
     SET_EXPERT_DASHBOARD: 'SET_EXPERT_DASHBOARD',
     PROFILE_UPDATE_EXPERT_USER: 'PROFILE_UPDATE_EXPERT_USER',
+    SIGNUP_EXPERT_USER: 'SIGNUP_EXPERT_USER',
 };
 
 export interface ServerActionTypes {
@@ -211,7 +212,7 @@ export const fetchExpertUserAction = (): fetchExpertUserActionInterface => ({
     type: 'FETCH_EXPERT_USER',
 });
 
-export interface ExpertProfileUpdateActionInterface extends Action<'PROFILE_UPDATE_CUSTOMER_USER'> {
+export interface ExpertProfileUpdateActionInterface extends Action<'PROFILE_UPDATE_EXPERT_USER'> {
     _id?: string;
     firstName?: string;
     lastName?: string;
@@ -241,7 +242,7 @@ export const expertProfileUpdateAction = ({
     isAnExpertIn?: string[];
     weeklyAvailability?: {};
 }): ExpertProfileUpdateActionInterface => ({
-    type: 'PROFILE_UPDATE_CUSTOMER_USER',
+    type: 'PROFILE_UPDATE_EXPERT_USER',
     _id,
     firstName,
     lastName,
@@ -250,4 +251,49 @@ export const expertProfileUpdateAction = ({
     profilePictureUrl,
     isAnExpertIn,
     weeklyAvailability,
+});
+
+export interface ExpertSignUpActionInterface extends Action<'SIGNUP_EXPERT_USER'> {
+    email: string;
+    firstName: string;
+    lastName: string;
+    password: string;
+    isAnExpertIn: string[];
+    description: string;
+    phone: string;
+    weeklyAvailability: {};
+    profilePictureUrl?: string;
+}
+
+export const expertSignUpAction = ({
+    email,
+    firstName,
+    lastName,
+    password,
+    isAnExpertIn,
+    description,
+    phone,
+    weeklyAvailability,
+    profilePictureUrl,
+}: {
+    email: string;
+    firstName: string;
+    lastName: string;
+    password: string;
+    isAnExpertIn: string[];
+    description: string;
+    phone: string;
+    weeklyAvailability: {};
+    profilePictureUrl?: string;
+}): ExpertSignUpActionInterface => ({
+    type: 'SIGNUP_EXPERT_USER',
+    email,
+    firstName,
+    lastName,
+    password,
+    isAnExpertIn,
+    description,
+    phone,
+    weeklyAvailability,
+    profilePictureUrl,
 });

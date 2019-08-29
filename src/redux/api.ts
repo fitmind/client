@@ -4,6 +4,8 @@ import {
     CustomerProfileUpdateActionInterface,
     CustomerSignUpActionInterface,
     ExpertLoginActionInterface,
+    ExpertProfileUpdateActionInterface,
+    ExpertSignUpActionInterface,
     UserLoginActionInterface,
 } from './actions/server/server.actions';
 
@@ -73,6 +75,24 @@ export async function apiSignUpCustomerUser(action: CustomerSignUpActionInterfac
     return res.json();
 }
 
+export async function apiSignUpExpertUser(action: ExpertSignUpActionInterface) {
+    const res = await fetch(`${API_URL}/expert/register`, {
+        method: 'post',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            email: action.email,
+            firstName: action.firstName,
+            lastName: action.lastName,
+            password: action.password,
+            isAnExpertIn: action.isAnExpertIn,
+            description: action.description,
+            phone: action.phone,
+            weeklyAvailability: action.weeklyAvailability,
+        }),
+    });
+    return res.json();
+}
+
 export async function apiProfileUpdateCustomerUser(action: CustomerProfileUpdateActionInterface) {
     const res = await fetch(`${API_URL}/user/me`, {
         method: 'put',
@@ -130,6 +150,25 @@ export async function apiGetExpertDashboard() {
         mode,
         credentials,
         headers: { Accept: 'application/json' },
+    });
+    return res;
+}
+
+export async function apiProfileUpdateExpertUser(action: ExpertProfileUpdateActionInterface) {
+    const res = await fetch(`${API_URL}/expert/me`, {
+        method: 'put',
+        mode,
+        credentials,
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            firstName: action.firstName,
+            lastName: action.lastName,
+            isAnExpertIn: action.isAnExpertIn,
+            description: action.description,
+            phone: action.phone,
+            profilePictureUrl: action.profilePictureUrl,
+            weeklyAvailability: action.weeklyAvailability,
+        }),
     });
     return res;
 }

@@ -1,3 +1,5 @@
+import MultiSelect from '@kenshooui/react-multi-select';
+import '@kenshooui/react-multi-select/dist/style.css';
 import { Formik } from 'formik';
 import React from 'react';
 import { Button, Card, Col, Container, Form, Image, Row } from 'react-bootstrap';
@@ -60,7 +62,7 @@ export class ExpertProfileUpdate extends React.Component<ExpertProfilePageAllPro
                                 <Card.Header as="h5">Edit your Profile</Card.Header>
                                 <Card.Body>
                                     <CenterContainer>
-                                        <Image src={expertUser.pictureUrl} rounded />
+                                        <Image src={expertUser.profilePictureUrl} rounded />
                                         <Formik
                                             enableReinitialize={true} // #DOUBT without this, details not coming
                                             initialValues={expertUser}
@@ -139,10 +141,10 @@ export class ExpertProfileUpdate extends React.Component<ExpertProfilePageAllPro
                                                         <Form.Control
                                                             as="select"
                                                             multiple={true}
-                                                            name="expertise"
+                                                            name="interestedInExpertiseAreas"
                                                             onChange={evt =>
                                                                 setFieldValue(
-                                                                    'expertise',
+                                                                    'interestedInExpertiseAreas',
                                                                     [].slice
                                                                         .call(
                                                                             (evt.target as HTMLSelectElement)
@@ -151,10 +153,10 @@ export class ExpertProfileUpdate extends React.Component<ExpertProfilePageAllPro
                                                                         .map(option => option.value),
                                                                 )
                                                             }
-                                                            values={expertUser.expertise}
+                                                            values={expertUser.isAnExpertIn}
                                                             onBlur={handleBlur}
-                                                            isValid={touched.expertise && !errors.expertise}
-                                                            isInvalid={!!errors.expertise}
+                                                            isValid={touched.isAnExpertIn && !errors.isAnExpertIn}
+                                                            isInvalid={!!errors.isAnExpertIn}
                                                         >
                                                             {' '}
                                                             {Object.keys(CONFIG.expertises).map((key: string) => (
@@ -163,8 +165,8 @@ export class ExpertProfileUpdate extends React.Component<ExpertProfilePageAllPro
                                                                     value={CONFIG.expertises[key].value}
                                                                     selected={
                                                                         values &&
-                                                                        values.expertise &&
-                                                                        values.expertise.indexOf(
+                                                                        values.isAnExpertIn &&
+                                                                        values.isAnExpertIn.indexOf(
                                                                             CONFIG.expertises[key].value,
                                                                         ) !== -1
                                                                             ? true
@@ -193,6 +195,118 @@ export class ExpertProfileUpdate extends React.Component<ExpertProfilePageAllPro
                                                         <Form.Control.Feedback type="invalid">
                                                             {errors.phone}
                                                         </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group>
+                                                        <Form.Label>Weekly Availibility(Monday)</Form.Label>
+                                                        <MultiSelect
+                                                            showSearch={false}
+                                                            name="monday"
+                                                            items={CONFIG.oneDayAvailability}
+                                                            selectedItems={
+                                                                values.weeklyAvailability
+                                                                    ? values.weeklyAvailability.monday
+                                                                    : []
+                                                            }
+                                                            onChange={values => {
+                                                                setFieldValue('weeklyAvailability.monday', values);
+                                                            }}
+                                                        />
+                                                    </Form.Group>
+                                                    <Form.Group>
+                                                        <Form.Label>Weekly Availibility(Tuesday)</Form.Label>
+                                                        <MultiSelect
+                                                            showSearch={false}
+                                                            name="monday"
+                                                            items={CONFIG.oneDayAvailability}
+                                                            selectedItems={
+                                                                values.weeklyAvailability
+                                                                    ? values.weeklyAvailability.tuesday
+                                                                    : []
+                                                            }
+                                                            onChange={values => {
+                                                                setFieldValue('weeklyAvailability.tuesday', values);
+                                                            }}
+                                                        />
+                                                    </Form.Group>
+                                                    <Form.Group>
+                                                        <Form.Label>Weekly Availibility(Wednessday)</Form.Label>
+                                                        <MultiSelect
+                                                            showSearch={false}
+                                                            name="monday"
+                                                            items={CONFIG.oneDayAvailability}
+                                                            selectedItems={
+                                                                values.weeklyAvailability
+                                                                    ? values.weeklyAvailability.wednessday
+                                                                    : []
+                                                            }
+                                                            onChange={values => {
+                                                                setFieldValue('weeklyAvailability.wednessday', values);
+                                                            }}
+                                                        />
+                                                    </Form.Group>
+                                                    <Form.Group>
+                                                        <Form.Label>Weekly Availibility(Thursday)</Form.Label>
+                                                        <MultiSelect
+                                                            showSearch={false}
+                                                            name="monday"
+                                                            items={CONFIG.oneDayAvailability}
+                                                            selectedItems={
+                                                                values.weeklyAvailability
+                                                                    ? values.weeklyAvailability.thursday
+                                                                    : []
+                                                            }
+                                                            onChange={values => {
+                                                                setFieldValue('weeklyAvailability.thursday', values);
+                                                            }}
+                                                        />
+                                                    </Form.Group>
+                                                    <Form.Group>
+                                                        <Form.Label>Weekly Availibility(Friday)</Form.Label>
+                                                        <MultiSelect
+                                                            showSearch={false}
+                                                            name="monday"
+                                                            items={CONFIG.oneDayAvailability}
+                                                            selectedItems={
+                                                                values.weeklyAvailability
+                                                                    ? values.weeklyAvailability.friday
+                                                                    : []
+                                                            }
+                                                            onChange={values => {
+                                                                setFieldValue('weeklyAvailability.friday', values);
+                                                            }}
+                                                        />
+                                                    </Form.Group>
+                                                    <Form.Group>
+                                                        <Form.Label>Weekly Availibility(Saturday)</Form.Label>
+                                                        <MultiSelect
+                                                            showSearch={false}
+                                                            name="monday"
+                                                            items={CONFIG.oneDayAvailability}
+                                                            selectedItems={
+                                                                values.weeklyAvailability
+                                                                    ? values.weeklyAvailability.saturday
+                                                                    : []
+                                                            }
+                                                            onChange={values => {
+                                                                setFieldValue('weeklyAvailability.saturday', values);
+                                                            }}
+                                                        />
+                                                    </Form.Group>
+                                                    <Form.Group>
+                                                        <Form.Label>Weekly Availibility(Sunday)</Form.Label>
+                                                        <MultiSelect
+                                                            showSearch={false}
+                                                            name="monday"
+                                                            items={CONFIG.oneDayAvailability}
+                                                            selectedItems={
+                                                                values.weeklyAvailability
+                                                                    ? values.weeklyAvailability.sunday
+                                                                    : []
+                                                            }
+                                                            onChange={values => {
+                                                                setFieldValue('weeklyAvailability.sunday', values);
+                                                            }}
+                                                        />
                                                     </Form.Group>
                                                     <Button
                                                         variant="outline-primary"

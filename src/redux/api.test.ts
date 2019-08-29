@@ -2,6 +2,7 @@ import {
     customerProfileUpdateAction,
     customerSignUpAction,
     expertLoginAction,
+    expertProfileUpdateAction,
     userLoginAction,
 } from './actions/server/server.actions';
 import {
@@ -15,6 +16,7 @@ import {
     apiLogoutExpertUser,
     apiProfileUpdateCustomerUser,
     apiSignUpCustomerUser,
+    apiProfileUpdateExpertUser,
 } from './api';
 import { ExpertDashboardExampleResponse } from './reducers/server-reducer/server-example-responses/expert-dashboard-example-response';
 import { ExpertLoginExampleResponse } from './reducers/server-reducer/server-example-responses/expert-login-example-response';
@@ -26,6 +28,7 @@ import { CustomerLogoutExampleResponse } from './reducers/server-reducer/server-
 import { CustomerUserExampleResponse } from './reducers/server-reducer/server-example-responses/user-me-example-response';
 import { CustomerProfileUpdateExampleResponse } from './reducers/server-reducer/server-example-responses/user-profile-update-example-response';
 import { CustomerSignUpExampleResponse } from './reducers/server-reducer/server-example-responses/user-signup-example-response';
+import { ExpertProfileUpdateExampleResponse } from './reducers/server-reducer/server-example-responses/expert-profile-update-example-response';
 
 describe('api', () => {
     test('api apiLoginCustomerUser', done => {
@@ -138,6 +141,34 @@ describe('api', () => {
             .mockImplementation(() => Promise.resolve({ json: () => ExpertDashboardExampleResponse }));
         apiGetExpertDashboard().then(res => {
             expect(res.json()).toEqual(ExpertDashboardExampleResponse);
+            done();
+        });
+    });
+
+    test('api apiProfileUpdateExpertUser', done => {
+        const mockSignup = expertProfileUpdateAction({
+            _id: '12312',
+            firstName: 'Fitmind',
+            lastName: 'User',
+            isAnExpertIn: ['YOGA_TEACHER'],
+            description: 'blahblah',
+            phone: '123123123',
+            profilePictureUrl: 'https://adsa.ad/ada.jpg',
+            weeklyAvailability: {
+                monday: [{ id: '0:00', label: '12 am to 12:30 am' }],
+                tuesday: [{ id: '0:30', label: '12:30 am to 1 am' }],
+                wednessday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
+                thursday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
+                friday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
+                saturday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
+                sunday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
+            },
+        });
+        window.fetch = jest
+            .fn()
+            .mockImplementation(() => Promise.resolve({ json: () => ExpertProfileUpdateExampleResponse }));
+        apiProfileUpdateExpertUser(mockSignup).then(res => {
+            expect(res.json()).toEqual(ExpertProfileUpdateExampleResponse);
             done();
         });
     });

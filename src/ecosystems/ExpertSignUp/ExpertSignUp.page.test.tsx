@@ -17,15 +17,15 @@ describe('Expert SignUp page', () => {
         );
     });
 
-    it('should match the snapshot', () => {
-        const component = renderer.create(
-            <Provider store={store}>
-                <Router history={history}>
-                    <ExpertSignUpPage />
-                </Router>
-            </Provider>,
-        );
-        let tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
-    });
+    // it('should match the snapshot', () => {
+    //     const component = renderer.create(
+    //         <Provider store={store}>
+    //             <Router history={history}>
+    //                 <ExpertSignUpPage />
+    //             </Router>
+    //         </Provider>,
+    //     );
+    //     let tree = component.toJSON();
+    //     expect(tree).toMatchSnapshot();
+    // });
 });

@@ -1,21 +1,8 @@
 import { Reducer } from 'redux';
 import { bookingInterface } from '../../../interfaces/responses/customer-dashboard-response';
 import { ListingInterface } from '../../../interfaces/responses/listing-response';
+import { TimeSlotInterface } from '../../../interfaces/responses/time-slot-response';
 import { ServerActions, ServerActionTypes } from '../../actions/server/server.actions';
-
-export interface expertUserInterface {
-    _id?: string;
-    email?: string;
-    firstName?: string;
-    lastName?: string;
-    approvedStatus?: string;
-    createdAt?: string;
-    description?: string;
-    expertise?: string[];
-    phone?: string;
-    pictureUrl?: string;
-    weeklyAvailability?: {};
-}
 
 export interface customerUserInterface {
     _id?: string;
@@ -39,8 +26,30 @@ export interface expertDashboardInterface {
     liveListings: ListingInterface[];
 }
 
+export interface expertUserInterface {
+    _id?: string;
+    email?: string;
+    firstName?: string;
+    lastName?: string;
+    approvedStatus?: string;
+    createdAt?: string;
+    description?: string;
+    isAnExpertIn?: string[];
+    phone?: string;
+    profilePictureUrl?: string;
+    weeklyAvailability?: {
+        monday: TimeSlotInterface[];
+        tuesday: TimeSlotInterface[];
+        wednessday: TimeSlotInterface[];
+        thursday: TimeSlotInterface[];
+        friday: TimeSlotInterface[];
+        saturday: TimeSlotInterface[];
+        sunday: TimeSlotInterface[];
+    };
+}
+
 export interface ServerStateInterface {
-    expertUser: expertUserInterface;
+    expertUser?: expertUserInterface;
     customerUser?: customerUserInterface;
     customerDashboard?: customerDashboardInterface;
     expertDashboard?: expertDashboardInterface;

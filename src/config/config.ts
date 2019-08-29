@@ -32,6 +32,11 @@ const CONFIG = {
             display: 'Life Coach',
         },
     },
+    oneDayAvailability: [
+        { id: '0:00', label: '12 am to 12:30 am' },
+        { id: '0:30', label: '12:30 am to 1 am' },
+        { id: '1:00', label: '1 am to 1:30 am' },
+    ],
 };
 
 export default CONFIG;
