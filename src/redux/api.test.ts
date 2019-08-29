@@ -11,10 +11,12 @@ import {
     apiLoginCustomerUser,
     apiLoginExpertUser,
     apiLogoutCustomerUser,
+    apiLogoutExpertUser,
     apiProfileUpdateCustomerUser,
     apiSignUpCustomerUser,
 } from './api';
 import { ExpertLoginExampleResponse } from './reducers/server-reducer/server-example-responses/expert-login-example-response';
+import { ExpertLogoutExampleResponse } from './reducers/server-reducer/server-example-responses/expert-logout-example-response';
 import { ExpertUserExampleResponse } from './reducers/server-reducer/server-example-responses/expert-me-example-response';
 import { CustomerDashboardExampleResponse } from './reducers/server-reducer/server-example-responses/user-dashboard-example-response';
 import { CustomerLoginExampleResponse } from './reducers/server-reducer/server-example-responses/user-login-example-response';
@@ -117,6 +119,13 @@ describe('api', () => {
         window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ json: () => ExpertUserExampleResponse }));
         apiGetExpertMe().then(res => {
             expect(res.json()).toEqual(ExpertUserExampleResponse);
+            done();
+        });
+    });
+    test('api apiLogoutExpertUser', done => {
+        window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ json: () => ExpertLogoutExampleResponse }));
+        apiLogoutExpertUser().then(res => {
+            expect(res).toEqual(ExpertLogoutExampleResponse);
             done();
         });
     });

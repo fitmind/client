@@ -6,7 +6,7 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import styled from 'styled-components';
 import * as Yup from 'yup';
 import CONFIG from '../../config/config';
-import { expertLoginAction } from '../../redux/actions/server/server.actions';
+import { expertLoginAction, expertLogoutAction } from '../../redux/actions/server/server.actions';
 import { ConnectedReduxProps } from '../../redux/reducers/root.reducer';
 
 const LoginSchema = Yup.object().shape({
@@ -21,11 +21,15 @@ const LoginSchema = Yup.object().shape({
 
 interface PropsFromDispatch {
     expertLoginAction: typeof expertLoginAction;
+    expertLogoutAction: typeof expertLogoutAction;
 }
 
 type LoginPageAllProps = RouteComponentProps & ConnectedReduxProps & PropsFromDispatch;
 
 export class ExpertLoginPage extends React.Component<LoginPageAllProps> {
+    public componentDidMount() {
+        this.props.expertLogoutAction();
+    }
     public render() {
         return (
             <Container fluid>
@@ -121,6 +125,7 @@ export class ExpertLoginPage extends React.Component<LoginPageAllProps> {
 
 const mapDispatchToProps = {
     expertLoginAction,
+    expertLogoutAction,
 };
 
 export default withRouter(

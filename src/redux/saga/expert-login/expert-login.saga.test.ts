@@ -20,7 +20,7 @@ describe('expert login saga', () => {
         return expectSaga(loginExpertSaga, apiLoginExpertUser)
             .provide([
                 [matchers.call.fn(apiLoginExpertUser), ExpertLoginExampleResponse],
-                [matchers.call.fn(apiGetExpertMe), ExpertUserExampleResponse],
+                [matchers.call.fn(apiGetExpertMe), { json: () => ExpertUserExampleResponse, status: 200 }],
             ])
             .put(setLoadingTrue())
             .put(setExpertUserAction(ExpertUserExampleResponse))
