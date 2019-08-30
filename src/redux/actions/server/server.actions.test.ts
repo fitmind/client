@@ -1,10 +1,12 @@
 import {
     customerProfileUpdateAction,
+    expertLoginAction,
     expertSignUpAction,
     fetchCustomerDashboardAction,
     fetchCustomerUserAction,
     ServerActions,
     setCustomerDashboardAction,
+    setExpertUserAction,
     userLoginAction,
     userLogoutAction,
     userLogoutSuccessAction,
@@ -167,6 +169,51 @@ describe('server actions', () => {
                 ...values,
             };
             expect(expertSignUpAction(values)).toEqual(expectedAction);
+        });
+    });
+    describe('expertLoginAction', () => {
+        it('should return the correct type and data', () => {
+            const values = {
+                email: 'testing@test.com',
+                password: 'testing123',
+            };
+            const expectedAction = {
+                type: ServerActions.LOGIN_EXPERT_USER,
+                ...values,
+            };
+            expect(expertLoginAction(values)).toEqual(expectedAction);
+        });
+    });
+
+    describe('setExpertUserAction', () => {
+        it('should return the correct type and data', () => {
+            const expertUserMeResponse = {
+                _id: '123123',
+                email: 'expert@fitmind.io',
+                firstName: 'Expert1',
+                lastName: 'User',
+                approvedStatus: 'APPROVED',
+                createdAt: new Date().toISOString().slice(0, 10),
+                description: 'description',
+                expertise: ['PERSONAL_COACH', 'YOGA_COACH'],
+                phone: '123123123',
+                pictureUrl:
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBx76lQwzW2cAsjz5JqgVp_ReTpVji6G_pMO6crXSJn9NETq3F',
+                weeklyAvailability: {
+                    monday: ['00:00'],
+                    tuesday: ['00:00'],
+                    wednesday: ['00:00'],
+                    thursday: ['00:00'],
+                    friday: ['00:00'],
+                    saturday: ['00:00'],
+                    sunday: ['00:00'],
+                },
+            };
+            const expectedAction = {
+                type: ServerActions.SET_EXPERT_USER,
+                expertUser: expertUserMeResponse,
+            };
+            expect(setExpertUserAction(expertUserMeResponse)).toEqual(expectedAction);
         });
     });
 });

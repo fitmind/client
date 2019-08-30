@@ -1,23 +1,32 @@
-import { Navbar, Nav, Button, ButtonGroup } from 'react-bootstrap';
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router';
-import CONFIG from '../../config/config';
+import { Button, ButtonGroup, Nav, Navbar } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router';
+import CONFIG from '../../config/config';
+import { expertLogoutAction, userLogoutAction } from '../../redux/actions/server/server.actions';
 import { ApplicationState } from '../../redux/reducers/root.reducer';
-import { expertUserInterface, customerUserInterface } from '../../redux/reducers/server-reducer/server.reducer';
-import { userLogoutAction } from '../../redux/actions/server/server.actions';
+import { customerUserInterface, expertUserInterface } from '../../redux/reducers/server-reducer/server.reducer';
 
 interface PropsFromState {
     expert: expertUserInterface;
     customerUser: customerUserInterface;
+    expertUser: expertUserInterface;
 }
 
 interface PropsFromDispatch {
     userLogoutAction: typeof userLogoutAction;
+    expertLogoutAction: typeof expertLogoutAction;
 }
 type allProps = PropsFromState & RouteComponentProps & PropsFromDispatch;
 
-const NavBar: React.FC<allProps> = ({ expert, customerUser, history, userLogoutAction }) => (
+const NavBar: React.FC<allProps> = ({
+    expert,
+    customerUser,
+    history,
+    userLogoutAction,
+    expertUser,
+    expertLogoutAction,
+}) => (
     <Navbar bg="light" expand="lg">
         <Navbar.Brand onClick={() => history.push(CONFIG.routes.home)}>Fitmind</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -27,6 +36,7 @@ const NavBar: React.FC<allProps> = ({ expert, customerUser, history, userLogoutA
                 <Nav.Link>About</Nav.Link>
                 <Nav.Link>Contact</Nav.Link>
             </Nav>
+
             {customerUser._id && (
                 <ButtonGroup className="mr-2">
                     <Button variant="outline-primary" onClick={() => history.push(CONFIG.routes.customerDashboard)}>
@@ -34,7 +44,7 @@ const NavBar: React.FC<allProps> = ({ expert, customerUser, history, userLogoutA
                     </Button>
                 </ButtonGroup>
             )}
-            {!customerUser._id && (
+            {!customerUser._id && !expert._id && (
                 <ButtonGroup className="mr-2">
                     <Button variant="outline-primary" onClick={() => history.push(CONFIG.routes.customerLogin)}>
                         Customers
@@ -61,17 +71,24 @@ const NavBar: React.FC<allProps> = ({ expert, customerUser, history, userLogoutA
                     Customer Logout
                 </Button>
             )}
+            {expertUser._id && (
+                <Button variant="outline-secondary" onClick={() => expertLogoutAction()}>
+                    Expert Logout
+                </Button>
+            )}
         </Navbar.Collapse>
     </Navbar>
 );
 
 const mapDispatchToProps = {
     userLogoutAction,
+    expertLogoutAction,
 };
 
 const mapStateToProps = (state: ApplicationState) => ({
     expert: state.server.expertUser,
     customerUser: state.server.customerUser,
+    expertUser: state.server.expertUser,
 });
 
 export default withRouter(

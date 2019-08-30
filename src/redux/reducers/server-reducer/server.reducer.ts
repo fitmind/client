@@ -1,9 +1,19 @@
 import { Reducer } from 'redux';
-import { ServerActions, ServerActionTypes } from '../../actions/server/server.actions';
 import { bookingInterface } from '../../../interfaces/responses/customer-dashboard-response';
+import { ServerActions, ServerActionTypes } from '../../actions/server/server.actions';
 
 export interface expertUserInterface {
     _id?: string;
+    email?: string;
+    firstName?: string;
+    lastName?: string;
+    approvedStatus?: string;
+    createdAt?: string;
+    description?: string;
+    expertise?: string[];
+    phone?: string;
+    pictureUrl?: string;
+    weeklyAvailability?: {};
 }
 
 export interface customerUserInterface {
@@ -46,6 +56,10 @@ export const ServerReducer: Reducer<ServerStateInterface> = (
             return { ...state, customerDashboard: action.customerDashboard };
         case ServerActions.LOGOUT_USER_SUCCESS:
             return { ...state, customerUser: {} };
+        case ServerActions.SET_EXPERT_USER:
+            return { ...state, expertUser: action.expertUser };
+        case ServerActions.LOGOUT_EXPERT_SUCCESS:
+            return { ...state, expertUser: {} };
         default:
             return state;
     }
