@@ -1,10 +1,13 @@
 import { CustomerLoginResponse } from '../interfaces/responses/customer-login-response';
+
 import {
     CustomerProfileUpdateActionInterface,
     CustomerSignUpActionInterface,
-    ExpertSignUpActionInterface,
+    ExpertLoginActionInterface,
     UserLoginActionInterface,
+    ExpertSignUpActionInterface,
 } from './actions/server/server.actions';
+import { ExpertLoginResponse } from '../interfaces/responses/expert-login-response';
 
 const API_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -105,4 +108,38 @@ export async function apiProfileUpdateCustomerUser(action: CustomerProfileUpdate
         }),
     });
     return res;
+}
+
+export async function apiLoginExpertUser({
+    email,
+    password,
+}: ExpertLoginActionInterface): Promise<ExpertLoginResponse> {
+    const response = await fetch(`${API_URL}/expert/login`, {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        mode,
+        credentials,
+        body: JSON.stringify({ email, password }),
+    });
+    return await response.json();
+}
+
+export async function apiGetExpertMe() {
+    const response = await fetch(`${API_URL}/expert/me`, {
+        method: 'GET',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        mode,
+        credentials,
+    });
+    return response;
+}
+
+export async function apiLogoutExpertUser() {
+    const res = await fetch(`${API_URL}/expert/logout`, {
+        method: 'post',
+        mode,
+        credentials,
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+    });
+    return await res.json();
 }

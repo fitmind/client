@@ -1,6 +1,7 @@
 import { Action } from 'redux';
 import { CustomerDashboardResponse } from '../../../interfaces/responses/customer-dashboard-response';
 import { CustomerUserResponse } from '../../../interfaces/responses/customer-user-response';
+import { ExpertUserResponse } from '../../../interfaces/responses/expert-user-response';
 
 export const ServerActions = {
     LOGIN_CUSTOMER_USER: 'LOGIN_CUSTOMER_USER',
@@ -10,9 +11,13 @@ export const ServerActions = {
     SET_CUSTOMER_DASHBOARD: 'SET_CUSTOMER_DASHBOARD',
     SIGNUP_CUSTOMER_USER: 'SIGNUP_CUSTOMER_USER',
     LOGOUT_USER: 'LOGOUT_USER',
+    LOGOUT_EXPERT: 'LOGOUT_EXPERT',
     LOGOUT_USER_SUCCESS: 'LOGOUT_USER_SUCCESS',
+    LOGOUT_EXPERT_SUCCESS: 'LOGOUT_EXPERT_SUCCESS',
     PROFILE_UPDATE_CUSTOMER_USER: 'PROFILE_UPDATE_CUSTOMER_USER',
     SIGNUP_EXPERT_USER: 'SIGNUP_EXPERT_USER',
+    LOGIN_EXPERT_USER: 'LOGIN_EXPERT_USER',
+    SET_EXPERT_USER: 'SET_EXPERT_USER',
 };
 
 export interface ServerActionTypes {
@@ -20,6 +25,7 @@ export interface ServerActionTypes {
     errorMessage?: string;
     customerUser?: CustomerUserResponse;
     customerDashboard?: CustomerDashboardResponse;
+    expertUser?: ExpertUserResponse;
 }
 
 export interface UserLoginActionInterface extends Action<'LOGIN_CUSTOMER_USER'> {
@@ -189,4 +195,35 @@ export const expertSignUpAction = ({
     phone,
     weeklyAvailability,
     profilePictureUrl,
+});
+export type ExpertLogoutActionInterface = Action<'LOGOUT_EXPERT'>;
+
+export const expertLogoutAction = (): ExpertLogoutActionInterface => ({
+    type: 'LOGOUT_EXPERT',
+});
+
+export type ExpertLogoutSuccessActionInterface = Action<'LOGOUT_EXPERT_SUCCESS'>;
+
+export const expertLogoutSuccessAction = (): ExpertLogoutSuccessActionInterface => ({
+    type: 'LOGOUT_EXPERT_SUCCESS',
+});
+
+export interface ExpertLoginActionInterface extends Action<'LOGIN_EXPERT_USER'> {
+    email: string;
+    password: string;
+}
+
+export const expertLoginAction = ({ email, password }): ExpertLoginActionInterface => ({
+    type: 'LOGIN_EXPERT_USER',
+    email,
+    password,
+});
+
+export interface setExpertUserActionInterface extends Action<'SET_EXPERT_USER'> {
+    expertUser: ExpertUserResponse;
+}
+
+export const setExpertUserAction = (expertUser: ExpertUserResponse): setExpertUserActionInterface => ({
+    type: 'SET_EXPERT_USER',
+    expertUser,
 });

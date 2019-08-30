@@ -6,6 +6,8 @@ import { watchSignUpUserSaga } from './customer-signup/customer-signup.saga';
 import { watchCustomerUserSaga } from './customer-user/customer-user.saga';
 import { watchProfileUpdateUserSaga } from './customer-profile-update/customer-profile-update.saga';
 import { watchSignUpExpertSaga } from './expert-signup/expert-signup.saga';
+import { watchLoginExpertSaga } from './expert-login/expert-login.saga';
+import { watchLogoutExpertSaga } from './expert-logout/expert-logout.saga';
 
 export function* rootSaga() {
     yield all([
@@ -16,5 +18,7 @@ export function* rootSaga() {
         watchCustomerUserSaga(),
         watchProfileUpdateUserSaga(),
         watchSignUpExpertSaga(),
+        watchLoginExpertSaga(),
+        watchLogoutExpertSaga(),
     ]);
 }
