@@ -3,6 +3,7 @@ const CONFIG = {
         home: '/',
         listings: '/listings',
         listing: '/listing/:id',
+        listingId: (id: string) => `/listing/${id}`,
         NavigateToListing: (id: number): string => `/listing/${id}`,
         customerLogin: '/login',
         customerSignUp: '/register',

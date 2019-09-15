@@ -32,7 +32,7 @@ const NavBar: React.FC<allProps> = ({
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-                <Nav.Link>Listings</Nav.Link>
+                <Nav.Link onClick={() => history.push(CONFIG.routes.listings)}>Listings</Nav.Link>
                 <Nav.Link>About</Nav.Link>
                 <Nav.Link>Contact</Nav.Link>
             </Nav>
