@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Food from '../../../assets/images/food.jpg';
-import DKNY from '../../../assets/images/dkny.jpg';
-import Laptop from '../../../assets/images/laptop.jpg';
+import Food from '../../../assets/images/food.png';
+import DKNY from '../../../assets/images/dkny.png';
+import Laptop from '../../../assets/images/laptop.png';
 
 const sectionList = [
     {
@@ -43,9 +43,6 @@ const Section = styled.div`
     width: 350px;
     display: flex;
     align-items: flex-end;
-    :hover {
-        transform: rotate(10deg);
-    }
 `;
 const SectionInner = styled.div`
     height: 20%;

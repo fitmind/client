@@ -8,7 +8,7 @@ import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/
 import { push } from 'connected-react-router';
 import CONFIG from '../../../config/config';
 import { throwError } from 'redux-saga-test-plan/providers';
-import { logoutUserSaga, userLogoutNegativeNotification, userLogoutPositiveNotification } from './customer-logout.saga';
+import { logoutUserSaga, userLogoutNegativeNotification } from './customer-logout.saga';
 
 const logoutResponse = { message: 'Successfully removed cookie' };
 
@@ -18,7 +18,6 @@ describe('customer logout saga', () => {
             .provide([[call(apiLogoutCustomerUser), logoutResponse]])
             .put(setLoadingTrue())
             .put(push(CONFIG.routes.customerLogin))
-            .put(setNotification(userLogoutPositiveNotification))
             .put(userLogoutSuccessAction())
             .put(setLoadingFalse())
             .run();

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import BannerImage from '../../../assets/images/banner.jpg';
 import Header from '../../../atoms/Header/Header';
+import Paragraph from '../../../atoms/Paragraph/Paragraph';
 
 const Banner = styled.div`
     background: url(${BannerImage});
@@ -30,7 +31,7 @@ const HomeBanner = () => (
         <BannerInner>
             <BannerText>
                 <Header as={'h1'}>Fitmind</Header>
-                <Header as={'h4'}>Your Wellbeing expert booking platform</Header>
+                <Paragraph as={'lg'}>Your Wellbeing expert booking platform</Paragraph>
             </BannerText>
         </BannerInner>
     </Banner>

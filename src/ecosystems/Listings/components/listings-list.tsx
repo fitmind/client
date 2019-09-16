@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardColumns, Button, ListGroup, ListGroupItem, Container, Pagination } from 'react-bootstrap';
+import { Card, CardColumns, ListGroup, ListGroupItem, Container, Pagination } from 'react-bootstrap';
 import listings from '../mock-listings.json';
 import yogaPicture from '../../../assets/images/yoga_picture.png';
 import { RouteComponentProps, withRouter } from 'react-router';
@@ -22,26 +22,28 @@ const renderPagination = () => {
 };
 
 const ListingsList: React.FC<RouteComponentProps> = props => (
-    <Container fluid>
+    <Container>
         <CardColumns>
-            {listings.map(listing => (
-                <Card key={listing.id} className={`mb-4`}>
+            {listings.map((listing, i) => (
+                <Card
+                    key={i}
+                    className={`mb-4`}
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => props.history.push(CONFIG.routes.listingId(listing._id))}
+                >
+                    <Card.Header>Qualified Yoga Teacher</Card.Header>
                     <Card.Img variant="top" src={yogaPicture} />
-                    <Card.Title className={`mt-4`}>Qualified Yoga Teacher - Brixton</Card.Title>
+                    <Card.Title className={`mt-4`}>Diego Romero</Card.Title>
                     <ListGroup className="list-group-flush">
                         <ListGroupItem>Price: £{listing.price}.00</ListGroupItem>
                         <ListGroupItem>Location: {listing.postCode}</ListGroupItem>
-                        <ListGroupItem>Created: {moment(listing.createdTimeStamp).format('MMMM YYYY')}</ListGroupItem>
                     </ListGroup>
                     <Card.Body>
                         <Card.Text>{mockDescription}</Card.Text>
-                        <Button
-                            onClick={() => props.history.push(CONFIG.routes.listingId(listing._id))}
-                            variant="outline-primary"
-                        >
-                            Go to listing
-                        </Button>
                     </Card.Body>
+                    <Card.Footer className="text-muted">
+                        Created: {moment(listing.createdTimeStamp).format('MMMM YYYY')}
+                    </Card.Footer>
                 </Card>
             ))}
         </CardColumns>

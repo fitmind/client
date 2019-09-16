@@ -1,99 +1,48 @@
-import styled from 'styled-components';
 import React from 'react';
-import { AnimatedText } from '../../../utils/style-helpers';
-import Header from '../../../atoms/Header/Header';
-import Paragraph from '../../../atoms/Paragraph/Paragraph';
+import { Container, Card, CardDeck } from 'react-bootstrap';
+import foodImg from '../../../assets/images/food.png';
+import laptopImg from '../../../assets/images/laptop.png';
 
 const options = [
     {
-        header: 'Article goes here...',
-        body: 'Some option body',
+        header: 'Article Title goes here...',
+        body: 'Article body goes here',
+        img: foodImg,
     },
     {
-        header: 'Article goes here...',
-        body: 'Some option body',
+        header: 'Article Title goes here...',
+        body: 'Article body goes here',
+        img: laptopImg,
     },
     {
-        header: 'Article goes here...',
-        body: 'Some option body',
+        header: 'Article Title goes here...',
+        body: 'Article body goes here',
+        img: foodImg,
     },
     {
-        header: 'Article goes here...',
-        body: 'Some option body',
-    },
-    {
-        header: 'Article goes here...',
-        body: 'Some option body',
-    },
-    {
-        header: 'Article goes here...',
-        body: 'Some option body',
-    },
-    {
-        header: 'Article goes here...',
-        body: 'Some option body',
-    },
-    {
-        header: 'Article goes here...',
-        body: 'Some option body',
+        header: 'Article Title goes here...',
+        body: 'Article body goes here',
+        img: laptopImg,
     },
 ];
 
-const Wrapper = styled.div`
-    padding: 2rem;
-`;
-
-const Carousel = styled.div`
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    overflow-x: scroll;
-`;
-
-const Option = styled.div`
-    height: 400px;
-    min-width: 320px;
-    color: white;
-    background-color: #d6887e;
-    margin-right: 2rem;
-    cursor: pointer;
-    transform: scale(1);
-    transition: 0.2s ease;
-    :hover {
-        transform: rotate(-10deg);
-    }
-`;
-
-const OptionHeader = styled.div`
-    margin-top: 3rem;
-    text-align: center;
-`;
-
-const MarginTop = styled.div`
-    margin-top: 3rem;
-`;
-
 const HomeOptions = () => (
-    <Wrapper>
-        <hr />
-        <MarginTop>
-            <AnimatedText>
-                <Header as={'h3'}>Get your daily fix</Header>
-            </AnimatedText>
-            <Carousel>
-                {options.map(option => (
-                    <Option key={option.header + Math.random()}>
-                        <OptionHeader>
-                            <Paragraph as={'lg'}>{option.header}</Paragraph>
-                        </OptionHeader>
-                    </Option>
-                ))}
-            </Carousel>
-        </MarginTop>
-    </Wrapper>
+    <Container fluid>
+        <CardDeck>
+            {options.map((option, i) => (
+                <Card key={i} className={`mt-3 mb-5`} style={{ cursor: 'pointer' }}>
+                    <Card.Img variant="top" src={option.img} style={{ maxHeight: '270px' }} />
+                    <Card.Body>
+                        <Card.Title>{option.header}</Card.Title>
+                        <Card.Text>{option.body}</Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                        <small className="text-muted">Last updated 3 mins ago</small>
+                    </Card.Footer>
+                </Card>
+            ))}
+        </CardDeck>
+    </Container>
 );
 
 export default HomeOptions;
