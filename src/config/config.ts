@@ -13,6 +13,8 @@ const CONFIG = {
         expertLogin: '/experts-login',
         expertSignUp: '/experts-register',
         expertDashboard: '/experts/dashboard',
+        expertPublicPage: '/experts/:id',
+        navigateToExpertPublicPage: (id: string) => `/experts/${id}`,
     },
     expertises: {
         yoga: {
