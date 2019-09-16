@@ -6,10 +6,6 @@ import { apiLogoutCustomerUser } from '../../api';
 import CONFIG from '../../../config/config';
 import { NotificationInterface, NotificationType } from '../../../interfaces/Notification.interface';
 
-export const userLogoutPositiveNotification: NotificationInterface = {
-    type: NotificationType.positive,
-    body: `See you soon!`,
-};
 export const userLogoutNegativeNotification: NotificationInterface = {
     type: NotificationType.negative,
     body: `Could not logout`,
@@ -20,7 +16,6 @@ export function* logoutUserSaga() {
     try {
         yield call(apiLogoutCustomerUser);
         yield put(push(CONFIG.routes.customerLogin));
-        yield put(setNotification(userLogoutPositiveNotification));
         yield put(userLogoutSuccessAction());
     } catch (logoutUserError) {
         yield put(setNotification(userLogoutNegativeNotification));
