@@ -6,6 +6,7 @@ import {
     userLoginAction,
 } from './actions/server/server.actions';
 import {
+    apiGetExpertDashboard,
     apiGetExpertMe,
     apiGetUserDashboard,
     apiGetUserMe,
@@ -17,6 +18,7 @@ import {
     apiSignUpCustomerUser,
     apiSignUpExpertUser,
 } from './api';
+import { ExpertDashboardExampleResponse } from './reducers/server-reducer/server-example-responses/expert-dashboard-example-response';
 import { ExpertLoginExampleResponse } from './reducers/server-reducer/server-example-responses/expert-login-example-response';
 import { ExpertLogoutExampleResponse } from './reducers/server-reducer/server-example-responses/expert-logout-example-response';
 import { ExpertUserExampleResponse } from './reducers/server-reducer/server-example-responses/expert-me-example-response';
@@ -153,6 +155,16 @@ describe('api', () => {
         window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ json: () => ExpertLogoutExampleResponse }));
         apiLogoutExpertUser().then(res => {
             expect(res).toEqual(ExpertLogoutExampleResponse);
+            done();
+        });
+    });
+
+    test('api apiGetExpertDashboard', done => {
+        window.fetch = jest
+            .fn()
+            .mockImplementation(() => Promise.resolve({ json: () => ExpertDashboardExampleResponse }));
+        apiGetExpertDashboard().then(res => {
+            expect(res.json()).toEqual(ExpertDashboardExampleResponse);
             done();
         });
     });

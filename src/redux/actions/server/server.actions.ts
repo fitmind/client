@@ -1,6 +1,7 @@
 import { Action } from 'redux';
 import { CustomerDashboardResponse } from '../../../interfaces/responses/customer-dashboard-response';
 import { CustomerUserResponse } from '../../../interfaces/responses/customer-user-response';
+import { ExpertDashboardResponse } from '../../../interfaces/responses/expert-dashboard-response';
 import { ExpertUserResponse } from '../../../interfaces/responses/expert-user-response';
 
 export const ServerActions = {
@@ -18,6 +19,9 @@ export const ServerActions = {
     SIGNUP_EXPERT_USER: 'SIGNUP_EXPERT_USER',
     LOGIN_EXPERT_USER: 'LOGIN_EXPERT_USER',
     SET_EXPERT_USER: 'SET_EXPERT_USER',
+    FETCH_EXPERT_USER: 'FETCH_EXPERT_USER',
+    FETCH_EXPERT_DASHBOARD: 'FETCH_EXPERT_DASHBOARD',
+    SET_EXPERT_DASHBOARD: 'SET_EXPERT_DASHBOARD',
 };
 
 export interface ServerActionTypes {
@@ -26,6 +30,7 @@ export interface ServerActionTypes {
     customerUser?: CustomerUserResponse;
     customerDashboard?: CustomerDashboardResponse;
     expertUser?: ExpertUserResponse;
+    expertDashboard?: ExpertDashboardResponse;
 }
 
 export interface UserLoginActionInterface extends Action<'LOGIN_CUSTOMER_USER'> {
@@ -76,7 +81,7 @@ export interface CustomerSignUpActionInterface extends Action<'SIGNUP_CUSTOMER_U
     firstName: string;
     lastName: string;
     password: string;
-    interestedInExpertiseAreas: string[];
+    interestedInExpertiseAreas: [{ value: string; label: string }];
     description: string;
     phone: string;
 }
@@ -94,7 +99,7 @@ export const customerSignUpAction = ({
     firstName: string;
     lastName: string;
     password: string;
-    interestedInExpertiseAreas: string[];
+    interestedInExpertiseAreas?: [{ value: string; label: string }] | any;
     description: string;
     phone: string;
 }): CustomerSignUpActionInterface => ({
@@ -216,4 +221,27 @@ export interface setExpertUserActionInterface extends Action<'SET_EXPERT_USER'> 
 export const setExpertUserAction = (expertUser: ExpertUserResponse): setExpertUserActionInterface => ({
     type: 'SET_EXPERT_USER',
     expertUser,
+});
+
+export type fetchExpertDashboardActionInterface = Action<'FETCH_EXPERT_DASHBOARD'>;
+
+export const fetchExpertDashboardAction = (): fetchExpertDashboardActionInterface => ({
+    type: 'FETCH_EXPERT_DASHBOARD',
+});
+
+export interface setExpertDashboardActionInterface extends Action<'SET_EXPERT_DASHBOARD'> {
+    expertDashboard: ExpertDashboardResponse;
+}
+
+export const setExpertDashboardAction = (
+    expertDashboard: ExpertDashboardResponse,
+): setExpertDashboardActionInterface => ({
+    type: 'SET_EXPERT_DASHBOARD',
+    expertDashboard,
+});
+
+export type fetchExpertUserActionInterface = Action<'FETCH_EXPERT_USER'>;
+
+export const fetchExpertUserAction = (): fetchExpertUserActionInterface => ({
+    type: 'FETCH_EXPERT_USER',
 });

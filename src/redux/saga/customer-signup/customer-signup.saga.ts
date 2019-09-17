@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
-import { ServerActions, CustomerSignUpActionInterface } from '../../actions/server/server.actions';
+import { ServerActions } from '../../actions/server/server.actions';
 import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/ui/ui.actions';
 import CONFIG from '../../../config/config';
 import { NotificationInterface, NotificationType } from '../../../interfaces/Notification.interface';
@@ -15,8 +15,12 @@ export const userSignUpFailedNotification: NotificationInterface = {
     body: 'Could not SignUp with entered details',
 };
 
-export function* signUpCustomerSaga(action: CustomerSignUpActionInterface) {
+export function* signUpCustomerSaga(action) {
     yield put(setLoadingTrue());
+    if (action && action.interestedInExpertiseAreas) {
+        action.interestedInExpertiseAreas = action.interestedInExpertiseAreas.map(x => x.value);
+    }
+
     try {
         const signUpCustomerResponse = yield call(apiSignUpCustomerUser, action);
         if (signUpCustomerResponse) {

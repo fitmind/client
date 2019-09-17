@@ -12,8 +12,9 @@ import CONFIG from '../../../config/config';
 import { throwError } from 'redux-saga-test-plan/providers';
 import { CustomerSignUpExampleResponse } from '../../reducers/server-reducer/server-example-responses/user-signup-example-response';
 
-describe('customer Signup saga', () => {
+describe('customer Sign up saga', () => {
     it('it signs up', () => {
+        // @ts-ignore
         return expectSaga(signUpCustomerSaga)
             .provide([[matchers.call.fn(apiSignUpCustomerUser), CustomerSignUpExampleResponse]])
             .put(setLoadingTrue())

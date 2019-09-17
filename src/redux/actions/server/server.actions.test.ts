@@ -10,6 +10,7 @@ import {
     userLoginAction,
     userLogoutAction,
     userLogoutSuccessAction,
+    fetchExpertDashboardAction,
 } from './server.actions';
 
 describe('server actions', () => {
@@ -214,6 +215,14 @@ describe('server actions', () => {
                 expertUser: expertUserMeResponse,
             };
             expect(setExpertUserAction(expertUserMeResponse)).toEqual(expectedAction);
+        });
+    });
+    describe('fetchExpertDashboardAction', () => {
+        it('should return the correct type and data', () => {
+            const expectedAction = {
+                type: ServerActions.FETCH_EXPERT_DASHBOARD,
+            };
+            expect(fetchExpertDashboardAction()).toEqual(expectedAction);
         });
     });
 });

@@ -39,7 +39,11 @@ const NavBar: React.FC<allProps> = ({
 
             {customerUser._id && (
                 <ButtonGroup className="mr-2">
-                    <Button variant="outline-primary" onClick={() => history.push(CONFIG.routes.customerDashboard)}>
+                    <Button
+                        variant="outline-primary"
+                        className={'mr-2'}
+                        onClick={() => history.push(CONFIG.routes.customerDashboard)}
+                    >
                         Dashboard
                     </Button>
                 </ButtonGroup>
@@ -52,7 +56,11 @@ const NavBar: React.FC<allProps> = ({
                 </ButtonGroup>
             )}
             {expert._id && (
-                <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.expertDashboard)}>
+                <Button
+                    variant="outline-secondary"
+                    className={'mr-2'}
+                    onClick={() => history.push(CONFIG.routes.expertDashboard)}
+                >
                     Dashboard
                 </Button>
             )}
@@ -62,7 +70,11 @@ const NavBar: React.FC<allProps> = ({
                 </Button>
             )}
             {customerUser._id && (
-                <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.customerProfileUpdate)}>
+                <Button
+                    variant="outline-secondary"
+                    className={'mr-2'}
+                    onClick={() => history.push(CONFIG.routes.customerProfileUpdate)}
+                >
                     Edit Profile
                 </Button>
             )}

@@ -24,7 +24,7 @@ export function* signUpExpertSaga(action: ExpertSignUpActionInterface) {
     const transformedAvailability = {};
     transformedAvailability['monday'] = getTransformedAvailability(action, 'monday');
     transformedAvailability['tuesday'] = getTransformedAvailability(action, 'tuesday');
-    transformedAvailability['wednessday'] = getTransformedAvailability(action, 'wednessday');
+    transformedAvailability['wednesday'] = getTransformedAvailability(action, 'wednesday');
     transformedAvailability['thursday'] = getTransformedAvailability(action, 'thursday');
     transformedAvailability['friday'] = getTransformedAvailability(action, 'friday');
     transformedAvailability['saturday'] = getTransformedAvailability(action, 'saturday');

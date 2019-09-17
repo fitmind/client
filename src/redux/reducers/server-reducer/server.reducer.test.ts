@@ -1,14 +1,16 @@
-import { ServerReducer, ServerInitialState } from './server.reducer';
-import { CustomerDashboardExampleResponse } from './server-example-responses/user-dashboard-example-response';
-
 import {
     fetchCustomerDashboardAction,
+    fetchExpertDashboardAction,
     setCustomerDashboardAction,
+    setExpertDashboardAction,
     setExpertUserAction,
+    userLogoutAction,
+    userLogoutSuccessAction,
 } from '../../actions/server/server.actions';
-
-import { userLogoutAction, userLogoutSuccessAction } from '../../actions/server/server.actions';
+import { ExpertDashboardExampleResponse } from './server-example-responses/expert-dashboard-example-response';
 import { ExpertUserExampleResponse } from './server-example-responses/expert-me-example-response';
+import { CustomerDashboardExampleResponse } from './server-example-responses/user-dashboard-example-response';
+import { ServerInitialState, ServerReducer } from './server.reducer';
 
 describe('server reducer', () => {
     it('should have an initial state and it should return it if the action type is not recognised', () => {
@@ -50,6 +52,22 @@ describe('server reducer', () => {
             customerDashboard: {},
         };
         expect(ServerReducer(ServerInitialState, setExpertUserAction(ExpertUserExampleResponse))).toEqual(
+            expectedResponse,
+        );
+    });
+
+    it('should handle Fetch Expert Dashboard action', () => {
+        expect(ServerReducer(ServerInitialState, fetchExpertDashboardAction())).toEqual(ServerInitialState);
+    });
+
+    it('should handle Set Expert Dashboard action', () => {
+        const expectedResponse = {
+            expertUser: {},
+            customerUser: {},
+            customerDashboard: {},
+            expertDashboard: ExpertDashboardExampleResponse,
+        };
+        expect(ServerReducer(ServerInitialState, setExpertDashboardAction(ExpertDashboardExampleResponse))).toEqual(
             expectedResponse,
         );
     });
