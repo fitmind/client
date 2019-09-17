@@ -2,7 +2,6 @@ import { CustomerLoginResponse } from '../interfaces/responses/customer-login-re
 
 import {
     CustomerProfileUpdateActionInterface,
-    CustomerSignUpActionInterface,
     ExpertLoginActionInterface,
     UserLoginActionInterface,
 } from './actions/server/server.actions';
@@ -55,7 +54,7 @@ export async function apiLogoutCustomerUser() {
     return await res.json();
 }
 
-export async function apiSignUpCustomerUser(action: CustomerSignUpActionInterface) {
+export async function apiSignUpCustomerUser(action) {
     const res = await fetch(`${API_URL}/user/register`, {
         method: 'post',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
@@ -140,11 +139,10 @@ export async function apiLogoutExpertUser() {
 }
 
 export async function apiGetExpertDashboard() {
-    const res = await fetch(`${API_URL}/expert/dashboard`, {
+    return await fetch(`${API_URL}/expert/dashboard`, {
         method: 'get',
         mode,
         credentials,
         headers: { Accept: 'application/json' },
     });
-    return res;
 }

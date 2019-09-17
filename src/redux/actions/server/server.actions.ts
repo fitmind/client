@@ -81,7 +81,7 @@ export interface CustomerSignUpActionInterface extends Action<'SIGNUP_CUSTOMER_U
     firstName: string;
     lastName: string;
     password: string;
-    interestedInExpertiseAreas: string[];
+    interestedInExpertiseAreas: [{ value: string; label: string }];
     description: string;
     phone: string;
 }
@@ -99,7 +99,7 @@ export const customerSignUpAction = ({
     firstName: string;
     lastName: string;
     password: string;
-    interestedInExpertiseAreas: string[];
+    interestedInExpertiseAreas?: [{ value: string; label: string }] | any;
     description: string;
     phone: string;
 }): CustomerSignUpActionInterface => ({

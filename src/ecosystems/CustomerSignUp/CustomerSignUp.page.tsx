@@ -8,6 +8,8 @@ import * as Yup from 'yup';
 import { customerSignUpAction } from '../../redux/actions/server/server.actions';
 import { ConnectedReduxProps } from '../../redux/reducers/root.reducer';
 import CONFIG from '../../config/config';
+import { values as getvaluesFromObj } from 'ramda';
+import Select from 'react-select';
 
 const CustomerSignUpSchema = Yup.object().shape({
     email: Yup.string()
@@ -89,7 +91,7 @@ export class CustomerSignUpPage extends React.Component<CustomerSignUpPageAllPro
                                         }) => (
                                             <Form noValidate onSubmit={handleSubmit}>
                                                 <Form.Group>
-                                                    <Form.Label>First Name</Form.Label>
+                                                    <Form.Label column={true}>First Name</Form.Label>
                                                     <Form.Control
                                                         type="text"
                                                         name="firstName"
@@ -106,7 +108,7 @@ export class CustomerSignUpPage extends React.Component<CustomerSignUpPageAllPro
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
                                                 <Form.Group>
-                                                    <Form.Label>Last Name</Form.Label>
+                                                    <Form.Label column={true}>Last Name</Form.Label>
                                                     <Form.Control
                                                         type="text"
                                                         name="lastName"
@@ -123,7 +125,7 @@ export class CustomerSignUpPage extends React.Component<CustomerSignUpPageAllPro
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
                                                 <Form.Group>
-                                                    <Form.Label>Email address</Form.Label>
+                                                    <Form.Label column={true}>Email address</Form.Label>
                                                     <Form.Control
                                                         type="email"
                                                         name="email"
@@ -140,7 +142,7 @@ export class CustomerSignUpPage extends React.Component<CustomerSignUpPageAllPro
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
                                                 <Form.Group controlId="formBasicPassword">
-                                                    <Form.Label>Password</Form.Label>
+                                                    <Form.Label column={true}>Password</Form.Label>
                                                     <Form.Control
                                                         type="password"
                                                         name="password"
@@ -159,7 +161,7 @@ export class CustomerSignUpPage extends React.Component<CustomerSignUpPageAllPro
                                                     </Form.Text>
                                                 </Form.Group>
                                                 <Form.Group controlId="formBasicPasswordConfirm">
-                                                    <Form.Label>Password Confirmation</Form.Label>
+                                                    <Form.Label column={true}>Password Confirmation</Form.Label>
                                                     <Form.Control
                                                         type="password"
                                                         name="passwordConfirm"
@@ -178,39 +180,51 @@ export class CustomerSignUpPage extends React.Component<CustomerSignUpPageAllPro
                                                     </Form.Text>
                                                 </Form.Group>
                                                 <Form.Group>
-                                                    <Form.Label>What type of coaching are you looking at?</Form.Label>
-                                                    <Form.Control
-                                                        as="select"
-                                                        multiple={true}
-                                                        name="interestedInExpertiseAreas"
-                                                        onChange={evt =>
-                                                            setFieldValue(
-                                                                'interestedInExpertiseAreas',
-                                                                [].slice
-                                                                    .call(
-                                                                        (evt.target as HTMLSelectElement)
-                                                                            .selectedOptions,
-                                                                    )
-                                                                    .map(option => option.value),
-                                                            )
-                                                        }
-                                                        onBlur={handleBlur}
-                                                        isValid={
-                                                            touched.interestedInExpertiseAreas &&
-                                                            !errors.interestedInExpertiseAreas
-                                                        }
-                                                        isInvalid={!!errors.interestedInExpertiseAreas}
-                                                    >
-                                                        {' '}
-                                                        {Object.keys(CONFIG.expertises).map((key: string) => (
-                                                            <option key={key} value={CONFIG.expertises[key].value}>
-                                                                {CONFIG.expertises[key].display}
-                                                            </option>
-                                                        ))}
-                                                    </Form.Control>
+                                                    <Form.Label column={true}>
+                                                        What type of coaching are you looking at?
+                                                    </Form.Label>
+                                                    <Select
+                                                        value={values.interestedInExpertiseAreas}
+                                                        onChange={evt => {
+                                                            setFieldValue('interestedInExpertiseAreas', evt);
+                                                        }}
+                                                        options={getvaluesFromObj(CONFIG.expertises)}
+                                                        isMulti={true}
+                                                        name={'interestedInExpertiseAreas'}
+                                                        closeMenuOnSelect={false}
+                                                    />
+                                                    {/*<Form.Control*/}
+                                                    {/*    as="select"*/}
+                                                    {/*    multiple={true}*/}
+                                                    {/*    name="interestedInExpertiseAreas"*/}
+                                                    {/*    onChange={evt =>*/}
+                                                    {/*        setFieldValue(*/}
+                                                    {/*            'interestedInExpertiseAreas',*/}
+                                                    {/*            [].slice*/}
+                                                    {/*                .call(*/}
+                                                    {/*                    (evt.target as HTMLSelectElement)*/}
+                                                    {/*                        .selectedOptions,*/}
+                                                    {/*                )*/}
+                                                    {/*                .map(option => option.value),*/}
+                                                    {/*        )*/}
+                                                    {/*    }*/}
+                                                    {/*    onBlur={handleBlur}*/}
+                                                    {/*    isValid={*/}
+                                                    {/*        touched.interestedInExpertiseAreas &&*/}
+                                                    {/*        !errors.interestedInExpertiseAreas*/}
+                                                    {/*    }*/}
+                                                    {/*    isInvalid={!!errors.interestedInExpertiseAreas}*/}
+                                                    {/*>*/}
+                                                    {/*    {' '}*/}
+                                                    {/*    {Object.keys(CONFIG.expertises).map((key: string) => (*/}
+                                                    {/*        <option key={key} value={CONFIG.expertises[key].value}>*/}
+                                                    {/*            {CONFIG.expertises[key].display}*/}
+                                                    {/*        </option>*/}
+                                                    {/*    ))}*/}
+                                                    {/*</Form.Control>*/}
                                                 </Form.Group>
                                                 <Form.Group>
-                                                    <Form.Label>Your Description</Form.Label>
+                                                    <Form.Label column={true}>Your Description</Form.Label>
                                                     <Form.Control
                                                         as="textarea"
                                                         rows={4}
@@ -228,7 +242,7 @@ export class CustomerSignUpPage extends React.Component<CustomerSignUpPageAllPro
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
                                                 <Form.Group>
-                                                    <Form.Label>Phone</Form.Label>
+                                                    <Form.Label column={true}>Phone</Form.Label>
                                                     <Form.Control
                                                         type="text"
                                                         name="phone"

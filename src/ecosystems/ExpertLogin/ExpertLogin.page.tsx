@@ -58,7 +58,7 @@ export class ExpertLoginPage extends React.Component<LoginPageAllProps> {
                                         }) => (
                                             <Form noValidate onSubmit={handleSubmit}>
                                                 <Form.Group>
-                                                    <Form.Label>Email address</Form.Label>
+                                                    <Form.Label column={true}>Email address</Form.Label>
                                                     <Form.Control
                                                         type="email"
                                                         name="email"
@@ -75,7 +75,7 @@ export class ExpertLoginPage extends React.Component<LoginPageAllProps> {
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
                                                 <Form.Group controlId="formBasicPassword">
-                                                    <Form.Label>Password</Form.Label>
+                                                    <Form.Label column={true}>Password</Form.Label>
                                                     <Form.Control
                                                         type="password"
                                                         placeholder="Password"

@@ -225,14 +225,4 @@ describe('server actions', () => {
             expect(fetchExpertDashboardAction()).toEqual(expectedAction);
         });
     });
-
-    // describe('setExpertDashboardAction', () => {
-    //     it('should return the correct type and data', () => {
-    //         const expectedAction = {
-    //             type: ServerActions.SET_EXPERT_DASHBOARD,
-    //             expertDashboard: expertDashboardResponse,
-    //         };
-    //         expect(setExpertDashboardAction(ExpertDashboard)).toEqual(expectedAction);
-    //     });
-    // });
 });
