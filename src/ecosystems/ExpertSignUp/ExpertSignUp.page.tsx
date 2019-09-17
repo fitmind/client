@@ -1,15 +1,17 @@
-import MultiSelect from '@kenshooui/react-multi-select';
-import '@kenshooui/react-multi-select/dist/style.css';
 import { Formik } from 'formik';
 import React from 'react';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import styled from 'styled-components';
+import Select from 'react-select';
 import * as Yup from 'yup';
 import CONFIG from '../../config/config';
 import { expertSignUpAction } from '../../redux/actions/server/server.actions';
 import { ConnectedReduxProps } from '../../redux/reducers/root.reducer';
+import { values as getvaluesFromObj } from 'ramda';
+
+getvaluesFromObj(CONFIG.expertises);
 
 const ExpertSignUpSchema = Yup.object().shape({
     email: Yup.string()
@@ -65,14 +67,15 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                 <Card.Body>
                                     <Formik
                                         initialValues={{
-                                            email: '',
-                                            firstName: '',
-                                            lastName: '',
-                                            password: '',
-                                            passwordConfirm: '',
+                                            email: 'hola@mail.com',
+                                            firstName: 'Diego',
+                                            lastName: 'Romero',
+                                            password: 'Testing123!',
+                                            passwordConfirm: 'Testing123!',
+                                            interestedInExpertiseAreas: [],
+                                            description: 'blah blah blah',
+                                            phone: '07413140789',
                                             isAnExpertIn: [],
-                                            description: '',
-                                            phone: '',
                                             weeklyAvailability: {
                                                 monday: [],
                                                 tuesday: [],
@@ -100,7 +103,7 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                         }) => (
                                             <Form noValidate onSubmit={handleSubmit}>
                                                 <Form.Group>
-                                                    <Form.Label>First Name</Form.Label>
+                                                    <Form.Label column={true}>First Name</Form.Label>
                                                     <Form.Control
                                                         type="text"
                                                         name="firstName"
@@ -117,7 +120,7 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
                                                 <Form.Group>
-                                                    <Form.Label>Last Name</Form.Label>
+                                                    <Form.Label column={true}>Last Name</Form.Label>
                                                     <Form.Control
                                                         type="text"
                                                         name="lastName"
@@ -134,7 +137,7 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
                                                 <Form.Group>
-                                                    <Form.Label>Email address</Form.Label>
+                                                    <Form.Label column={true}>Email address</Form.Label>
                                                     <Form.Control
                                                         type="email"
                                                         name="email"
@@ -151,7 +154,7 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
                                                 <Form.Group>
-                                                    <Form.Label>Password</Form.Label>
+                                                    <Form.Label column={true}>Password</Form.Label>
                                                     <Form.Control
                                                         type="password"
                                                         name="password"
@@ -170,7 +173,7 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                                     </Form.Text>
                                                 </Form.Group>
                                                 <Form.Group>
-                                                    <Form.Label>Password Confirmation</Form.Label>
+                                                    <Form.Label column={true}>Password Confirmation</Form.Label>
                                                     <Form.Control
                                                         type="password"
                                                         name="passwordConfirm"
@@ -189,36 +192,24 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                                     </Form.Text>
                                                 </Form.Group>
                                                 <Form.Group>
-                                                    <Form.Label>Expertise</Form.Label>
-                                                    <Form.Control
-                                                        as="select"
-                                                        multiple={true}
-                                                        name="isAnExpertIn"
-                                                        onChange={evt =>
-                                                            setFieldValue(
-                                                                'isAnExpertIn',
-                                                                [].slice
-                                                                    .call(
-                                                                        (evt.target as HTMLSelectElement)
-                                                                            .selectedOptions,
-                                                                    )
-                                                                    .map(option => option.value),
-                                                            )
-                                                        }
-                                                        onBlur={handleBlur}
-                                                        isValid={touched.isAnExpertIn && !errors.isAnExpertIn}
-                                                        isInvalid={!!errors.isAnExpertIn}
-                                                    >
-                                                        {' '}
-                                                        {Object.keys(CONFIG.expertises).map((key: string) => (
-                                                            <option key={key} value={CONFIG.expertises[key].value}>
-                                                                {CONFIG.expertises[key].display}
-                                                            </option>
-                                                        ))}
-                                                    </Form.Control>
+                                                    <Form.Label column={true}>Expertise</Form.Label>
+                                                    <Select
+                                                        value={values.isAnExpertIn}
+                                                        onChange={evt => {
+                                                            setFieldValue('isAnExpertIn', evt);
+                                                        }}
+                                                        options={getvaluesFromObj(CONFIG.expertises)}
+                                                        isMulti={true}
+                                                        name={'isAnExpertIn'}
+                                                        closeMenuOnSelect={false}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {errors.isAnExpertIn}
+                                                    </Form.Control.Feedback>
                                                 </Form.Group>
                                                 <Form.Group>
-                                                    <Form.Label>Your Description</Form.Label>
+                                                    <Form.Label column={true}>Your Description</Form.Label>
                                                     <Form.Control
                                                         as="textarea"
                                                         rows={4}
@@ -236,7 +227,7 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
                                                 <Form.Group>
-                                                    <Form.Label>Phone</Form.Label>
+                                                    <Form.Label column={true}>Phone</Form.Label>
                                                     <Form.Control
                                                         type="text"
                                                         name="phone"
@@ -252,90 +243,24 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                                         {errors.phone}
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
-                                                <Form.Group>
-                                                    <Form.Label>Weekly Availibility(Monday)</Form.Label>
-                                                    <MultiSelect
-                                                        showSearch={false}
-                                                        name="monday"
-                                                        items={CONFIG.oneDayAvailability}
-                                                        selectedItems={values.weeklyAvailability.monday}
-                                                        onChange={values => {
-                                                            setFieldValue('weeklyAvailability.monday', values);
-                                                        }}
-                                                    />
-                                                </Form.Group>
-                                                <Form.Group>
-                                                    <Form.Label>Weekly Availibility(Tuesday)</Form.Label>
-                                                    <MultiSelect
-                                                        showSearch={false}
-                                                        name="monday"
-                                                        items={CONFIG.oneDayAvailability}
-                                                        selectedItems={values.weeklyAvailability.tuesday}
-                                                        onChange={values => {
-                                                            setFieldValue('weeklyAvailability.tuesday', values);
-                                                        }}
-                                                    />
-                                                </Form.Group>
-                                                <Form.Group>
-                                                    <Form.Label>Weekly Availibility(Wednessday)</Form.Label>
-                                                    <MultiSelect
-                                                        showSearch={false}
-                                                        name="monday"
-                                                        items={CONFIG.oneDayAvailability}
-                                                        selectedItems={values.weeklyAvailability.wednessday}
-                                                        onChange={values => {
-                                                            setFieldValue('weeklyAvailability.wednessday', values);
-                                                        }}
-                                                    />
-                                                </Form.Group>
-                                                <Form.Group>
-                                                    <Form.Label>Weekly Availibility(Thursday)</Form.Label>
-                                                    <MultiSelect
-                                                        showSearch={false}
-                                                        name="monday"
-                                                        items={CONFIG.oneDayAvailability}
-                                                        selectedItems={values.weeklyAvailability.thursday}
-                                                        onChange={values => {
-                                                            setFieldValue('weeklyAvailability.thursday', values);
-                                                        }}
-                                                    />
-                                                </Form.Group>
-                                                <Form.Group>
-                                                    <Form.Label>Weekly Availibility(Friday)</Form.Label>
-                                                    <MultiSelect
-                                                        showSearch={false}
-                                                        name="monday"
-                                                        items={CONFIG.oneDayAvailability}
-                                                        selectedItems={values.weeklyAvailability.friday}
-                                                        onChange={values => {
-                                                            setFieldValue('weeklyAvailability.friday', values);
-                                                        }}
-                                                    />
-                                                </Form.Group>
-                                                <Form.Group>
-                                                    <Form.Label>Weekly Availibility(Saturday)</Form.Label>
-                                                    <MultiSelect
-                                                        showSearch={false}
-                                                        name="monday"
-                                                        items={CONFIG.oneDayAvailability}
-                                                        selectedItems={values.weeklyAvailability.saturday}
-                                                        onChange={values => {
-                                                            setFieldValue('weeklyAvailability.saturday', values);
-                                                        }}
-                                                    />
-                                                </Form.Group>
-                                                <Form.Group>
-                                                    <Form.Label>Weekly Availibility(Sunday)</Form.Label>
-                                                    <MultiSelect
-                                                        showSearch={false}
-                                                        name="monday"
-                                                        items={CONFIG.oneDayAvailability}
-                                                        selectedItems={values.weeklyAvailability.sunday}
-                                                        onChange={values => {
-                                                            setFieldValue('weeklyAvailability.sunday', values);
-                                                        }}
-                                                    />
-                                                </Form.Group>
+                                                {CONFIG.daysOfTheWeek.map(day => (
+                                                    <Form.Group key={day}>
+                                                        <Form.Label column={true}>{day} Availability</Form.Label>
+                                                        <Select
+                                                            value={values.weeklyAvailability[day]}
+                                                            onChange={evt => {
+                                                                setFieldValue(
+                                                                    `weeklyAvailability.${day.toLocaleLowerCase()}`,
+                                                                    evt,
+                                                                );
+                                                            }}
+                                                            options={CONFIG.availableHours}
+                                                            isMulti={true}
+                                                            name={`weeklyAvailability.${day.toLocaleLowerCase()}`}
+                                                            closeMenuOnSelect={false}
+                                                        />
+                                                    </Form.Group>
+                                                ))}
                                                 <Button
                                                     variant="outline-primary"
                                                     type="submit"

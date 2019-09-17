@@ -1,5 +1,22 @@
-import { customerProfileUpdateAction, customerSignUpAction, expertLoginAction, expertSignUpAction, userLoginAction } from './actions/server/server.actions';
-import { apiGetExpertMe, apiGetUserDashboard, apiGetUserMe, apiLoginCustomerUser, apiLoginExpertUser, apiLogoutCustomerUser, apiLogoutExpertUser, apiProfileUpdateCustomerUser, apiSignUpCustomerUser, apiSignUpExpertUser } from './api';
+import {
+    customerProfileUpdateAction,
+    customerSignUpAction,
+    expertLoginAction,
+    expertSignUpAction,
+    userLoginAction,
+} from './actions/server/server.actions';
+import {
+    apiGetExpertMe,
+    apiGetUserDashboard,
+    apiGetUserMe,
+    apiLoginCustomerUser,
+    apiLoginExpertUser,
+    apiLogoutCustomerUser,
+    apiLogoutExpertUser,
+    apiProfileUpdateCustomerUser,
+    apiSignUpCustomerUser,
+    apiSignUpExpertUser,
+} from './api';
 import { ExpertLoginExampleResponse } from './reducers/server-reducer/server-example-responses/expert-login-example-response';
 import { ExpertLogoutExampleResponse } from './reducers/server-reducer/server-example-responses/expert-logout-example-response';
 import { ExpertUserExampleResponse } from './reducers/server-reducer/server-example-responses/expert-me-example-response';
@@ -112,6 +129,7 @@ describe('api', () => {
         apiSignUpExpertUser(mockSignup).then(res => {
             expect(res).toEqual(ExpertSignUpExampleResponse);
         });
+        done();
     });
     test('api apiLoginExpertUser', done => {
         const mockLogin = expertLoginAction({
