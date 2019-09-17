@@ -2,6 +2,7 @@ import {
     customerProfileUpdateAction,
     customerSignUpAction,
     expertLoginAction,
+    expertSignUpAction,
     userLoginAction,
 } from './actions/server/server.actions';
 import {
@@ -14,10 +15,12 @@ import {
     apiLogoutExpertUser,
     apiProfileUpdateCustomerUser,
     apiSignUpCustomerUser,
+    apiSignUpExpertUser,
 } from './api';
 import { ExpertLoginExampleResponse } from './reducers/server-reducer/server-example-responses/expert-login-example-response';
 import { ExpertLogoutExampleResponse } from './reducers/server-reducer/server-example-responses/expert-logout-example-response';
 import { ExpertUserExampleResponse } from './reducers/server-reducer/server-example-responses/expert-me-example-response';
+import { ExpertSignUpExampleResponse } from './reducers/server-reducer/server-example-responses/expert-signup-example-response';
 import { CustomerDashboardExampleResponse } from './reducers/server-reducer/server-example-responses/user-dashboard-example-response';
 import { CustomerLoginExampleResponse } from './reducers/server-reducer/server-example-responses/user-login-example-response';
 import { CustomerLogoutExampleResponse } from './reducers/server-reducer/server-example-responses/user-logout-example-response';
@@ -103,7 +106,31 @@ describe('api', () => {
             done();
         });
     });
-
+    test('api apiSignUpExpertUser', done => {
+        const mockSignup = expertSignUpAction({
+            email: 'hello@fitmind.io',
+            firstName: 'Fitmind',
+            lastName: 'User',
+            password: 'asd@123',
+            isAnExpertIn: ['YOGA_TEACHER'],
+            description: 'blahblah',
+            phone: '123123123',
+            weeklyAvailability: {
+                monday: ['0:00'],
+                tuesday: ['0:00'],
+                wednesday: ['0:00'],
+                thursday: ['0:00'],
+                friday: ['0:00'],
+                saturday: ['0:00'],
+                sunday: ['0:00'],
+            },
+        });
+        window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ json: () => ExpertSignUpExampleResponse }));
+        apiSignUpExpertUser(mockSignup).then(res => {
+            expect(res).toEqual(ExpertSignUpExampleResponse);
+        });
+        done();
+    });
     test('api apiLoginExpertUser', done => {
         const mockLogin = expertLoginAction({
             email: 'test@fitmind.io',

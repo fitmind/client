@@ -1,14 +1,15 @@
 import {
+    customerProfileUpdateAction,
+    expertLoginAction,
+    expertSignUpAction,
+    fetchCustomerDashboardAction,
+    fetchCustomerUserAction,
     ServerActions,
+    setCustomerDashboardAction,
+    setExpertUserAction,
     userLoginAction,
     userLogoutAction,
     userLogoutSuccessAction,
-    fetchCustomerDashboardAction,
-    setCustomerDashboardAction,
-    fetchCustomerUserAction,
-    customerProfileUpdateAction,
-    expertLoginAction,
-    setExpertUserAction,
 } from './server.actions';
 
 describe('server actions', () => {
@@ -142,7 +143,34 @@ describe('server actions', () => {
             expect(userLogoutSuccessAction()).toEqual(expectedAction);
         });
     });
-
+    describe('expertSignUpAction', () => {
+        it('should return the correct type and data', () => {
+            const values = {
+                email: 'fitmindexpert@fitmind.io',
+                firstName: 'Fitmind',
+                lastName: 'Expert',
+                password: 'secret',
+                description: 'blahhhh',
+                phone: '12412421',
+                profilePictureUrl: 'http://asdsa.com/adsad.jpg',
+                isAnExpertIn: ['LIFE_COACH'],
+                weeklyAvailability: {
+                    monday: ['0:00'],
+                    tuesday: ['0:00'],
+                    wednesday: ['0:00'],
+                    thursday: ['0:00'],
+                    friday: ['0:00'],
+                    saturday: ['0:00'],
+                    sunday: ['0:00'],
+                },
+            };
+            const expectedAction = {
+                type: ServerActions.SIGNUP_EXPERT_USER,
+                ...values,
+            };
+            expect(expertSignUpAction(values)).toEqual(expectedAction);
+        });
+    });
     describe('expertLoginAction', () => {
         it('should return the correct type and data', () => {
             const values = {

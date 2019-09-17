@@ -132,27 +132,19 @@ exports[`Customer Profile Update page should match the snapshot 1`] = `
                     <option
                       selected={false}
                       value="YOGA_COACH"
-                    >
-                      Yoga Teacher
-                    </option>
+                    />
                     <option
                       selected={false}
                       value="PERSONAL_COACH"
-                    >
-                      Personal Trainer
-                    </option>
+                    />
                     <option
                       selected={false}
                       value="NUTRITIONIST"
-                    >
-                      Nutritionist
-                    </option>
+                    />
                     <option
                       selected={false}
                       value="LIFE_COACH"
-                    >
-                      Life Coach
-                    </option>
+                    />
                   </select>
                 </div>
                 <div
