@@ -75,11 +75,13 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                             interestedInExpertiseAreas: [],
                                             description: 'blah blah blah',
                                             phone: '07413140789',
-                                            isAnExpertIn: [],
+                                            isAnExpertIn: [{ value: 'PERSONAL_COACH', label: 'Personal Trainer' }],
+                                            profilePictureUrl:
+                                                'https://fitmind-dev.s3.eu-west-2.amazonaws.com/mock-images/daniel_photo.png',
                                             weeklyAvailability: {
                                                 monday: [],
                                                 tuesday: [],
-                                                wednessday: [],
+                                                wednesday: [],
                                                 thursday: [],
                                                 friday: [],
                                                 saturday: [],
