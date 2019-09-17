@@ -193,35 +193,6 @@ export class CustomerSignUpPage extends React.Component<CustomerSignUpPageAllPro
                                                         name={'interestedInExpertiseAreas'}
                                                         closeMenuOnSelect={false}
                                                     />
-                                                    {/*<Form.Control*/}
-                                                    {/*    as="select"*/}
-                                                    {/*    multiple={true}*/}
-                                                    {/*    name="interestedInExpertiseAreas"*/}
-                                                    {/*    onChange={evt =>*/}
-                                                    {/*        setFieldValue(*/}
-                                                    {/*            'interestedInExpertiseAreas',*/}
-                                                    {/*            [].slice*/}
-                                                    {/*                .call(*/}
-                                                    {/*                    (evt.target as HTMLSelectElement)*/}
-                                                    {/*                        .selectedOptions,*/}
-                                                    {/*                )*/}
-                                                    {/*                .map(option => option.value),*/}
-                                                    {/*        )*/}
-                                                    {/*    }*/}
-                                                    {/*    onBlur={handleBlur}*/}
-                                                    {/*    isValid={*/}
-                                                    {/*        touched.interestedInExpertiseAreas &&*/}
-                                                    {/*        !errors.interestedInExpertiseAreas*/}
-                                                    {/*    }*/}
-                                                    {/*    isInvalid={!!errors.interestedInExpertiseAreas}*/}
-                                                    {/*>*/}
-                                                    {/*    {' '}*/}
-                                                    {/*    {Object.keys(CONFIG.expertises).map((key: string) => (*/}
-                                                    {/*        <option key={key} value={CONFIG.expertises[key].value}>*/}
-                                                    {/*            {CONFIG.expertises[key].display}*/}
-                                                    {/*        </option>*/}
-                                                    {/*    ))}*/}
-                                                    {/*</Form.Control>*/}
                                                 </Form.Group>
                                                 <Form.Group>
                                                     <Form.Label column={true}>Your Description</Form.Label>

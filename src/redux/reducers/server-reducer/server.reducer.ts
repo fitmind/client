@@ -24,7 +24,7 @@ export interface customerUserInterface {
     createdAt?: string;
     description?: string;
     email?: string;
-    interestedInExpertiseAreas?: string[];
+    interestedInExpertiseAreas?: any;
     phone?: string;
     pictureUrl?: string;
 }

@@ -7,9 +7,10 @@ import CONFIG from '../../config/config';
 import { ApplicationState, ConnectedReduxProps } from '../../redux/reducers/root.reducer';
 import { customerUserInterface } from '../../redux/reducers/server-reducer/server.reducer';
 import { fetchCustomerUserAction, customerProfileUpdateAction } from '../../redux/actions/server/server.actions';
-
+import Select from 'react-select';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { values as getvaluesFromObj } from 'ramda';
 
 const CustomerProfileUpdateSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -46,11 +47,17 @@ interface PropsFromDispatch {
 type CustomerProfilePageAllProps = RouteComponentProps & ConnectedReduxProps & PropsFromState & PropsFromDispatch;
 
 export class CustomerProfileUpdate extends React.Component<CustomerProfilePageAllProps> {
-    componentDidMount() {
+    public componentDidMount() {
         this.props.fetchCustomerUserAction();
     }
-    render() {
-        const { customerUser } = this.props;
+    public render() {
+        let { customerUser } = this.props;
+        if (this.props && customerUser && customerUser.interestedInExpertiseAreas) {
+            customerUser = {
+                ...customerUser,
+                interestedInExpertiseAreas: customerUser.interestedInExpertiseAreas.map(x => ({ value: x, label: x })),
+            };
+        }
         return (
             <Container fluid>
                 <Row>
@@ -63,7 +70,7 @@ export class CustomerProfileUpdate extends React.Component<CustomerProfilePageAl
                                     <CenterContainer>
                                         <Image src={customerUser.pictureUrl} rounded />
                                         <Formik
-                                            enableReinitialize={true} // #DOUBT without this, details not coming
+                                            enableReinitialize={true}
                                             initialValues={customerUser}
                                             validationSchema={CustomerProfileUpdateSchema}
                                             onSubmit={(values, { setSubmitting }) => {
@@ -82,7 +89,7 @@ export class CustomerProfileUpdate extends React.Component<CustomerProfilePageAl
                                             }) => (
                                                 <Form noValidate onSubmit={handleSubmit}>
                                                     <Form.Group>
-                                                        <Form.Label>First Name</Form.Label>
+                                                        <Form.Label column={true}>First Name</Form.Label>
                                                         <Form.Control
                                                             type="text"
                                                             name="firstName"
@@ -99,7 +106,7 @@ export class CustomerProfileUpdate extends React.Component<CustomerProfilePageAl
                                                         </Form.Control.Feedback>
                                                     </Form.Group>
                                                     <Form.Group>
-                                                        <Form.Label>Last Name</Form.Label>
+                                                        <Form.Label column={true}>Last Name</Form.Label>
                                                         <Form.Control
                                                             type="text"
                                                             name="lastName"
@@ -116,7 +123,7 @@ export class CustomerProfileUpdate extends React.Component<CustomerProfilePageAl
                                                         </Form.Control.Feedback>
                                                     </Form.Group>
                                                     <Form.Group>
-                                                        <Form.Label>Your Description</Form.Label>
+                                                        <Form.Label column={true}>Your Description</Form.Label>
                                                         <Form.Control
                                                             as="textarea"
                                                             rows={4}
@@ -134,55 +141,23 @@ export class CustomerProfileUpdate extends React.Component<CustomerProfilePageAl
                                                         </Form.Control.Feedback>
                                                     </Form.Group>
                                                     <Form.Group>
-                                                        <Form.Label>
+                                                        <Form.Label column={true}>
                                                             What type of coaching are you looking at?
                                                         </Form.Label>
-                                                        <Form.Control
-                                                            as="select"
-                                                            multiple={true}
-                                                            name="interestedInExpertiseAreas"
-                                                            onChange={evt =>
-                                                                setFieldValue(
-                                                                    'interestedInExpertiseAreas',
-                                                                    [].slice
-                                                                        .call(
-                                                                            (evt.target as HTMLSelectElement)
-                                                                                .selectedOptions,
-                                                                        )
-                                                                        .map(option => option.value),
-                                                                )
-                                                            }
-                                                            values={customerUser.interestedInExpertiseAreas}
-                                                            onBlur={handleBlur}
-                                                            isValid={
-                                                                touched.interestedInExpertiseAreas &&
-                                                                !errors.interestedInExpertiseAreas
-                                                            }
-                                                            isInvalid={!!errors.interestedInExpertiseAreas}
-                                                        >
-                                                            {' '}
-                                                            {Object.keys(CONFIG.expertises).map((key: string) => (
-                                                                <option
-                                                                    key={key}
-                                                                    value={CONFIG.expertises[key].value}
-                                                                    selected={
-                                                                        values &&
-                                                                        values.interestedInExpertiseAreas &&
-                                                                        values.interestedInExpertiseAreas.indexOf(
-                                                                            CONFIG.expertises[key].value,
-                                                                        ) !== -1
-                                                                            ? true
-                                                                            : false
-                                                                    }
-                                                                >
-                                                                    {CONFIG.expertises[key].display}
-                                                                </option>
-                                                            ))}
-                                                        </Form.Control>
+                                                        <Select
+                                                            value={values.interestedInExpertiseAreas}
+                                                            onChange={evt => {
+                                                                setFieldValue('interestedInExpertiseAreas', evt);
+                                                            }}
+                                                            options={getvaluesFromObj(CONFIG.expertises)}
+                                                            isMulti={true}
+                                                            name={'interestedInExpertiseAreas'}
+                                                            closeMenuOnSelect={false}
+                                                        />
                                                     </Form.Group>
 
                                                     <Form.Group>
-                                                        <Form.Label>Phone</Form.Label>
+                                                        <Form.Label column={true}>Phone</Form.Label>
                                                         <Form.Control
                                                             type="text"
                                                             name="phone"
