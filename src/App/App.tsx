@@ -5,10 +5,7 @@ import { Provider } from 'react-redux';
 import store, { history } from '../redux/store';
 import AppRouter from './AppRouter/AppRouter';
 import { ConnectedRouter } from 'connected-react-router';
-
-const theme = {
-    main: 'mediumseagreen',
-};
+import theme from '../config/theme';
 
 const App: React.FC = (): JSX.Element => {
     return (

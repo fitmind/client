@@ -192,24 +192,16 @@ exports[`Customer SignUp page should match the snapshot 1`] = `
                    
                   <option
                     value="YOGA_COACH"
-                  >
-                    Yoga Teacher
-                  </option>
+                  />
                   <option
                     value="PERSONAL_COACH"
-                  >
-                    Personal Trainer
-                  </option>
+                  />
                   <option
                     value="NUTRITIONIST"
-                  >
-                    Nutritionist
-                  </option>
+                  />
                   <option
                     value="LIFE_COACH"
-                  >
-                    Life Coach
-                  </option>
+                  />
                 </select>
               </div>
               <div

@@ -6,10 +6,6 @@ import { expertLogoutSuccessAction, ServerActions } from '../../actions/server/s
 import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/ui/ui.actions';
 import { apiLogoutExpertUser } from '../../api';
 
-export const expertLogoutPositiveNotification: NotificationInterface = {
-    type: NotificationType.positive,
-    body: `See you soon!`,
-};
 export const expertLogoutNegativeNotification: NotificationInterface = {
     type: NotificationType.negative,
     body: `Could not logout`,
@@ -20,7 +16,6 @@ export function* logoutExpertSaga() {
     try {
         yield call(apiLogoutExpertUser);
         yield put(push(CONFIG.routes.expertLogin));
-        yield put(setNotification(expertLogoutPositiveNotification));
         yield put(expertLogoutSuccessAction());
     } catch (logoutExpertError) {
         yield put(setNotification(expertLogoutNegativeNotification));

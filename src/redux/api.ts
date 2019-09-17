@@ -1,11 +1,12 @@
 import { CustomerLoginResponse } from '../interfaces/responses/customer-login-response';
-import { ExpertLoginResponse } from '../interfaces/responses/expert-login-response';
+
 import {
     CustomerProfileUpdateActionInterface,
     CustomerSignUpActionInterface,
     ExpertLoginActionInterface,
     UserLoginActionInterface,
 } from './actions/server/server.actions';
+import { ExpertLoginResponse } from '../interfaces/responses/expert-login-response';
 
 const API_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -13,13 +14,12 @@ const mode = 'cors';
 const credentials = 'include';
 
 export async function apiGetUserDashboard() {
-    const res = await fetch(`${API_URL}/user/dashboard`, {
+    return await fetch(`${API_URL}/user/dashboard`, {
         method: 'get',
         mode,
         credentials,
         headers: { Accept: 'application/json' },
     });
-    return res;
 }
 
 export async function apiLoginCustomerUser({
@@ -37,13 +37,12 @@ export async function apiLoginCustomerUser({
 }
 
 export async function apiGetUserMe() {
-    const response = await fetch(`${API_URL}/user/me`, {
+    return await fetch(`${API_URL}/user/me`, {
         method: 'GET',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
         mode,
         credentials,
     });
-    return response;
 }
 
 export async function apiLogoutCustomerUser() {
@@ -73,8 +72,26 @@ export async function apiSignUpCustomerUser(action: CustomerSignUpActionInterfac
     return res.json();
 }
 
+export async function apiSignUpExpertUser(action) {
+    const res = await fetch(`${API_URL}/expert/register`, {
+        method: 'post',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            email: action.email,
+            firstName: action.firstName,
+            lastName: action.lastName,
+            password: action.password,
+            isAnExpertIn: action.isAnExpertIn,
+            description: action.description,
+            phone: action.phone,
+            weeklyAvailability: action.weeklyAvailability,
+        }),
+    });
+    return res.json();
+}
+
 export async function apiProfileUpdateCustomerUser(action: CustomerProfileUpdateActionInterface) {
-    const res = await fetch(`${API_URL}/user/me`, {
+    return await fetch(`${API_URL}/user/me`, {
         method: 'put',
         mode,
         credentials,
@@ -87,7 +104,6 @@ export async function apiProfileUpdateCustomerUser(action: CustomerProfileUpdate
             phone: action.phone,
         }),
     });
-    return res;
 }
 
 export async function apiLoginExpertUser({
@@ -105,13 +121,12 @@ export async function apiLoginExpertUser({
 }
 
 export async function apiGetExpertMe() {
-    const response = await fetch(`${API_URL}/expert/me`, {
+    return await fetch(`${API_URL}/expert/me`, {
         method: 'GET',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
         mode,
         credentials,
     });
-    return response;
 }
 
 export async function apiLogoutExpertUser() {

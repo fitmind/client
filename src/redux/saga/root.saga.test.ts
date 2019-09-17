@@ -8,6 +8,8 @@ import { watchCustomerUserSaga } from './customer-user/customer-user.saga';
 import { watchLoginExpertSaga } from './expert-login/expert-login.saga';
 import { rootSaga } from './root.saga';
 import { watchLogoutExpertSaga } from './expert-logout/expert-logout.saga';
+import { watchSignUpExpertSaga } from './expert-signup/expert-signup.saga';
+import { rootSaga } from './root.saga';
 import { watchExpertDashboardSaga } from './expert-dashboard/expert-dashboard.saga';
 import { watchExpertUserSaga } from './expert-user/expert-user.saga';
 
@@ -22,6 +24,7 @@ describe('root saga', () => {
                 watchSignUpUserSaga(),
                 watchCustomerUserSaga(),
                 watchProfileUpdateUserSaga(),
+                watchSignUpExpertSaga(),
                 watchLoginExpertSaga(),
                 watchLogoutExpertSaga(),
                 watchExpertDashboardSaga(),

@@ -1,10 +1,17 @@
-import React from 'react';
-import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
 import { Formik } from 'formik';
+import React from 'react';
+import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
 import styled from 'styled-components';
+import Select from 'react-select';
 import * as Yup from 'yup';
 import CONFIG from '../../config/config';
+import { expertSignUpAction } from '../../redux/actions/server/server.actions';
+import { ConnectedReduxProps } from '../../redux/reducers/root.reducer';
+import { values as getvaluesFromObj } from 'ramda';
+
+getvaluesFromObj(CONFIG.expertises);
 
 const ExpertSignUpSchema = Yup.object().shape({
     email: Yup.string()
@@ -25,17 +32,10 @@ const ExpertSignUpSchema = Yup.object().shape({
     passwordConfirm: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
         .required('Password confirm is required'),
-    expertise: Yup.array()
+    isAnExpertIn: Yup.array()
         .of(Yup.string())
         .min(1)
         .required('Required'),
-    monday: Yup.string().required('Required'),
-    tuesday: Yup.string().required('Required'),
-    wednesday: Yup.string().required('Required'),
-    thursday: Yup.string().required('Required'),
-    friday: Yup.string().required('Required'),
-    saturday: Yup.string().required('Required'),
-    sunday: Yup.string().required('Required'),
     description: Yup.string()
         .min(6, 'Too Short!')
         .max(700, 'Too Long!')
@@ -48,217 +48,250 @@ const ExpertSignUpSchema = Yup.object().shape({
         .required('Required'),
 });
 
-const ExpertSignUpPage: React.FC = () => (
-    <Container fluid>
-        <Row>
-            <Col md={4} />
-            <Col>
-                <CardWrapper>
-                    <Card>
-                        <Card.Header as="h5">Expert Registration</Card.Header>
-                        <Card.Body>
-                            <Formik
-                                initialValues={{
-                                    email: '',
-                                    firstName: '',
-                                    lastName: '',
-                                    password: '',
-                                    passwordConfirm: '',
-                                    expertise: [],
-                                    description: '',
-                                    monday: '',
-                                    tuesday: '',
-                                    wednesday: '',
-                                    thursday: '',
-                                    friday: '',
-                                    saturday: '',
-                                    sunday: '',
-                                    phone: '',
-                                }}
-                                validationSchema={ExpertSignUpSchema}
-                                onSubmit={(values, { setSubmitting }) => {
-                                    console.log(values);
-                                    console.log('I NEED TO BE HOOKED UP');
-                                    setSubmitting(false);
-                                }}
-                                render={({
-                                    values,
-                                    errors,
-                                    touched,
-                                    handleBlur,
-                                    handleChange,
-                                    handleSubmit,
-                                    isSubmitting,
-                                    setFieldValue,
-                                }) => (
-                                    <Form noValidate onSubmit={handleSubmit}>
-                                        <Form.Group>
-                                            <Form.Label>First Name</Form.Label>
-                                            <Form.Control
-                                                type="text"
-                                                name="firstName"
-                                                placeholder="your name"
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.firstName}
-                                                isValid={touched.firstName && !errors.firstName}
-                                                isInvalid={!!errors.firstName}
-                                            />
-                                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                            <Form.Control.Feedback type="invalid">
-                                                {errors.firstName}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-                                        <Form.Group>
-                                            <Form.Label>Last Name</Form.Label>
-                                            <Form.Control
-                                                type="text"
-                                                name="lastName"
-                                                placeholder="your last name"
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.lastName}
-                                                isValid={touched.lastName && !errors.lastName}
-                                                isInvalid={!!errors.lastName}
-                                            />
-                                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                            <Form.Control.Feedback type="invalid">
-                                                {errors.lastName}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-                                        <Form.Group>
-                                            <Form.Label>Email address</Form.Label>
-                                            <Form.Control
-                                                type="email"
-                                                name="email"
-                                                placeholder="Enter email"
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.email}
-                                                isValid={touched.email && !errors.email}
-                                                isInvalid={!!errors.email}
-                                            />
-                                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                            <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
-                                        </Form.Group>
-                                        <Form.Group>
-                                            <Form.Label>Password</Form.Label>
-                                            <Form.Control
-                                                type="password"
-                                                name="password"
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.password}
-                                                isValid={touched.password && !errors.password}
-                                                isInvalid={!!errors.password}
-                                            />
-                                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                            <Form.Control.Feedback type="invalid">
-                                                {errors.password}
-                                            </Form.Control.Feedback>
-                                            <Form.Text className="text-muted">
-                                                Password needs to have numbers and letters
-                                            </Form.Text>
-                                        </Form.Group>
-                                        <Form.Group>
-                                            <Form.Label>Password Confirmation</Form.Label>
-                                            <Form.Control
-                                                type="password"
-                                                name="passwordConfirm"
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.passwordConfirm}
-                                                isValid={touched.passwordConfirm && !errors.passwordConfirm}
-                                                isInvalid={!!errors.passwordConfirm}
-                                            />
-                                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                            <Form.Control.Feedback type="invalid">
-                                                {errors.passwordConfirm}
-                                            </Form.Control.Feedback>
-                                            <Form.Text className="text-muted">Passwords need to match</Form.Text>
-                                        </Form.Group>
-                                        <Form.Group>
-                                            <Form.Label>Expertise</Form.Label>
-                                            <Form.Control
-                                                as="select"
-                                                multiple={true}
-                                                name="expertise"
-                                                onChange={evt =>
-                                                    setFieldValue(
-                                                        'expertise',
-                                                        [].slice
-                                                            .call((evt.target as HTMLSelectElement).selectedOptions)
-                                                            .map(option => option.value),
-                                                    )
-                                                }
-                                                onBlur={handleBlur}
-                                                isValid={touched.expertise && !errors.expertise}
-                                                isInvalid={!!errors.expertise}
-                                            >
-                                                {' '}
-                                                {Object.keys(CONFIG.expertises).map((key: string) => (
-                                                    <option key={key} value={CONFIG.expertises[key].value}>
-                                                        {CONFIG.expertises[key].display}
-                                                    </option>
+interface PropsFromDispatch {
+    expertSignUpAction: typeof expertSignUpAction;
+}
+
+type ExpertSignUpPageAllProps = PropsFromDispatch & RouteComponentProps & ConnectedReduxProps;
+
+export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> {
+    public render() {
+        return (
+            <Container fluid>
+                <Row>
+                    <Col md={4} />
+                    <Col>
+                        <CardWrapper>
+                            <Card>
+                                <Card.Header as="h5">Expert Registration</Card.Header>
+                                <Card.Body>
+                                    <Formik
+                                        initialValues={{
+                                            email: 'hola@mail.com',
+                                            firstName: 'Diego',
+                                            lastName: 'Romero',
+                                            password: 'Testing123!',
+                                            passwordConfirm: 'Testing123!',
+                                            interestedInExpertiseAreas: [],
+                                            description: 'blah blah blah',
+                                            phone: '07413140789',
+                                            isAnExpertIn: [{ value: 'PERSONAL_COACH', label: 'Personal Trainer' }],
+                                            profilePictureUrl:
+                                                'https://fitmind-dev.s3.eu-west-2.amazonaws.com/mock-images/daniel_photo.png',
+                                            weeklyAvailability: {
+                                                monday: [],
+                                                tuesday: [],
+                                                wednesday: [],
+                                                thursday: [],
+                                                friday: [],
+                                                saturday: [],
+                                                sunday: [],
+                                            },
+                                        }}
+                                        validationSchema={ExpertSignUpSchema}
+                                        onSubmit={(values, { setSubmitting }) => {
+                                            this.props.expertSignUpAction(values);
+                                            setSubmitting(false);
+                                        }}
+                                        render={({
+                                            values,
+                                            errors,
+                                            touched,
+                                            handleBlur,
+                                            handleChange,
+                                            handleSubmit,
+                                            isSubmitting,
+                                            setFieldValue,
+                                        }) => (
+                                            <Form noValidate onSubmit={handleSubmit}>
+                                                <Form.Group>
+                                                    <Form.Label column={true}>First Name</Form.Label>
+                                                    <Form.Control
+                                                        type="text"
+                                                        name="firstName"
+                                                        placeholder="your name"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values.firstName}
+                                                        isValid={touched.firstName && !errors.firstName}
+                                                        isInvalid={!!errors.firstName}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {errors.firstName}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label column={true}>Last Name</Form.Label>
+                                                    <Form.Control
+                                                        type="text"
+                                                        name="lastName"
+                                                        placeholder="your last name"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values.lastName}
+                                                        isValid={touched.lastName && !errors.lastName}
+                                                        isInvalid={!!errors.lastName}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {errors.lastName}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label column={true}>Email address</Form.Label>
+                                                    <Form.Control
+                                                        type="email"
+                                                        name="email"
+                                                        placeholder="Enter email"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values.email}
+                                                        isValid={touched.email && !errors.email}
+                                                        isInvalid={!!errors.email}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {errors.email}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label column={true}>Password</Form.Label>
+                                                    <Form.Control
+                                                        type="password"
+                                                        name="password"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values.password}
+                                                        isValid={touched.password && !errors.password}
+                                                        isInvalid={!!errors.password}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {errors.password}
+                                                    </Form.Control.Feedback>
+                                                    <Form.Text className="text-muted">
+                                                        Password needs to have numbers and letters
+                                                    </Form.Text>
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label column={true}>Password Confirmation</Form.Label>
+                                                    <Form.Control
+                                                        type="password"
+                                                        name="passwordConfirm"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values.passwordConfirm}
+                                                        isValid={touched.passwordConfirm && !errors.passwordConfirm}
+                                                        isInvalid={!!errors.passwordConfirm}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {errors.passwordConfirm}
+                                                    </Form.Control.Feedback>
+                                                    <Form.Text className="text-muted">
+                                                        Passwords need to match
+                                                    </Form.Text>
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label column={true}>Expertise</Form.Label>
+                                                    <Select
+                                                        value={values.isAnExpertIn}
+                                                        onChange={evt => {
+                                                            setFieldValue('isAnExpertIn', evt);
+                                                        }}
+                                                        options={getvaluesFromObj(CONFIG.expertises)}
+                                                        isMulti={true}
+                                                        name={'isAnExpertIn'}
+                                                        closeMenuOnSelect={false}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {errors.isAnExpertIn}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label column={true}>Your Description</Form.Label>
+                                                    <Form.Control
+                                                        as="textarea"
+                                                        rows={4}
+                                                        type="text"
+                                                        name="description"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values.description}
+                                                        isValid={touched.description && !errors.description}
+                                                        isInvalid={!!errors.description}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {errors.description}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label column={true}>Phone</Form.Label>
+                                                    <Form.Control
+                                                        type="text"
+                                                        name="phone"
+                                                        placeholder="Enter phone"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values.phone}
+                                                        isValid={touched.phone && !errors.phone}
+                                                        isInvalid={!!errors.phone}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {errors.phone}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                {CONFIG.daysOfTheWeek.map(day => (
+                                                    <Form.Group key={day}>
+                                                        <Form.Label column={true}>{day} Availability</Form.Label>
+                                                        <Select
+                                                            value={values.weeklyAvailability[day]}
+                                                            onChange={evt => {
+                                                                setFieldValue(
+                                                                    `weeklyAvailability.${day.toLocaleLowerCase()}`,
+                                                                    evt,
+                                                                );
+                                                            }}
+                                                            options={CONFIG.availableHours}
+                                                            isMulti={true}
+                                                            name={`weeklyAvailability.${day.toLocaleLowerCase()}`}
+                                                            closeMenuOnSelect={false}
+                                                        />
+                                                    </Form.Group>
                                                 ))}
-                                            </Form.Control>
-                                        </Form.Group>
-                                        <Form.Group>
-                                            <Form.Label>Your Description</Form.Label>
-                                            <Form.Control
-                                                as="textarea"
-                                                rows={4}
-                                                type="text"
-                                                name="description"
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.description}
-                                                isValid={touched.description && !errors.description}
-                                                isInvalid={!!errors.description}
-                                            />
-                                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                            <Form.Control.Feedback type="invalid">
-                                                {errors.description}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-                                        <Form.Group>
-                                            <Form.Label>Phone</Form.Label>
-                                            <Form.Control
-                                                type="text"
-                                                name="phone"
-                                                placeholder="Enter phone"
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.phone}
-                                                isValid={touched.phone && !errors.phone}
-                                                isInvalid={!!errors.phone}
-                                            />
-                                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                            <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
-                                        </Form.Group>
-                                        <Button
-                                            variant="outline-primary"
-                                            type="submit"
-                                            block={true}
-                                            disabled={isSubmitting}
-                                        >
-                                            Register
-                                        </Button>
-                                    </Form>
-                                )}
-                            />
-                        </Card.Body>
-                    </Card>
-                </CardWrapper>
-            </Col>
-            <Col md={4} />
-        </Row>
-    </Container>
-);
+                                                <Button
+                                                    variant="outline-primary"
+                                                    type="submit"
+                                                    block={true}
+                                                    disabled={isSubmitting}
+                                                >
+                                                    Register
+                                                </Button>
+                                            </Form>
+                                        )}
+                                    />
+                                </Card.Body>
+                            </Card>
+                        </CardWrapper>
+                    </Col>
+                    <Col md={4} />
+                </Row>
+            </Container>
+        );
+    }
+}
+
+const mapDispatchToProps = {
+    expertSignUpAction,
+};
 
 export default connect(
     null,
-    null,
+    mapDispatchToProps,
 )(ExpertSignUpPage);
 
 const CardWrapper = styled.div`
