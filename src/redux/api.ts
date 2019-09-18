@@ -1,13 +1,12 @@
 import { CustomerLoginResponse } from '../interfaces/responses/customer-login-response';
-import { ExpertLoginResponse } from '../interfaces/responses/expert-login-response';
+
 import {
     CustomerProfileUpdateActionInterface,
-    CustomerSignUpActionInterface,
     ExpertLoginActionInterface,
     ExpertProfileUpdateActionInterface,
-    ExpertSignUpActionInterface,
     UserLoginActionInterface,
 } from './actions/server/server.actions';
+import { ExpertLoginResponse } from '../interfaces/responses/expert-login-response';
 
 const API_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -15,13 +14,12 @@ const mode = 'cors';
 const credentials = 'include';
 
 export async function apiGetUserDashboard() {
-    const res = await fetch(`${API_URL}/user/dashboard`, {
+    return await fetch(`${API_URL}/user/dashboard`, {
         method: 'get',
         mode,
         credentials,
         headers: { Accept: 'application/json' },
     });
-    return res;
 }
 
 export async function apiLoginCustomerUser({
@@ -39,13 +37,12 @@ export async function apiLoginCustomerUser({
 }
 
 export async function apiGetUserMe() {
-    const response = await fetch(`${API_URL}/user/me`, {
+    return await fetch(`${API_URL}/user/me`, {
         method: 'GET',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
         mode,
         credentials,
     });
-    return response;
 }
 
 export async function apiLogoutCustomerUser() {
@@ -58,7 +55,7 @@ export async function apiLogoutCustomerUser() {
     return await res.json();
 }
 
-export async function apiSignUpCustomerUser(action: CustomerSignUpActionInterface) {
+export async function apiSignUpCustomerUser(action) {
     const res = await fetch(`${API_URL}/user/register`, {
         method: 'post',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
@@ -75,7 +72,7 @@ export async function apiSignUpCustomerUser(action: CustomerSignUpActionInterfac
     return res.json();
 }
 
-export async function apiSignUpExpertUser(action: ExpertSignUpActionInterface) {
+export async function apiSignUpExpertUser(action) {
     const res = await fetch(`${API_URL}/expert/register`, {
         method: 'post',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
@@ -94,7 +91,7 @@ export async function apiSignUpExpertUser(action: ExpertSignUpActionInterface) {
 }
 
 export async function apiProfileUpdateCustomerUser(action: CustomerProfileUpdateActionInterface) {
-    const res = await fetch(`${API_URL}/user/me`, {
+    return await fetch(`${API_URL}/user/me`, {
         method: 'put',
         mode,
         credentials,
@@ -107,7 +104,6 @@ export async function apiProfileUpdateCustomerUser(action: CustomerProfileUpdate
             phone: action.phone,
         }),
     });
-    return res;
 }
 
 export async function apiLoginExpertUser({
@@ -125,13 +121,12 @@ export async function apiLoginExpertUser({
 }
 
 export async function apiGetExpertMe() {
-    const response = await fetch(`${API_URL}/expert/me`, {
+    return await fetch(`${API_URL}/expert/me`, {
         method: 'GET',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
         mode,
         credentials,
     });
-    return response;
 }
 
 export async function apiLogoutExpertUser() {
@@ -145,17 +140,16 @@ export async function apiLogoutExpertUser() {
 }
 
 export async function apiGetExpertDashboard() {
-    const res = await fetch(`${API_URL}/expert/dashboard`, {
+    return await fetch(`${API_URL}/expert/dashboard`, {
         method: 'get',
         mode,
         credentials,
         headers: { Accept: 'application/json' },
     });
-    return res;
 }
 
 export async function apiProfileUpdateExpertUser(action: ExpertProfileUpdateActionInterface) {
-    const res = await fetch(`${API_URL}/expert/me`, {
+    return await fetch(`${API_URL}/expert/me`, {
         method: 'put',
         mode,
         credentials,
@@ -170,5 +164,4 @@ export async function apiProfileUpdateExpertUser(action: ExpertProfileUpdateActi
             weeklyAvailability: action.weeklyAvailability,
         }),
     });
-    return res;
 }

@@ -1,4 +1,4 @@
 export interface TimeSlotInterface {
-    id?: string;
-    label?: string;
+    value: string;
+    label: string;
 }

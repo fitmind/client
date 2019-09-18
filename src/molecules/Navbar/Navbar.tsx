@@ -32,14 +32,18 @@ const NavBar: React.FC<allProps> = ({
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-                <Nav.Link>Listings</Nav.Link>
+                <Nav.Link onClick={() => history.push(CONFIG.routes.listings)}>Listings</Nav.Link>
                 <Nav.Link>About</Nav.Link>
                 <Nav.Link>Contact</Nav.Link>
             </Nav>
 
             {customerUser._id && (
                 <ButtonGroup className="mr-2">
-                    <Button variant="outline-primary" onClick={() => history.push(CONFIG.routes.customerDashboard)}>
+                    <Button
+                        variant="outline-primary"
+                        className={'mr-2'}
+                        onClick={() => history.push(CONFIG.routes.customerDashboard)}
+                    >
                         Dashboard
                     </Button>
                 </ButtonGroup>
@@ -52,7 +56,11 @@ const NavBar: React.FC<allProps> = ({
                 </ButtonGroup>
             )}
             {expert._id && (
-                <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.expertDashboard)}>
+                <Button
+                    variant="outline-secondary"
+                    className={'mr-2'}
+                    onClick={() => history.push(CONFIG.routes.expertDashboard)}
+                >
                     Dashboard
                 </Button>
             )}
@@ -62,7 +70,11 @@ const NavBar: React.FC<allProps> = ({
                 </Button>
             )}
             {customerUser._id && (
-                <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.customerProfileUpdate)}>
+                <Button
+                    variant="outline-secondary"
+                    className={'mr-2'}
+                    onClick={() => history.push(CONFIG.routes.customerProfileUpdate)}
+                >
                     Edit Profile
                 </Button>
             )}
@@ -72,13 +84,17 @@ const NavBar: React.FC<allProps> = ({
                 </Button>
             )}
             {expertUser._id && (
-                <Button variant="outline-secondary" onClick={() => expertLogoutAction()}>
-                    Expert Logout
+                <Button
+                    variant="outline-secondary"
+                    className="mr-2"
+                    onClick={() => history.push(CONFIG.routes.expertProfileUpdate)}
+                >
+                    Edit Profile
                 </Button>
             )}
             {expertUser._id && (
-                <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.expertProfileUpdate)}>
-                    Edit Profile
+                <Button variant="outline-secondary" onClick={() => expertLogoutAction()}>
+                    Expert Logout
                 </Button>
             )}
         </Navbar.Collapse>

@@ -16,13 +16,13 @@ export const ServerActions = {
     LOGOUT_USER_SUCCESS: 'LOGOUT_USER_SUCCESS',
     LOGOUT_EXPERT_SUCCESS: 'LOGOUT_EXPERT_SUCCESS',
     PROFILE_UPDATE_CUSTOMER_USER: 'PROFILE_UPDATE_CUSTOMER_USER',
+    SIGNUP_EXPERT_USER: 'SIGNUP_EXPERT_USER',
     LOGIN_EXPERT_USER: 'LOGIN_EXPERT_USER',
     SET_EXPERT_USER: 'SET_EXPERT_USER',
     FETCH_EXPERT_USER: 'FETCH_EXPERT_USER',
     FETCH_EXPERT_DASHBOARD: 'FETCH_EXPERT_DASHBOARD',
     SET_EXPERT_DASHBOARD: 'SET_EXPERT_DASHBOARD',
     PROFILE_UPDATE_EXPERT_USER: 'PROFILE_UPDATE_EXPERT_USER',
-    SIGNUP_EXPERT_USER: 'SIGNUP_EXPERT_USER',
 };
 
 export interface ServerActionTypes {
@@ -82,7 +82,7 @@ export interface CustomerSignUpActionInterface extends Action<'SIGNUP_CUSTOMER_U
     firstName: string;
     lastName: string;
     password: string;
-    interestedInExpertiseAreas: string[];
+    interestedInExpertiseAreas: [{ value: string; label: string }];
     description: string;
     phone: string;
 }
@@ -100,7 +100,7 @@ export const customerSignUpAction = ({
     firstName: string;
     lastName: string;
     password: string;
-    interestedInExpertiseAreas: string[];
+    interestedInExpertiseAreas?: [{ value: string; label: string }] | any;
     description: string;
     phone: string;
 }): CustomerSignUpActionInterface => ({
@@ -156,6 +156,41 @@ export type UserLogoutSuccessActionInterface = Action<'LOGOUT_USER_SUCCESS'>;
 
 export const userLogoutSuccessAction = (): UserLogoutSuccessActionInterface => ({
     type: 'LOGOUT_USER_SUCCESS',
+});
+
+export interface ExpertSignUpActionInterface extends Action<'SIGNUP_EXPERT_USER'> {
+    email: string;
+    firstName: string;
+    lastName: string;
+    password: string;
+    isAnExpertIn: [{ value: string; label: string }];
+    description: string;
+    phone: string;
+    weeklyAvailability: [{ value: string; label: string }];
+    profilePictureUrl?: string;
+}
+
+export const expertSignUpAction = ({
+    email,
+    firstName,
+    lastName,
+    password,
+    isAnExpertIn,
+    description,
+    phone,
+    weeklyAvailability,
+    profilePictureUrl,
+}) => ({
+    type: 'SIGNUP_EXPERT_USER',
+    email,
+    firstName,
+    lastName,
+    password,
+    isAnExpertIn,
+    description,
+    phone,
+    weeklyAvailability,
+    profilePictureUrl,
 });
 export type ExpertLogoutActionInterface = Action<'LOGOUT_EXPERT'>;
 
@@ -251,49 +286,4 @@ export const expertProfileUpdateAction = ({
     profilePictureUrl,
     isAnExpertIn,
     weeklyAvailability,
-});
-
-export interface ExpertSignUpActionInterface extends Action<'SIGNUP_EXPERT_USER'> {
-    email: string;
-    firstName: string;
-    lastName: string;
-    password: string;
-    isAnExpertIn: string[];
-    description: string;
-    phone: string;
-    weeklyAvailability: {};
-    profilePictureUrl?: string;
-}
-
-export const expertSignUpAction = ({
-    email,
-    firstName,
-    lastName,
-    password,
-    isAnExpertIn,
-    description,
-    phone,
-    weeklyAvailability,
-    profilePictureUrl,
-}: {
-    email: string;
-    firstName: string;
-    lastName: string;
-    password: string;
-    isAnExpertIn: string[];
-    description: string;
-    phone: string;
-    weeklyAvailability: {};
-    profilePictureUrl?: string;
-}): ExpertSignUpActionInterface => ({
-    type: 'SIGNUP_EXPERT_USER',
-    email,
-    firstName,
-    lastName,
-    password,
-    isAnExpertIn,
-    description,
-    phone,
-    weeklyAvailability,
-    profilePictureUrl,
 });

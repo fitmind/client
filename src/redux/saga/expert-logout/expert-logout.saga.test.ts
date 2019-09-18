@@ -8,11 +8,7 @@ import { expertLogoutSuccessAction } from '../../actions/server/server.actions';
 import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/ui/ui.actions';
 import { apiLogoutExpertUser } from '../../api';
 import { ExpertLogoutExampleResponse } from '../../reducers/server-reducer/server-example-responses/expert-logout-example-response';
-import {
-    expertLogoutNegativeNotification,
-    expertLogoutPositiveNotification,
-    logoutExpertSaga,
-} from './expert-logout.saga';
+import { expertLogoutNegativeNotification, logoutExpertSaga } from './expert-logout.saga';
 
 describe('customer logout saga', () => {
     it('it logs out successfully', () => {
@@ -20,7 +16,6 @@ describe('customer logout saga', () => {
             .provide([[call(apiLogoutExpertUser), ExpertLogoutExampleResponse]])
             .put(setLoadingTrue())
             .put(push(CONFIG.routes.expertLogin))
-            .put(setNotification(expertLogoutPositiveNotification))
             .put(expertLogoutSuccessAction())
             .put(setLoadingFalse())
             .run();

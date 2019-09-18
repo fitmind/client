@@ -14,7 +14,7 @@ export interface ExpertUserResponse {
     weeklyAvailability?: {
         monday: TimeSlotInterface[];
         tuesday: TimeSlotInterface[];
-        wednessday: TimeSlotInterface[];
+        wednesday: TimeSlotInterface[];
         thursday: TimeSlotInterface[];
         friday: TimeSlotInterface[];
         saturday: TimeSlotInterface[];

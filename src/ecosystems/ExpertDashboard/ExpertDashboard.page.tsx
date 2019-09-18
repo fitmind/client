@@ -1,13 +1,14 @@
 import React from 'react';
-import { Col, Container, Row, Table } from 'react-bootstrap';
+import { Col, Container, Jumbotron, Row, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
-import styled from 'styled-components';
 import { bookingInterface } from '../../interfaces/responses/expert-dashboard-response';
 import { ListingInterface } from '../../interfaces/responses/listing-response';
 import { fetchExpertDashboardAction, fetchExpertUserAction } from '../../redux/actions/server/server.actions';
 import { ApplicationState, ConnectedReduxProps } from '../../redux/reducers/root.reducer';
 import { expertDashboardInterface, expertUserInterface } from '../../redux/reducers/server-reducer/server.reducer';
+import Paragraph from '../../atoms/Paragraph/Paragraph';
+import Header from '../../atoms/Header/Header';
 
 interface PropsFromState {
     expertUser: expertUserInterface;
@@ -64,58 +65,50 @@ export class ExpertDashboard extends React.Component<ExpertDashboardPageAllProps
         const { expertUser } = this.props;
         return (
             <Container fluid>
-                <Row>
-                    <Col md={4} />
-                    <Col>
-                        <GreetingContainer>
-                            <Greet>Welcome {expertUser.firstName}!</Greet>
-                            <h5>
-                                As an approved expert - here you will be able to create, update and remove listings.
-                                View your upcoming schedule and keep records of your clients.
-                            </h5>
-                        </GreetingContainer>
-                    </Col>
-                    <Col md={4} />
-                </Row>
+                <Jumbotron>
+                    <Header as={'h2'}>Welcome {expertUser.firstName}!</Header>
+                    <Paragraph as={'m'}>
+                        As an approved expert - here you will be able to create, update and remove listings. View your
+                        upcoming schedule and keep records of your clients.
+                    </Paragraph>
+                </Jumbotron>
                 <Row>
                     <Col md={1} />
-                    <Col md={10}>
-                        <CardWrapper>
-                            <h3>Current Listings Live</h3>
-                            <Table responsive="md">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Listing name</th>
-                                        <th>Description</th>
-                                        <th>Price</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {this.props.expertDashboard &&
-                                        this.props.expertDashboard.liveListings &&
-                                        this.renderListings(this.props.expertDashboard.liveListings)}
-                                </tbody>
-                            </Table>
-                            <h3>Upcoming appointments</h3>
-                            <Table responsive="md">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Client</th>
-                                        <th>Time</th>
-                                        <th>Email</th>
-                                        <th>Listing</th>
-                                        <th>Price</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {this.props.expertDashboard &&
-                                        this.props.expertDashboard.upcomingBookings &&
-                                        this.renderBookings(this.props.expertDashboard.upcomingBookings)}
-                                </tbody>
-                            </Table>
-                        </CardWrapper>
+                    <Col md={10} className={'mt-5'}>
+                        <h3>Current Listings Live</h3>
+                        <Table responsive="md">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Listing name</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.props.expertDashboard &&
+                                    this.props.expertDashboard.liveListings &&
+                                    this.renderListings(this.props.expertDashboard.liveListings)}
+                            </tbody>
+                        </Table>
+                        <h3>Upcoming appointments</h3>
+                        <Table responsive="md">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Client</th>
+                                    <th>Time</th>
+                                    <th>Email</th>
+                                    <th>Listing</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.props.expertDashboard &&
+                                    this.props.expertDashboard.upcomingBookings &&
+                                    this.renderBookings(this.props.expertDashboard.upcomingBookings)}
+                            </tbody>
+                        </Table>
                     </Col>
                     <Col md={1} />
                 </Row>
@@ -123,18 +116,6 @@ export class ExpertDashboard extends React.Component<ExpertDashboardPageAllProps
         );
     }
 }
-
-const GreetingContainer = styled.div`
-    margin-top: 5rem;
-    text-align: center;
-`;
-const Greet = styled.div`
-    font-size: 4.5rem;
-`;
-
-const CardWrapper = styled.div`
-    margin-top: 5rem;
-`;
 
 const mapDispatchToProps = {
     fetchExpertDashboardAction,

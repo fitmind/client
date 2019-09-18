@@ -71,13 +71,28 @@ export const ExpertDashboardExampleResponse: ExpertDashboardResponse = {
                 email: 'tony@fitmind.io',
                 expertise: ['PERSONAL_COACH'],
                 weeklyAvailability: {
-                    monday: [{ id: '0:00', label: '12 am to 12:30 am' }],
-                    tuesday: [{ id: '0:30', label: '12:30 am to 1 am' }],
-                    wednessday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
-                    thursday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
-                    friday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
-                    saturday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
-                    sunday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
+                    monday: [{ value: '0:00', label: '12 am to 12:30 am' }],
+                    tuesday: [{ value: '0:30', label: '12:30 am to 1 am' }],
+                    wednesday: [
+                        { value: '0:30', label: '12:30 am to 1 am' },
+                        { value: '0:00', label: '12 am to 12:30 am' },
+                    ],
+                    thursday: [
+                        { value: '0:30', label: '12:30 am to 1 am' },
+                        { value: '0:00', label: '12 am to 12:30 am' },
+                    ],
+                    friday: [
+                        { value: '0:30', label: '12:30 am to 1 am' },
+                        { value: '0:00', label: '12 am to 12:30 am' },
+                    ],
+                    saturday: [
+                        { value: '0:30', label: '12:30 am to 1 am' },
+                        { value: '0:00', label: '12 am to 12:30 am' },
+                    ],
+                    sunday: [
+                        { value: '0:30', label: '12:30 am to 1 am' },
+                        { value: '0:00', label: '12 am to 12:30 am' },
+                    ],
                 },
                 phone: '12312312',
             },
@@ -101,13 +116,28 @@ export const ExpertDashboardExampleResponse: ExpertDashboardResponse = {
                 email: 'adam@fitmind.io',
                 expertise: ['PERSONAL_COACH'],
                 weeklyAvailability: {
-                    monday: [{ id: '0:00', label: '12 am to 12:30 am' }],
-                    tuesday: [{ id: '0:30', label: '12:30 am to 1 am' }],
-                    wednessday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
-                    thursday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
-                    friday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
-                    saturday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
-                    sunday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
+                    monday: [{ value: '0:00', label: '12 am to 12:30 am' }],
+                    tuesday: [{ value: '0:30', label: '12:30 am to 1 am' }],
+                    wednesday: [
+                        { value: '0:30', label: '12:30 am to 1 am' },
+                        { value: '0:00', label: '12 am to 12:30 am' },
+                    ],
+                    thursday: [
+                        { value: '0:30', label: '12:30 am to 1 am' },
+                        { value: '0:00', label: '12 am to 12:30 am' },
+                    ],
+                    friday: [
+                        { value: '0:30', label: '12:30 am to 1 am' },
+                        { value: '0:00', label: '12 am to 12:30 am' },
+                    ],
+                    saturday: [
+                        { value: '0:30', label: '12:30 am to 1 am' },
+                        { value: '0:00', label: '12 am to 12:30 am' },
+                    ],
+                    sunday: [
+                        { value: '0:30', label: '12:30 am to 1 am' },
+                        { value: '0:00', label: '12 am to 12:30 am' },
+                    ],
                 },
                 phone: '12312312',
             },

@@ -11,7 +11,7 @@ export interface customerUserInterface {
     createdAt?: string;
     description?: string;
     email?: string;
-    interestedInExpertiseAreas?: string[];
+    interestedInExpertiseAreas?: any;
     phone?: string;
     pictureUrl?: string;
 }
@@ -40,7 +40,7 @@ export interface expertUserInterface {
     weeklyAvailability?: {
         monday: TimeSlotInterface[];
         tuesday: TimeSlotInterface[];
-        wednessday: TimeSlotInterface[];
+        wednesday: TimeSlotInterface[];
         thursday: TimeSlotInterface[];
         friday: TimeSlotInterface[];
         saturday: TimeSlotInterface[];

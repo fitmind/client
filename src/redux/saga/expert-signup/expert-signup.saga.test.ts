@@ -17,13 +17,13 @@ describe('Expert Signup saga', () => {
         const signUpData = {
             description: 'adasda',
             email: 'hemal.pandya1122.hp@gmail.com',
-            expertise: ['YOGA_COACH'],
+            isAnExpertIn: [{ value: 'YOGA_COACH', label: 'Yoga Teacher' }],
             firstName: 'asdas',
             lastName: 'asdad',
             password: 'asd@123',
             phone: '21312312',
             weeklyAvailability: {
-                monday: [{ id: '0:00', label: '12 am to 12:30 am' }],
+                monday: [{ value: '00:00', label: '00:00' }],
                 tuesday: [],
                 wednessday: [],
                 thursday: [],
@@ -46,13 +46,13 @@ describe('Expert Signup saga', () => {
         const signUpData = {
             description: 'adasda',
             email: 'hemal.pandya1122.hp@gmail.com',
-            isAnExpertIn: ['YOGA_COACH'],
+            isAnExpertIn: [{ value: 'YOGA_COACH', label: 'Yoga Teacher' }],
             firstName: 'asdas',
             lastName: 'asdad',
             password: 'asd@123',
             phone: '21312312',
             weeklyAvailability: {
-                monday: [{ id: '0:00', label: '12 am to 12:30 am' }],
+                monday: [],
                 tuesday: [],
                 wednessday: [],
                 thursday: [],

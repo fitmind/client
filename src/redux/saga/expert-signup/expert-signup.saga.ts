@@ -15,40 +15,27 @@ export const expertSignUpFailedNotification: NotificationInterface = {
     body: 'Could not SignUp with entered details',
 };
 
+export function getTransformedAvailability(action: ExpertSignUpActionInterface, day: string) {
+    return action.weeklyAvailability[day] ? action.weeklyAvailability[day].map(x => x.value) : [];
+}
+
 export function* signUpExpertSaga(action: ExpertSignUpActionInterface) {
     yield put(setLoadingTrue());
+    const transformedAvailability = {};
+    transformedAvailability['monday'] = getTransformedAvailability(action, 'monday');
+    transformedAvailability['tuesday'] = getTransformedAvailability(action, 'tuesday');
+    transformedAvailability['wednesday'] = getTransformedAvailability(action, 'wednesday');
+    transformedAvailability['thursday'] = getTransformedAvailability(action, 'thursday');
+    transformedAvailability['friday'] = getTransformedAvailability(action, 'friday');
+    transformedAvailability['saturday'] = getTransformedAvailability(action, 'saturday');
+    transformedAvailability['sunday'] = getTransformedAvailability(action, 'sunday');
+    const mappedExperts = action.isAnExpertIn.map(x => x.value);
     try {
-        let transformedAvailibility = {};
-        let transformedAvailibilityMonday = action.weeklyAvailability['monday'].map(availibility => {
-            return availibility.id;
+        const signUpExpertResponse = yield call(apiSignUpExpertUser, {
+            ...action,
+            isAnExpertIn: mappedExperts,
+            weeklyAvailability: transformedAvailability,
         });
-        let transformedAvailibilityTuesday = action.weeklyAvailability['tuesday'].map(availibility => {
-            return availibility.id;
-        });
-        let transformedAvailibilityWednessday = action.weeklyAvailability['wednessday'].map(availibility => {
-            return availibility.id;
-        });
-        let transformedAvailibilityThrusday = action.weeklyAvailability['thursday'].map(availibility => {
-            return availibility.id;
-        });
-        let transformedAvailibilityFriday = action.weeklyAvailability['friday'].map(availibility => {
-            return availibility.id;
-        });
-        let transformedAvailibilitySaturday = action.weeklyAvailability['saturday'].map(availibility => {
-            return availibility.id;
-        });
-        let transformedAvailibilitySunday = action.weeklyAvailability['sunday'].map(availibility => {
-            return availibility.id;
-        });
-        transformedAvailibility['monday'] = transformedAvailibilityMonday;
-        transformedAvailibility['tuesday'] = transformedAvailibilityTuesday;
-        transformedAvailibility['wednessday'] = transformedAvailibilityWednessday;
-        transformedAvailibility['thursday'] = transformedAvailibilityThrusday;
-        transformedAvailibility['friday'] = transformedAvailibilityFriday;
-        transformedAvailibility['saturday'] = transformedAvailibilitySaturday;
-        transformedAvailibility['sunday'] = transformedAvailibilitySunday;
-        action.weeklyAvailability = transformedAvailibility;
-        const signUpExpertResponse = yield call(apiSignUpExpertUser, action);
         if (signUpExpertResponse) {
             yield put(setNotification(expertSignUpPositiveNotification));
             yield put(push(CONFIG.routes.expertLogin));

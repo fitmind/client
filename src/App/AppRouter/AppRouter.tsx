@@ -14,6 +14,7 @@ import ExpertSignUpPage from '../../ecosystems/ExpertSignUp/ExpertSignUp.page';
 import Home from '../../ecosystems/Home/Home.page';
 import ListingsPage from '../../ecosystems/Listings/Listings.page';
 import ListingSinglePage from '../../ecosystems/ListingsSingle/ListingsSingle.page';
+import ExpertPublicPage from '../../ecosystems/ExpertPublicPage/ExpertPublicPage';
 import NotFoundPage from '../../ecosystems/NotFound/NotFound.page';
 import NavBar from '../../molecules/Navbar/Navbar';
 
@@ -34,6 +35,7 @@ const AppRouter: React.FC = () => (
             <Route path={CONFIG.routes.expertProfileUpdate} exact component={ExpertProfileUpdate} />
             <Route path={CONFIG.routes.listings} exact component={ListingsPage} />
             <Route path={CONFIG.routes.listing} exact component={ListingSinglePage} />
+            <Route path={CONFIG.routes.expertPublicPage} exact component={ExpertPublicPage} />
             <Route component={NotFoundPage} />
         </Switch>
     </div>

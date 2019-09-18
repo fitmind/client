@@ -2,15 +2,16 @@ import {
     customerProfileUpdateAction,
     expertLoginAction,
     expertProfileUpdateAction,
+    expertSignUpAction,
     fetchCustomerDashboardAction,
     fetchCustomerUserAction,
-    fetchExpertDashboardAction,
     ServerActions,
     setCustomerDashboardAction,
     setExpertUserAction,
     userLoginAction,
     userLogoutAction,
     userLogoutSuccessAction,
+    fetchExpertDashboardAction,
 } from './server.actions';
 
 describe('server actions', () => {
@@ -144,6 +145,34 @@ describe('server actions', () => {
             expect(userLogoutSuccessAction()).toEqual(expectedAction);
         });
     });
+    describe('expertSignUpAction', () => {
+        it('should return the correct type and data', () => {
+            const values = {
+                email: 'fitmindexpert@fitmind.io',
+                firstName: 'Fitmind',
+                lastName: 'Expert',
+                password: 'secret',
+                description: 'blahhhh',
+                phone: '12412421',
+                profilePictureUrl: 'http://asdsa.com/adsad.jpg',
+                isAnExpertIn: ['LIFE_COACH'],
+                weeklyAvailability: {
+                    monday: ['0:00'],
+                    tuesday: ['0:00'],
+                    wednesday: ['0:00'],
+                    thursday: ['0:00'],
+                    friday: ['0:00'],
+                    saturday: ['0:00'],
+                    sunday: ['0:00'],
+                },
+            };
+            const expectedAction = {
+                type: ServerActions.SIGNUP_EXPERT_USER,
+                ...values,
+            };
+            expect(expertSignUpAction(values)).toEqual(expectedAction);
+        });
+    });
 
     describe('expertLoginAction', () => {
         it('should return the correct type and data', () => {
@@ -174,13 +203,13 @@ describe('server actions', () => {
                 pictureUrl:
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBx76lQwzW2cAsjz5JqgVp_ReTpVji6G_pMO6crXSJn9NETq3F',
                 weeklyAvailability: {
-                    monday: [{ id: '0:00', label: '12 am to 12:30 am' }],
-                    tuesday: [{ id: '0:30', label: '12:30 am to 1 am' }],
-                    wednessday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
-                    thursday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
-                    friday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
-                    saturday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
-                    sunday: [{ id: '0:30', label: '12:30 am to 1 am' }, { id: '0:00', label: '12 am to 12:30 am' }],
+                    monday: [{ value: '00:00', label: '00:00' }],
+                    tuesday: [{ value: '00:00', label: '00:00' }],
+                    wednesday: [{ value: '00:00', label: '00:00' }],
+                    thursday: [{ value: '00:00', label: '00:00' }],
+                    friday: [{ value: '00:00', label: '00:00' }],
+                    saturday: [{ value: '00:00', label: '00:00' }],
+                    sunday: [{ value: '00:00', label: '00:00' }],
                 },
             };
             const expectedAction = {
@@ -225,13 +254,4 @@ describe('server actions', () => {
             expect(expertProfileUpdateAction(values)).toEqual(expectedAction);
         });
     });
-    // describe('setExpertDashboardAction', () => {
-    //     it('should return the correct type and data', () => {
-    //         const expectedAction = {
-    //             type: ServerActions.SET_EXPERT_DASHBOARD,
-    //             expertDashboard: expertDashboardResponse,
-    //         };
-    //         expect(setExpertDashboardAction(ExpertDashboard)).toEqual(expectedAction);
-    //     });
-    // });
 });
