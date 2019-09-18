@@ -8,7 +8,7 @@ export interface ExpertUserResponse {
     approvedStatus: string;
     createdAt: string;
     description: string;
-    expertise: string[];
+    isAnExpertIn: any;
     phone: string;
     pictureUrl: string;
     weeklyAvailability?: {

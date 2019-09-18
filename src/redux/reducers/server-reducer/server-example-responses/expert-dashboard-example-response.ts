@@ -69,7 +69,7 @@ export const ExpertDashboardExampleResponse: ExpertDashboardResponse = {
                 createdAt: '2019-08-28',
                 approvedStatus: 'APPROVED',
                 email: 'tony@fitmind.io',
-                expertise: ['PERSONAL_COACH'],
+                isAnExpertIn: [{ value: 'PERSONAL_COACH', label: 'PERSONAL_COACH' }],
                 weeklyAvailability: {
                     monday: [{ value: '0:00', label: '12 am to 12:30 am' }],
                     tuesday: [{ value: '0:30', label: '12:30 am to 1 am' }],
@@ -114,7 +114,7 @@ export const ExpertDashboardExampleResponse: ExpertDashboardResponse = {
                 createdAt: '2019-08-28',
                 approvedStatus: 'APPROVED',
                 email: 'adam@fitmind.io',
-                expertise: ['PERSONAL_COACH'],
+                isAnExpertIn: [{ value: 'PERSONAL_COACH', label: 'PERSONAL_COACH' }],
                 weeklyAvailability: {
                     monday: [{ value: '0:00', label: '12 am to 12:30 am' }],
                     tuesday: [{ value: '0:30', label: '12:30 am to 1 am' }],

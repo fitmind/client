@@ -56,7 +56,17 @@ export interface ServerStateInterface {
 }
 
 export const ServerInitialState: ServerStateInterface = {
-    expertUser: {},
+    expertUser: {
+        weeklyAvailability: {
+            monday: [],
+            tuesday: [],
+            wednesday: [],
+            thursday: [],
+            friday: [],
+            saturday: [],
+            sunday: [],
+        },
+    },
     customerUser: {},
     customerDashboard: {},
 };
