@@ -1,3 +1,5 @@
+import { TimeSlotInterface } from './time-slot-response';
+
 export interface ExpertUserResponse {
     _id: string;
     email: string;
@@ -6,8 +8,16 @@ export interface ExpertUserResponse {
     approvedStatus: string;
     createdAt: string;
     description: string;
-    expertise: string[];
+    isAnExpertIn: any;
     phone: string;
     pictureUrl: string;
-    weeklyAvailability: {};
+    weeklyAvailability?: {
+        monday: TimeSlotInterface[];
+        tuesday: TimeSlotInterface[];
+        wednesday: TimeSlotInterface[];
+        thursday: TimeSlotInterface[];
+        friday: TimeSlotInterface[];
+        saturday: TimeSlotInterface[];
+        sunday: TimeSlotInterface[];
+    };
 }

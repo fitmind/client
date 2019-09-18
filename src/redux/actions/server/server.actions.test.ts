@@ -1,6 +1,7 @@
 import {
     customerProfileUpdateAction,
     expertLoginAction,
+    expertProfileUpdateAction,
     expertSignUpAction,
     fetchCustomerDashboardAction,
     fetchCustomerUserAction,
@@ -172,6 +173,7 @@ describe('server actions', () => {
             expect(expertSignUpAction(values)).toEqual(expectedAction);
         });
     });
+
     describe('expertLoginAction', () => {
         it('should return the correct type and data', () => {
             const values = {
@@ -201,13 +203,13 @@ describe('server actions', () => {
                 pictureUrl:
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBx76lQwzW2cAsjz5JqgVp_ReTpVji6G_pMO6crXSJn9NETq3F',
                 weeklyAvailability: {
-                    monday: ['00:00'],
-                    tuesday: ['00:00'],
-                    wednesday: ['00:00'],
-                    thursday: ['00:00'],
-                    friday: ['00:00'],
-                    saturday: ['00:00'],
-                    sunday: ['00:00'],
+                    monday: [{ value: '00:00', label: '00:00' }],
+                    tuesday: [{ value: '00:00', label: '00:00' }],
+                    wednesday: [{ value: '00:00', label: '00:00' }],
+                    thursday: [{ value: '00:00', label: '00:00' }],
+                    friday: [{ value: '00:00', label: '00:00' }],
+                    saturday: [{ value: '00:00', label: '00:00' }],
+                    sunday: [{ value: '00:00', label: '00:00' }],
                 },
             };
             const expectedAction = {
@@ -223,6 +225,48 @@ describe('server actions', () => {
                 type: ServerActions.FETCH_EXPERT_DASHBOARD,
             };
             expect(fetchExpertDashboardAction()).toEqual(expectedAction);
+        });
+    });
+
+    describe('expertProfileUpdateAction', () => {
+        it('should return the correct type and data', () => {
+            const values = {
+                firstName: 'Fitmind',
+                lastName: 'Expert',
+                description: 'blahhhh',
+                phone: '12412421',
+                profilePictureUrl: 'http://asdsa.com/adsad.jpg',
+                isAnExpertIn: ['LIFE_COACH'],
+                weeklyAvailability: {
+                    monday: [{ value: '0:00', label: '12 am to 12:30 am' }],
+                    tuesday: [{ value: '0:30', label: '12:30 am to 1 am' }],
+                    wednessday: [
+                        { value: '0:30', label: '12:30 am to 1 am' },
+                        { value: '0:00', label: '12 am to 12:30 am' },
+                    ],
+                    thursday: [
+                        { value: '0:30', label: '12:30 am to 1 am' },
+                        { value: '0:00', label: '12 am to 12:30 am' },
+                    ],
+                    friday: [
+                        { value: '0:30', label: '12:30 am to 1 am' },
+                        { value: '0:00', label: '12 am to 12:30 am' },
+                    ],
+                    saturday: [
+                        { value: '0:30', label: '12:30 am to 1 am' },
+                        { value: '0:00', label: '12 am to 12:30 am' },
+                    ],
+                    sunday: [
+                        { value: '0:30', label: '12:30 am to 1 am' },
+                        { value: '0:00', label: '12 am to 12:30 am' },
+                    ],
+                },
+            };
+            const expectedAction = {
+                type: ServerActions.PROFILE_UPDATE_EXPERT_USER,
+                ...values,
+            };
+            expect(expertProfileUpdateAction(values)).toEqual(expectedAction);
         });
     });
 });

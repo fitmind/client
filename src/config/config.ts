@@ -13,6 +13,7 @@ const CONFIG = {
         expertLogin: '/experts-login',
         expertSignUp: '/experts-register',
         expertDashboard: '/experts/dashboard',
+        expertProfileUpdate: '/expert/edit',
         expertPublicPage: '/experts/:id',
         navigateToExpertPublicPage: (id: string) => `/experts/${id}`,
     },

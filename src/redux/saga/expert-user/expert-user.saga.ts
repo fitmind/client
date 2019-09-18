@@ -14,6 +14,21 @@ export const userSetFailedNotification: NotificationInterface = {
     type: NotificationType.negative,
     body: 'Error setting the expert',
 };
+
+export const mapFetchExpertResponse = expertResponse => {
+    const keys = Object.keys(expertResponse.weeklyAvailability);
+    let weeklyAvailability = {};
+    keys.forEach(k => {
+        const key = k.toLowerCase();
+        weeklyAvailability[key] = expertResponse.weeklyAvailability[key].map(v => ({
+            value: v,
+            label: v,
+        }));
+    });
+    const isAnExpertIn = expertResponse.isAnExpertIn.map(e => ({ value: e, label: e }));
+    return { ...expertResponse, weeklyAvailability, isAnExpertIn };
+};
+
 export function* fetchExpertUserSaga() {
     yield put(setLoadingTrue());
     try {
@@ -24,8 +39,11 @@ export function* fetchExpertUserSaga() {
             const fetchExpertUserResponseJson = yield fetchExpertUserResponse.json();
             if (fetchExpertUserResponseJson) {
                 try {
-                    yield put(setExpertUserAction(fetchExpertUserResponseJson));
+                    const mapped = mapFetchExpertResponse(fetchExpertUserResponseJson);
+                    yield put(setExpertUserAction(mapped));
+                    yield put(setLoadingFalse());
                 } catch (settingExpertError) {
+                    console.log(settingExpertError);
                     yield put(setNotification(userSetFailedNotification));
                 }
             }

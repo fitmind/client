@@ -1,15 +1,16 @@
 import { all } from 'redux-saga/effects';
-import { watchLogoutUserSaga } from './customer-logout/customer-logout.saga';
-import { watchLoginUserSaga } from './customer-login/customer-login.saga';
 import { watchCustomerDashboardSaga } from './customer-dashboard/customer-dashboard.saga';
+import { watchLoginUserSaga } from './customer-login/customer-login.saga';
+import { watchLogoutUserSaga } from './customer-logout/customer-logout.saga';
 import { watchSignUpUserSaga } from './customer-signup/customer-signup.saga';
 import { watchCustomerUserSaga } from './customer-user/customer-user.saga';
-import { watchProfileUpdateUserSaga } from './customer-profile-update/customer-profile-update.saga';
-import { watchSignUpExpertSaga } from './expert-signup/expert-signup.saga';
+import { watchExpertDashboardSaga } from './expert-dashboard/expert-dashboard.saga';
 import { watchLoginExpertSaga } from './expert-login/expert-login.saga';
 import { watchLogoutExpertSaga } from './expert-logout/expert-logout.saga';
-import { watchExpertDashboardSaga } from './expert-dashboard/expert-dashboard.saga';
+import { watchProfileUpdateExpertSaga } from './expert-profile-update/expert-profile-update.saga';
 import { watchExpertUserSaga } from './expert-user/expert-user.saga';
+import { watchProfileUpdateUserSaga } from './customer-profile-update/customer-profile-update.saga';
+import { watchSignUpExpertSaga } from './expert-signup/expert-signup.saga';
 
 export function* rootSaga() {
     yield all([
@@ -24,5 +25,7 @@ export function* rootSaga() {
         watchLogoutExpertSaga(),
         watchExpertDashboardSaga(),
         watchExpertUserSaga(),
+        watchSignUpExpertSaga(),
+        watchProfileUpdateExpertSaga(),
     ]);
 }

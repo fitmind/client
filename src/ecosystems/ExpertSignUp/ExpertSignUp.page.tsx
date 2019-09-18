@@ -249,7 +249,7 @@ export class ExpertSignUpPage extends React.Component<ExpertSignUpPageAllProps> 
                                                     <Form.Group key={day}>
                                                         <Form.Label column={true}>{day} Availability</Form.Label>
                                                         <Select
-                                                            value={values.weeklyAvailability[day]}
+                                                            value={values.weeklyAvailability[day.toLowerCase()]}
                                                             onChange={evt => {
                                                                 setFieldValue(
                                                                     `weeklyAvailability.${day.toLocaleLowerCase()}`,

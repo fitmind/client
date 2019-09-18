@@ -7,14 +7,14 @@ import { setExpertUserAction } from '../../actions/server/server.actions';
 import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/ui/ui.actions';
 import { apiGetExpertMe } from '../../api';
 import { ExpertUserExampleResponse } from '../../reducers/server-reducer/server-example-responses/expert-me-example-response';
-import { fetchExpertUserSaga, userFetchFailedNotification } from './expert-user.saga';
+import { fetchExpertUserSaga, mapFetchExpertResponse, userFetchFailedNotification } from './expert-user.saga';
 
 describe('expert user saga', () => {
     it('it fetches user', () => {
         return expectSaga(fetchExpertUserSaga)
             .provide([[call(apiGetExpertMe), { json: () => ExpertUserExampleResponse, status: 200 }]])
             .put(setLoadingTrue())
-            .put(setExpertUserAction(ExpertUserExampleResponse))
+            .put(setExpertUserAction(mapFetchExpertResponse(ExpertUserExampleResponse)))
             .put(setLoadingFalse())
             .run();
     });

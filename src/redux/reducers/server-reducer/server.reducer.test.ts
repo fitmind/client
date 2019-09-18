@@ -23,8 +23,7 @@ describe('server reducer', () => {
 
     it('should handle Set Customer Dashboard action', () => {
         const expectedResponse = {
-            expertUser: {},
-            customerUser: {},
+            ...ServerInitialState,
             customerDashboard: CustomerDashboardExampleResponse,
         };
         expect(ServerReducer(ServerInitialState, setCustomerDashboardAction(CustomerDashboardExampleResponse))).toEqual(
@@ -38,9 +37,7 @@ describe('server reducer', () => {
 
     it('should handle User Logout Success action', () => {
         const expectedResponse = {
-            expertUser: {},
-            customerUser: {},
-            customerDashboard: {},
+            ...ServerInitialState,
         };
         expect(ServerReducer(ServerInitialState, userLogoutSuccessAction())).toEqual(expectedResponse);
     });
@@ -62,9 +59,7 @@ describe('server reducer', () => {
 
     it('should handle Set Expert Dashboard action', () => {
         const expectedResponse = {
-            expertUser: {},
-            customerUser: {},
-            customerDashboard: {},
+            ...ServerInitialState,
             expertDashboard: ExpertDashboardExampleResponse,
         };
         expect(ServerReducer(ServerInitialState, setExpertDashboardAction(ExpertDashboardExampleResponse))).toEqual(

@@ -22,6 +22,7 @@ export const ServerActions = {
     FETCH_EXPERT_USER: 'FETCH_EXPERT_USER',
     FETCH_EXPERT_DASHBOARD: 'FETCH_EXPERT_DASHBOARD',
     SET_EXPERT_DASHBOARD: 'SET_EXPERT_DASHBOARD',
+    PROFILE_UPDATE_EXPERT_USER: 'PROFILE_UPDATE_EXPERT_USER',
 };
 
 export interface ServerActionTypes {
@@ -244,4 +245,45 @@ export type fetchExpertUserActionInterface = Action<'FETCH_EXPERT_USER'>;
 
 export const fetchExpertUserAction = (): fetchExpertUserActionInterface => ({
     type: 'FETCH_EXPERT_USER',
+});
+
+export interface ExpertProfileUpdateActionInterface extends Action<'PROFILE_UPDATE_EXPERT_USER'> {
+    _id?: string;
+    firstName?: string;
+    lastName?: string;
+    description?: string;
+    phone?: string;
+    profilePictureUrl?: string;
+    isAnExpertIn?: string[];
+    weeklyAvailability?: {};
+}
+
+export const expertProfileUpdateAction = ({
+    _id,
+    firstName,
+    lastName,
+    description,
+    phone,
+    profilePictureUrl,
+    isAnExpertIn,
+    weeklyAvailability,
+}: {
+    _id?: string;
+    firstName?: string;
+    lastName?: string;
+    description?: string;
+    phone?: string;
+    profilePictureUrl?: string;
+    isAnExpertIn?: string[];
+    weeklyAvailability?: {};
+}): ExpertProfileUpdateActionInterface => ({
+    type: 'PROFILE_UPDATE_EXPERT_USER',
+    _id,
+    firstName,
+    lastName,
+    description,
+    phone,
+    profilePictureUrl,
+    isAnExpertIn,
+    weeklyAvailability,
 });

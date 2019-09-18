@@ -3,6 +3,7 @@ import { CustomerLoginResponse } from '../interfaces/responses/customer-login-re
 import {
     CustomerProfileUpdateActionInterface,
     ExpertLoginActionInterface,
+    ExpertProfileUpdateActionInterface,
     UserLoginActionInterface,
 } from './actions/server/server.actions';
 import { ExpertLoginResponse } from '../interfaces/responses/expert-login-response';
@@ -144,5 +145,23 @@ export async function apiGetExpertDashboard() {
         mode,
         credentials,
         headers: { Accept: 'application/json' },
+    });
+}
+
+export async function apiProfileUpdateExpertUser(action: ExpertProfileUpdateActionInterface) {
+    return await fetch(`${API_URL}/expert/me`, {
+        method: 'put',
+        mode,
+        credentials,
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            firstName: action.firstName,
+            lastName: action.lastName,
+            isAnExpertIn: action.isAnExpertIn,
+            description: action.description,
+            phone: action.phone,
+            profilePictureUrl: action.profilePictureUrl,
+            weeklyAvailability: action.weeklyAvailability,
+        }),
     });
 }
