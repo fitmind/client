@@ -9,6 +9,8 @@ const CONFIG = {
         customerSignUp: '/register',
         customerDashboard: '/dashboard',
         customerProfileUpdate: '/edit',
+        singleBooking: '/booking/:id',
+        NavigateToBooking: (id: string): string => `/booking/${id}`,
         expert: '/expert/:id',
         expertLogin: '/experts-login',
         expertSignUp: '/experts-register',

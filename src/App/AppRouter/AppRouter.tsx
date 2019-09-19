@@ -17,6 +17,7 @@ import ListingSinglePage from '../../ecosystems/ListingsSingle/ListingsSingle.pa
 import ExpertPublicPage from '../../ecosystems/ExpertPublicPage/ExpertPublicPage';
 import NotFoundPage from '../../ecosystems/NotFound/NotFound.page';
 import NavBar from '../../molecules/Navbar/Navbar';
+import BookingPage from '../../ecosystems/BookingPage/BookingPage';
 
 const AppRouter: React.FC = () => (
     <div>
@@ -35,6 +36,7 @@ const AppRouter: React.FC = () => (
             <Route path={CONFIG.routes.expertProfileUpdate} exact component={ExpertProfileUpdate} />
             <Route path={CONFIG.routes.listings} exact component={ListingsPage} />
             <Route path={CONFIG.routes.listing} exact component={ListingSinglePage} />
+            <Route path={CONFIG.routes.singleBooking} exact component={BookingPage} />
             <Route path={CONFIG.routes.expertPublicPage} exact component={ExpertPublicPage} />
             <Route component={NotFoundPage} />
         </Switch>

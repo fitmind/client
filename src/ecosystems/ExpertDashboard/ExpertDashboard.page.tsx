@@ -9,6 +9,7 @@ import { ApplicationState, ConnectedReduxProps } from '../../redux/reducers/root
 import { expertDashboardInterface, expertUserInterface } from '../../redux/reducers/server-reducer/server.reducer';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
 import Header from '../../atoms/Header/Header';
+import CONFIG from '../../config/config';
 
 interface PropsFromState {
     expertUser: expertUserInterface;
@@ -33,7 +34,11 @@ export class ExpertDashboard extends React.Component<ExpertDashboardPageAllProps
 
         bookings.forEach((booking, index) => {
             rows.push(
-                <tr key={booking._id}>
+                <tr
+                    key={booking._id}
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => this.props.history.push(CONFIG.routes.NavigateToBooking(booking._id))}
+                >
                     <td>{index + 1}</td>
                     <td>{booking.client}</td>
                     <td>{booking.time}</td>
@@ -50,7 +55,11 @@ export class ExpertDashboard extends React.Component<ExpertDashboardPageAllProps
 
         listings.forEach((listing, index) => {
             rows.push(
-                <tr key={listing._id}>
+                <tr
+                    key={listing._id}
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => this.props.history.push(CONFIG.routes.listingId(listing._id))}
+                >
                     <td>{index + 1}</td>
                     <td>{listing.name}</td>
                     <td>{listing.description}</td>
@@ -76,7 +85,7 @@ export class ExpertDashboard extends React.Component<ExpertDashboardPageAllProps
                     <Col md={1} />
                     <Col md={10} className={'mt-5'}>
                         <h3>Current Listings Live</h3>
-                        <Table responsive="md">
+                        <Table responsive="md" hover bordered>
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -92,7 +101,7 @@ export class ExpertDashboard extends React.Component<ExpertDashboardPageAllProps
                             </tbody>
                         </Table>
                         <h3>Upcoming appointments</h3>
-                        <Table responsive="md">
+                        <Table responsive="md" hover bordered>
                             <thead>
                                 <tr>
                                     <th>#</th>

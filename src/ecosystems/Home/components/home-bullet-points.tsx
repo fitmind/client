@@ -35,28 +35,38 @@ const bulletPoints = [
 ];
 
 const BulletGrid = styled.div`
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 200px 200px;
-    margin-top: 4rem;
-    padding: 2rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 768px) {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 200px 200px;
+        margin-top: 4rem;
+        padding: 2rem;
+    }
 `;
 
 const Bullet = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
 `;
 
 const BulletInner = styled.div`
     display: flex;
     flex-direction: column;
-    padding-right: 4rem;
+    padding: 2rem;
 `;
 
 const Icon = styled.img`
-    height: 4rem;
-    width: 4rem;
-    margin-right: 2rem;
+    display: none;
+    @media (min-width: 768px) {
+        display: block;
+        height: 4rem;
+        width: 4rem;
+    }
 `;
 
 const HomeBulletPoints = () => (
