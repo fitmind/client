@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Card, CardDeck } from 'react-bootstrap';
 import foodImg from '../../../assets/images/food.png';
 import laptopImg from '../../../assets/images/laptop.png';
+import Header from '../../../atoms/Header/Header';
 
 const options = [
     {
@@ -26,8 +27,14 @@ const options = [
     },
 ];
 
+const style = {
+    backgroundColor: '#f8f9fa',
+    paddingTop: '2rem',
+};
+
 const HomeOptions = () => (
-    <Container fluid>
+    <Container fluid style={style}>
+        <Header as={'h2'}>Blog</Header>
         <CardDeck>
             {options.map((option, i) => (
                 <Card key={i} className={`mt-3 mb-5`} style={{ cursor: 'pointer' }}>

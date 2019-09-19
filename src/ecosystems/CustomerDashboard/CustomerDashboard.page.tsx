@@ -9,6 +9,7 @@ import { fetchCustomerDashboardAction, fetchCustomerUserAction } from '../../red
 import { bookingInterface } from '../../interfaces/responses/customer-dashboard-response';
 import Header from '../../atoms/Header/Header';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
+import CONFIG from '../../config/config';
 
 interface PropsFromState {
     customerUser: customerUserInterface;
@@ -31,10 +32,14 @@ export class CustomerDashboard extends React.Component<CustomerDashboardPageAllP
     public renderBookings = (bookings: bookingInterface[]) => {
         const rows = [];
 
-        bookings.forEach((booking, index) => {
+        bookings.forEach(booking => {
             rows.push(
-                <tr key={booking._id}>
-                    <td>{index + 1}</td>
+                <tr
+                    key={booking._id}
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => this.props.history.push(CONFIG.routes.NavigateToBooking(booking._id))}
+                >
+                    <td>{booking._id}</td>
                     <td>{booking.client}</td>
                     <td>{booking.time}</td>
                     <td>{booking.email}</td>
@@ -61,7 +66,7 @@ export class CustomerDashboard extends React.Component<CustomerDashboardPageAllP
                     <Col md={1} />
                     <Col md={10}>
                         <h3>Upcoming Appointments</h3>
-                        <Table responsive="md">
+                        <Table responsive="md" hover bordered>
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -79,7 +84,7 @@ export class CustomerDashboard extends React.Component<CustomerDashboardPageAllP
                             </tbody>
                         </Table>
                         <h3>Past Appointments</h3>
-                        <Table responsive="md">
+                        <Table responsive="md" hover bordered>
                             <thead>
                                 <tr>
                                     <th>#</th>
