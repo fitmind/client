@@ -58,7 +58,7 @@ export class ExpertDashboard extends React.Component<ExpertDashboardPageAllProps
                 <tr
                     key={listing._id}
                     style={{ cursor: 'pointer' }}
-                    onClick={() => this.props.history.push(CONFIG.routes.listingId(listing._id))}
+                    onClick={() => this.props.history.push(CONFIG.routes.navigateTolistingUpdate(listing._id))}
                 >
                     <td>{index + 1}</td>
                     <td>{listing.name}</td>
@@ -83,9 +83,10 @@ export class ExpertDashboard extends React.Component<ExpertDashboardPageAllProps
                 </Jumbotron>
                 <Row>
                     <Col md={1} />
-                    <Col md={10} className={'mt-5'}>
+                    <Col md={10} className={'mt-5 mb-5'}>
                         <h3>Current Listings Live</h3>
-                        <Table responsive="md" hover bordered>
+                        <Paragraph as={'sm'}>Click on one of the listings to update it</Paragraph>
+                        <Table responsive="md" hover bordered className={'mb-5'}>
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -101,6 +102,7 @@ export class ExpertDashboard extends React.Component<ExpertDashboardPageAllProps
                             </tbody>
                         </Table>
                         <h3>Upcoming appointments</h3>
+                        <Paragraph as={'sm'}>Click on one of the bookings to update it</Paragraph>
                         <Table responsive="md" hover bordered>
                             <thead>
                                 <tr>

@@ -64,8 +64,9 @@ export class CustomerDashboard extends React.Component<CustomerDashboardPageAllP
                 </Jumbotron>
                 <Row className={'mt-4'}>
                     <Col md={1} />
-                    <Col md={10}>
+                    <Col md={10} className={'mb-3'}>
                         <h3>Upcoming Appointments</h3>
+                        <Paragraph as={'sm'}>Click on one of the bookings to update it</Paragraph>
                         <Table responsive="md" hover bordered>
                             <thead>
                                 <tr>
@@ -84,6 +85,7 @@ export class CustomerDashboard extends React.Component<CustomerDashboardPageAllP
                             </tbody>
                         </Table>
                         <h3>Past Appointments</h3>
+                        <Paragraph as={'sm'}>Click on one of the bookings to view it</Paragraph>
                         <Table responsive="md" hover bordered>
                             <thead>
                                 <tr>

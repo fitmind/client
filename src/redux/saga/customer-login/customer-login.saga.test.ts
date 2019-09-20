@@ -21,7 +21,7 @@ describe('customer login saga', () => {
         return expectSaga(loginUserSaga, apiLoginCustomerUser)
             .provide([
                 [matchers.call.fn(apiLoginCustomerUser), CustomerLoginExampleResponse],
-                [matchers.call.fn(apiGetUserMe), CustomerUserExampleResponse],
+                [matchers.call.fn(apiGetUserMe), { json: () => CustomerUserExampleResponse, status: 200 }],
             ])
             .put(setLoadingTrue())
             .put(setCustomerUserAction(CustomerUserExampleResponse))

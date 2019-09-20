@@ -85,6 +85,15 @@ const NavBar: React.FC<allProps> = ({
             )}
             {expertUser._id && (
                 <Button
+                    variant="outline-success"
+                    className="mr-2"
+                    onClick={() => history.push(CONFIG.routes.listingCreate)}
+                >
+                    Create Listing
+                </Button>
+            )}
+            {expertUser._id && (
+                <Button
                     variant="outline-secondary"
                     className="mr-2"
                     onClick={() => history.push(CONFIG.routes.expertProfileUpdate)}

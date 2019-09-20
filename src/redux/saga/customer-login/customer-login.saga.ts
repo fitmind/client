@@ -3,7 +3,6 @@ import { push } from 'connected-react-router';
 import { ServerActions, setCustomerUserAction, UserLoginActionInterface } from '../../actions/server/server.actions';
 import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/ui/ui.actions';
 import { apiLoginCustomerUser, apiGetUserMe } from '../../api';
-import { CustomerUserResponse } from '../../../interfaces/responses/customer-user-response';
 import CONFIG from '../../../config/config';
 import { NotificationInterface, NotificationType } from '../../../interfaces/Notification.interface';
 import { CustomerLoginResponse } from '../../../interfaces/responses/customer-login-response';
@@ -27,8 +26,9 @@ export function* loginUserSaga(action: UserLoginActionInterface) {
         const loginResponse: CustomerLoginResponse = yield call(apiLoginCustomerUser, action);
         if (loginResponse) {
             try {
-                const userResponse: CustomerUserResponse = yield call(apiGetUserMe);
-                yield put(setCustomerUserAction(userResponse));
+                const userResponse = yield call(apiGetUserMe);
+                const resolved = yield userResponse.json();
+                yield put(setCustomerUserAction(resolved));
                 yield put(push(CONFIG.routes.customerDashboard));
                 yield put(setNotification(userLoginPositiveNotification));
             } catch (settingCustomerError) {
