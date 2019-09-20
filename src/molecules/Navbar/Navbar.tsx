@@ -79,8 +79,8 @@ const NavBar: React.FC<allProps> = ({
                 </Button>
             )}
             {customerUser._id && (
-                <Button variant="outline-secondary" onClick={() => userLogoutAction()}>
-                    Customer Logout
+                <Button variant="dark" onClick={() => userLogoutAction()}>
+                    Logout
                 </Button>
             )}
             {expertUser._id && (
@@ -102,8 +102,8 @@ const NavBar: React.FC<allProps> = ({
                 </Button>
             )}
             {expertUser._id && (
-                <Button variant="outline-secondary" onClick={() => expertLogoutAction()}>
-                    Expert Logout
+                <Button variant="dark" onClick={() => expertLogoutAction()}>
+                    Logout
                 </Button>
             )}
         </Navbar.Collapse>
