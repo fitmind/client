@@ -13,6 +13,7 @@ import {
     userLogoutSuccessAction,
     fetchExpertDashboardAction,
 } from './server.actions';
+import CONFIG from '../../../config/config';
 
 describe('server actions', () => {
     describe('userLoginAction', () => {
@@ -198,10 +199,9 @@ describe('server actions', () => {
                 approvedStatus: 'APPROVED',
                 createdAt: new Date().toISOString().slice(0, 10),
                 description: 'description',
-                expertise: ['PERSONAL_COACH', 'YOGA_COACH'],
+                isAnExpertIn: ['PERSONAL_COACH', 'YOGA_COACH'],
                 phone: '123123123',
-                pictureUrl:
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBx76lQwzW2cAsjz5JqgVp_ReTpVji6G_pMO6crXSJn9NETq3F',
+                pictureUrl: CONFIG.testingPictureUrl,
                 weeklyAvailability: {
                     monday: [{ value: '00:00', label: '00:00' }],
                     tuesday: [{ value: '00:00', label: '00:00' }],

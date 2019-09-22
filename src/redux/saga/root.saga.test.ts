@@ -3,7 +3,7 @@ import { watchCustomerDashboardSaga } from './customer-dashboard/customer-dashbo
 import { watchLoginUserSaga } from './customer-login/customer-login.saga';
 import { watchLogoutUserSaga } from './customer-logout/customer-logout.saga';
 import { watchProfileUpdateUserSaga } from './customer-profile-update/customer-profile-update.saga';
-import { watchSignUpUserSaga } from './customer-signup/customer-signup.saga';
+import { watchSignUpUserSaga } from '../../ecosystems/customer-register/customer-register.saga';
 import { watchCustomerUserSaga } from './customer-user/customer-user.saga';
 import { watchLoginExpertSaga } from './expert-login/expert-login.saga';
 import { watchLogoutExpertSaga } from './expert-logout/expert-logout.saga';

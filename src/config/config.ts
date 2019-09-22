@@ -1,4 +1,5 @@
 const CONFIG = {
+    defaultHeaders: { Accept: 'application/json', 'Content-Type': 'application/json' },
     routes: {
         home: '/',
         listings: '/listings',
@@ -6,7 +7,7 @@ const CONFIG = {
         listingId: (id: string) => `/listing/${id}`,
         NavigateToListing: (id: number): string => `/listing/${id}`,
         customerLogin: '/login',
-        customerSignUp: '/register',
+        customerRegister: '/register',
         customerDashboard: '/dashboard',
         customerProfileUpdate: '/edit',
         singleBooking: '/booking/:id',
@@ -64,6 +65,7 @@ const CONFIG = {
         { value: '23:00', label: '23:00' },
     ],
     daysOfTheWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    testingPictureUrl: 'https://fitmind-dev.s3.eu-west-2.amazonaws.com/mock-images/daniel_photo.png',
 };
 
 export default CONFIG;

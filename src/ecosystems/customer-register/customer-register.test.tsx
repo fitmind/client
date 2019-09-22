@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import CustomerSignUpPage from './CustomerSignUp.page';
+import CustomerSignUpPage from './customer-register';
 import { Provider } from 'react-redux';
 import store, { history } from '../../redux/store';
 import { Router } from 'react-router';

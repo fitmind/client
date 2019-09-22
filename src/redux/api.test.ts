@@ -1,6 +1,5 @@
 import {
     customerProfileUpdateAction,
-    customerSignUpAction,
     expertLoginAction,
     expertSignUpAction,
     expertProfileUpdateAction,
@@ -16,7 +15,6 @@ import {
     apiLogoutCustomerUser,
     apiLogoutExpertUser,
     apiProfileUpdateCustomerUser,
-    apiSignUpCustomerUser,
     apiSignUpExpertUser,
     apiProfileUpdateExpertUser,
 } from './api';
@@ -30,7 +28,6 @@ import { CustomerLoginExampleResponse } from './reducers/server-reducer/server-e
 import { CustomerLogoutExampleResponse } from './reducers/server-reducer/server-example-responses/user-logout-example-response';
 import { CustomerUserExampleResponse } from './reducers/server-reducer/server-example-responses/user-me-example-response';
 import { CustomerProfileUpdateExampleResponse } from './reducers/server-reducer/server-example-responses/user-profile-update-example-response';
-import { CustomerSignUpExampleResponse } from './reducers/server-reducer/server-example-responses/user-signup-example-response';
 import { ExpertProfileUpdateExampleResponse } from './reducers/server-reducer/server-example-responses/expert-profile-update-example-response';
 
 describe('api', () => {
@@ -76,24 +73,6 @@ describe('api', () => {
         });
     });
 
-    test('api apiSignUpCustomerUser', done => {
-        const mockSignup = customerSignUpAction({
-            email: 'hello@fitmind.io',
-            firstName: 'Fitmind',
-            lastName: 'User',
-            password: 'asd@123',
-            interestedInExpertiseAreas: ['YOGA_TEACHER'],
-            description: 'blahblah',
-            phone: '123123123',
-        });
-        window.fetch = jest
-            .fn()
-            .mockImplementation(() => Promise.resolve({ json: () => CustomerSignUpExampleResponse }));
-        apiSignUpCustomerUser(mockSignup).then(res => {
-            expect(res).toEqual(CustomerSignUpExampleResponse);
-            done();
-        });
-    });
     test('api apiProfileUpdateCustomerUser', done => {
         const mockSignup = customerProfileUpdateAction({
             _id: '12312',
