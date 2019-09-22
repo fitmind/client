@@ -2,7 +2,7 @@ import { all } from 'redux-saga/effects';
 import { watchCustomerDashboardSaga } from './customer-dashboard/customer-dashboard.saga';
 import { watchLoginUserSaga } from './customer-login/customer-login.saga';
 import { watchLogoutUserSaga } from './customer-logout/customer-logout.saga';
-import { watchSignUpUserSaga } from './customer-signup/customer-signup.saga';
+import { watchSignUpUserSaga } from '../../ecosystems/customer-register/customer-register.saga';
 import { watchCustomerUserSaga } from './customer-user/customer-user.saga';
 import { watchExpertDashboardSaga } from './expert-dashboard/expert-dashboard.saga';
 import { watchLoginExpertSaga } from './expert-login/expert-login.saga';

@@ -6,7 +6,6 @@ import CONFIG from '../../config/config';
 import CustomerDashboard from '../../ecosystems/CustomerDashboard/CustomerDashboard.page';
 import LoginPage from '../../ecosystems/CustomerLogin/Login.page';
 import CustomerProfileUpdatePage from '../../ecosystems/CustomerProfileUpdate/CustomerProfileUpdate.page';
-import CustomerSignUpPage from '../../ecosystems/CustomerSignUp/CustomerSignUp.page';
 import ExpertDashboardPage from '../../ecosystems/ExpertDashboard/ExpertDashboard.page';
 import ExpertLoginPage from '../../ecosystems/ExpertLogin/ExpertLogin.page';
 import ExpertProfileUpdate from '../../ecosystems/ExpertProfileUpdate/ExpertProfileUpdate.page';
@@ -18,6 +17,7 @@ import ExpertPublicPage from '../../ecosystems/ExpertPublicPage/ExpertPublicPage
 import NotFoundPage from '../../ecosystems/NotFound/NotFound.page';
 import NavBar from '../../molecules/Navbar/Navbar';
 import BookingPage from '../../ecosystems/BookingPage/BookingPage';
+import CustomerRegister from '../../ecosystems/customer-register/customer-register';
 
 const AppRouter: React.FC = () => (
     <div>
@@ -29,7 +29,7 @@ const AppRouter: React.FC = () => (
             <Route path={CONFIG.routes.customerLogin} exact component={LoginPage} />
             <Route path={CONFIG.routes.customerProfileUpdate} exact component={CustomerProfileUpdatePage} />
             <Route path={CONFIG.routes.customerDashboard} exact component={CustomerDashboard} />
-            <Route path={CONFIG.routes.customerSignUp} exact component={CustomerSignUpPage} />
+            <Route path={CONFIG.routes.customerRegister} exact component={CustomerRegister} />
             <Route path={CONFIG.routes.expertLogin} exact component={ExpertLoginPage} />
             <Route path={CONFIG.routes.expertDashboard} exact component={ExpertDashboardPage} />
             <Route path={CONFIG.routes.expertSignUp} exact component={ExpertSignUpPage} />

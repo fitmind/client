@@ -3,6 +3,7 @@ import { CustomerDashboardResponse } from '../../../interfaces/responses/custome
 import { CustomerUserResponse } from '../../../interfaces/responses/customer-user-response';
 import { ExpertDashboardResponse } from '../../../interfaces/responses/expert-dashboard-response';
 import { ExpertUserResponse } from '../../../interfaces/responses/expert-user-response';
+import { REGISTER_CUSTOMER_USER } from '../../../ecosystems/customer-register/customer-register.actions';
 
 export const ServerActions = {
     LOGIN_CUSTOMER_USER: 'LOGIN_CUSTOMER_USER',
@@ -10,7 +11,7 @@ export const ServerActions = {
     FETCH_CUSTOMER_USER: 'FETCH_CUSTOMER_USER',
     FETCH_CUSTOMER_DASHBOARD: 'FETCH_CUSTOMER_DASHBOARD',
     SET_CUSTOMER_DASHBOARD: 'SET_CUSTOMER_DASHBOARD',
-    SIGNUP_CUSTOMER_USER: 'SIGNUP_CUSTOMER_USER',
+    REGISTER_CUSTOMER_USER,
     LOGOUT_USER: 'LOGOUT_USER',
     LOGOUT_EXPERT: 'LOGOUT_EXPERT',
     LOGOUT_USER_SUCCESS: 'LOGOUT_USER_SUCCESS',
@@ -75,43 +76,6 @@ export const setCustomerDashboardAction = (
 ): setCustomerDashboardActionInterface => ({
     type: 'SET_CUSTOMER_DASHBOARD',
     customerDashboard,
-});
-
-export interface CustomerSignUpActionInterface extends Action<'SIGNUP_CUSTOMER_USER'> {
-    email: string;
-    firstName: string;
-    lastName: string;
-    password: string;
-    interestedInExpertiseAreas: [{ value: string; label: string }];
-    description: string;
-    phone: string;
-}
-
-export const customerSignUpAction = ({
-    email,
-    firstName,
-    lastName,
-    password,
-    interestedInExpertiseAreas,
-    description,
-    phone,
-}: {
-    email: string;
-    firstName: string;
-    lastName: string;
-    password: string;
-    interestedInExpertiseAreas?: [{ value: string; label: string }] | any;
-    description: string;
-    phone: string;
-}): CustomerSignUpActionInterface => ({
-    type: 'SIGNUP_CUSTOMER_USER',
-    email,
-    firstName,
-    lastName,
-    password,
-    interestedInExpertiseAreas,
-    description,
-    phone,
 });
 
 export interface CustomerProfileUpdateActionInterface extends Action<'PROFILE_UPDATE_CUSTOMER_USER'> {

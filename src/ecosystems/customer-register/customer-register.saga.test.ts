@@ -1,24 +1,22 @@
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
-import { apiSignUpCustomerUser } from '../../api';
 import {
     signUpCustomerSaga,
-    userSignUpPositiveNotification,
-    userSignUpFailedNotification,
-} from './customer-signup.saga';
-import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/ui/ui.actions';
+    apiRegisterCustomerUser,
+    registerPositiveNotification,
+    registerNegativeNotification,
+} from './customer-register.saga';
+import { setLoadingFalse, setLoadingTrue, setNotification } from '../../redux/actions/ui/ui.actions';
 import { push } from 'connected-react-router';
-import CONFIG from '../../../config/config';
+import CONFIG from '../../config/config';
 import { throwError } from 'redux-saga-test-plan/providers';
-import { CustomerSignUpExampleResponse } from '../../reducers/server-reducer/server-example-responses/user-signup-example-response';
 
 describe('customer Sign up saga', () => {
     it('it signs up', () => {
-        // @ts-ignore
         return expectSaga(signUpCustomerSaga)
-            .provide([[matchers.call.fn(apiSignUpCustomerUser), CustomerSignUpExampleResponse]])
+            .provide([[matchers.call.fn(apiRegisterCustomerUser), { status: 201 }]])
             .put(setLoadingTrue())
-            .put(setNotification(userSignUpPositiveNotification))
+            .put(setNotification(registerPositiveNotification))
             .put(push(CONFIG.routes.customerLogin))
             .put(setLoadingFalse())
             .run();
@@ -28,9 +26,9 @@ describe('customer Sign up saga', () => {
         const error = new Error('error');
         it('should fail when the login response fails', () => {
             return expectSaga(signUpCustomerSaga)
-                .provide([[matchers.call.fn(apiSignUpCustomerUser), throwError(error)]])
+                .provide([[matchers.call.fn(apiRegisterCustomerUser), throwError(error)]])
                 .put(setLoadingTrue())
-                .put(setNotification(userSignUpFailedNotification))
+                .put(setNotification(registerNegativeNotification))
                 .put(setLoadingFalse())
                 .run();
         });

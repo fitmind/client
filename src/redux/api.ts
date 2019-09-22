@@ -55,23 +55,6 @@ export async function apiLogoutCustomerUser() {
     return await res.json();
 }
 
-export async function apiSignUpCustomerUser(action) {
-    const res = await fetch(`${API_URL}/user/register`, {
-        method: 'post',
-        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            email: action.email,
-            firstName: action.firstName,
-            lastName: action.lastName,
-            password: action.password,
-            interestedInExpertiseAreas: action.interestedInExpertiseAreas,
-            description: action.description,
-            phone: action.phone,
-        }),
-    });
-    return res.json();
-}
-
 export async function apiSignUpExpertUser(action) {
     const res = await fetch(`${API_URL}/expert/register`, {
         method: 'post',
