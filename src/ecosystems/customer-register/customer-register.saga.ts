@@ -1,9 +1,9 @@
 import { call, put, takeEvery, delay } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
-import { ServerActions } from '../../redux/actions/server/server.actions';
+import { serverActions } from '../../redux/actions/server/server.actions';
 import { clearNotification, setLoadingFalse, setLoadingTrue, setNotification } from '../../redux/actions/ui/ui.actions';
 import CONFIG from '../../config/config';
-import { NotificationType } from '../../interfaces/Notification.interface';
+import { NotificationType } from '../../interfaces/notification';
 import { createNotification } from '../../utils/create-notification';
 import { customerRegisterActionInterface } from './customer-register.actions';
 import { omit } from 'ramda';
@@ -65,5 +65,5 @@ export function* signUpCustomerSaga(action: customerRegisterActionInterface) {
 }
 
 export function* watchSignUpUserSaga() {
-    yield takeEvery(ServerActions.REGISTER_CUSTOMER_USER, signUpCustomerSaga);
+    yield takeEvery(serverActions.REGISTER_CUSTOMER_USER, signUpCustomerSaga);
 }

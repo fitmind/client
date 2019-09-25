@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { NotificationInterface } from '../../../interfaces/Notification.interface';
+import { Notification } from '../../../interfaces/notification';
 
 export const UIActions = {
     LOADING_FALSE: 'LOADING_FALSE',
@@ -12,7 +12,7 @@ export const UIActions = {
 export interface UiActionTypes {
     type: string;
     errorMessage?: string;
-    notification?: NotificationInterface;
+    notification?: Notification;
 }
 
 export type setLoadingFalseAction = Action<'LOADING_FALSE'>;
@@ -36,10 +36,10 @@ export const setErrorMessage = (errorMessage: string): SetErrorMessageType => ({
 });
 
 export interface SetNotificationInterface extends Action<'SET_NOTIFICATION'> {
-    notification: NotificationInterface;
+    notification: Notification;
 }
 
-export const setNotification = (notification: NotificationInterface): SetNotificationInterface => ({
+export const setNotification = (notification: Notification): SetNotificationInterface => ({
     type: 'SET_NOTIFICATION',
     notification,
 });

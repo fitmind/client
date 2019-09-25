@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { ApplicationState } from '../../redux/reducers/root.reducer';
 import { Alert } from 'react-bootstrap';
 import styled from 'styled-components';
-import { NotificationInterface, NotificationType } from '../../interfaces/Notification.interface';
+import { NotificationType, Notification } from '../../interfaces/notification';
 
 interface PropsFromState {
-    notification: NotificationInterface;
+    notification: Notification;
 }
 
-const PositiveAlertDismissible: React.FC<NotificationInterface> = ({ header, body }) => {
+const PositiveAlertDismissible: React.FC<Notification> = ({ header, body }) => {
     const [show, setShow] = useState(true);
     return (
         show && (
@@ -21,7 +21,7 @@ const PositiveAlertDismissible: React.FC<NotificationInterface> = ({ header, bod
     );
 };
 
-const NegativeAlertDismissible: React.FC<NotificationInterface> = ({ header, body }) => {
+const NegativeAlertDismissible: React.FC<Notification> = ({ header, body }) => {
     const [show, setShow] = useState(true);
 
     return (
@@ -34,7 +34,7 @@ const NegativeAlertDismissible: React.FC<NotificationInterface> = ({ header, bod
     );
 };
 
-const Notification: React.FC<PropsFromState> = ({ notification }) => (
+const NotificationComponent: React.FC<PropsFromState> = ({ notification }) => (
     <Wrapper>
         {notification.type === NotificationType.positive && <PositiveAlertDismissible {...notification} />}
         {notification.type === NotificationType.negative && <NegativeAlertDismissible {...notification} />}
@@ -48,7 +48,7 @@ const mapStateToProps = (state: ApplicationState) => ({
 export default connect(
     mapStateToProps,
     null,
-)(Notification);
+)(NotificationComponent);
 
 const Wrapper = styled.div`
     text-align: center;
