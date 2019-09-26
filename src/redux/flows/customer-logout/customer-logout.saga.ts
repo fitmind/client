@@ -1,10 +1,11 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
-import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/ui/ui.actions';
+import { setLoadingFalse, setLoadingTrue, setNotification } from '../../actions/ui.actions';
 import CONFIG from '../../../config/config';
 import { NotificationType } from '../../../interfaces/notification';
 import { createNotification } from '../../../utils/create-notification';
-import { serverActions } from '../../actions/server/server.actions';
+import { serverActions } from '../../actions/server.actions';
+import { deleteCustomerUser } from './customer-logout-action';
 
 const API_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -25,6 +26,7 @@ export function* logoutUserSaga() {
         const response = yield call(apiLogoutCustomerUser);
         const status = response.status;
         if (status === 200) {
+            yield put(deleteCustomerUser());
             yield put(push(CONFIG.routes.customerLogin));
         } else {
             yield put(setNotification(userLogoutNegativeNotification));

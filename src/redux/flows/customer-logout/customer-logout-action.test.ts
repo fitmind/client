@@ -1,4 +1,4 @@
-import { serverActions } from '../../actions/server/server.actions';
+import { serverActions } from '../../actions/server.actions';
 import { customerUserLogoutAction } from './customer-logout-action';
 
 describe('userLogoutAction', () => {

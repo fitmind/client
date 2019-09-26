@@ -1,4 +1,4 @@
-import { UIActions, UiActionTypes } from '../../actions/ui/ui.actions';
+import { UIActions, UiActionTypes } from '../../actions/ui.actions';
 import { Reducer } from 'redux';
 import { Notification, NotificationType } from '../../../interfaces/notification';
 

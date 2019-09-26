@@ -1,5 +1,5 @@
 import { UIReducer, UIInitialState, emptyNotification } from './ui.reducer';
-import { setLoadingTrue, setLoadingFalse, setErrorMessage } from '../../actions/ui/ui.actions';
+import { setLoadingTrue, setLoadingFalse, setErrorMessage } from '../../actions/ui.actions';
 
 describe('UI reducer', () => {
     const initialReducer = UIReducer(UIInitialState, { type: '' });
