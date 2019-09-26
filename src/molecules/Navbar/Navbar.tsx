@@ -6,19 +6,20 @@ import CONFIG from '../../config/config';
 import { ApplicationState } from '../../redux/reducers/root.reducer';
 import { customerUserLogoutAction } from '../../redux/flows/customer-logout/customer-logout-action';
 import { bindActionCreators } from 'redux';
-import { customerUser } from '../../interfaces/customer-user';
-import { expertUser } from '../../interfaces/expert-user';
+import { CustomerUser } from '../../interfaces/customer-user';
+import { ExpertUser } from '../../interfaces/expert-user';
 import { expertUserLogoutAction } from '../../redux/flows/expert-logout/expert-logout-action';
 
 interface PropsFromState {
-    customerUser: customerUser;
-    expertUser: expertUser;
+    customerUser: CustomerUser;
+    expertUser: ExpertUser;
 }
 
 interface PropsFromDispatch {
     customerUserLogoutAction: typeof customerUserLogoutAction;
     expertUserLogoutAction: typeof expertUserLogoutAction;
 }
+
 type allProps = PropsFromState & RouteComponentProps & PropsFromDispatch;
 
 const NavBar: React.FC<allProps> = ({

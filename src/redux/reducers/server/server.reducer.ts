@@ -1,14 +1,14 @@
 import { Reducer } from 'redux';
 import { serverActions, ServerActionTypes } from '../../actions/server.actions';
-import { customerUser } from '../../../interfaces/customer-user';
-import { expertUser } from '../../../interfaces/expert-user';
+import { CustomerUser } from '../../../interfaces/customer-user';
+import { ExpertUser } from '../../../interfaces/expert-user';
 
 export interface ServerStateInterface {
-    expertUser?: expertUser;
-    customerUser?: customerUser;
+    expertUser?: ExpertUser;
+    customerUser?: CustomerUser;
 }
 
-export const initialCustomerUser: customerUser = {
+export const initialCustomerUser: CustomerUser = {
     id: '',
     name: '',
     description: '',
@@ -19,7 +19,7 @@ export const initialCustomerUser: customerUser = {
     pictureUrl: '',
 };
 
-export const initialExpert: expertUser = {
+export const initialExpert: ExpertUser = {
     id: '',
     name: '',
     description: '',
@@ -54,6 +54,10 @@ export const ServerReducer: Reducer<ServerStateInterface> = (
             return { ...state, customerUser: action.customerUser };
         case serverActions.DELETE_CUSTOMER_USER:
             return { ...state, customerUser: initialCustomerUser };
+        case serverActions.SET_EXPERT_USER:
+            return { ...state, expertUser: action.expertUser };
+        case serverActions.DELETE_EXPERT_USER:
+            return { ...state, expertUser: initialExpert };
         default:
             return state;
     }

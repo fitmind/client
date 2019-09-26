@@ -5,6 +5,8 @@ import { watchLoginUserSaga } from '../ecosystems/customer-user/customer-login/c
 import { watchFetchCustomerUser } from '../ecosystems/customer-user/customer-dashboard/customer-dashboard.saga';
 import { watchExpertLoginSaga } from '../ecosystems/expert-user/expert-login/expert-login.saga';
 import { watchRegisterExpertSaga } from '../ecosystems/expert-user/expert-register/expert-register.saga';
+import { watchGetExpertUser } from '../ecosystems/expert-user/expert-dashboard/expert-dashboard.saga';
+import { watchLogoutExpertSaga } from './flows/expert-logout/expert-logout.saga';
 
 export function* rootSaga() {
     yield all([
@@ -17,5 +19,7 @@ export function* rootSaga() {
         // expert
         watchExpertLoginSaga(),
         watchRegisterExpertSaga(),
+        watchGetExpertUser(),
+        watchLogoutExpertSaga(),
     ]);
 }

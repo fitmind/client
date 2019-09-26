@@ -12,12 +12,12 @@ import {
     expertWrongDetails,
     loginExpertSaga,
 } from './expert-login.saga';
-import { BAD_REQUEST, NOT_FOUND, OK } from 'http-status-codes';
+import { BAD_REQUEST, CREATED, NOT_FOUND } from 'http-status-codes';
 
 describe('expert login saga', () => {
     it('if created CREATED', () => {
         return expectSaga(loginExpertSaga, apiLoginExpertUser)
-            .provide([[matchers.call.fn(apiLoginExpertUser), { status: OK }]])
+            .provide([[matchers.call.fn(apiLoginExpertUser), { status: CREATED }]])
             .put(setLoadingTrue())
             .put(push(CONFIG.routes.expertDashboard))
             .put(setNotification(expertLoginPositiveNotification))

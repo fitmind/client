@@ -3,10 +3,10 @@ import { Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ApplicationState, ConnectedReduxProps } from '../../../redux/reducers/root.reducer';
-import { customerUser } from '../../../interfaces/customer-user';
+import { CustomerUser } from '../../../interfaces/customer-user';
 
 interface PropsFromState {
-    customerUser: customerUser;
+    customerUser: CustomerUser;
 }
 
 // interface PropsFromDispatch {

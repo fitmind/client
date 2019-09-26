@@ -8,11 +8,12 @@ import Header from '../../../atoms/Header/Header';
 import Paragraph from '../../../atoms/Paragraph/Paragraph';
 import CONFIG from '../../../config/config';
 import { getCustomerUserAction } from './customer-dashboard.actions';
-import { customerUser } from '../../../interfaces/customer-user';
+import { CustomerUser } from '../../../interfaces/customer-user';
 import { Booking } from '../../../interfaces/booking';
+import { formatDate } from '../../../utils/format-date';
 
 interface PropsFromState {
-    customerUser: customerUser;
+    customerUser: CustomerUser;
 }
 
 interface PropsFromDispatch {
@@ -21,7 +22,7 @@ interface PropsFromDispatch {
 
 type CustomerDashboardPageAllProps = PropsFromDispatch & RouteComponentProps & ConnectedReduxProps & PropsFromState;
 
-function renderBookings(bookings: Booking[]) {
+function renderBookings(bookings: Booking[], history) {
     const rows = [];
 
     bookings.forEach(booking => {
@@ -29,17 +30,38 @@ function renderBookings(bookings: Booking[]) {
             <tr
                 key={booking._id}
                 style={{ cursor: 'pointer' }}
-                onClick={() => this.props.history.push(CONFIG.routes.NavigateToBooking(booking._id))}
+                onClick={() => history.push(CONFIG.routes.NavigateToBooking(booking._id))}
             >
-                <td>{booking._id}</td>
-                <td>{booking.time}</td>
+                <td>{formatDate(booking.time)}</td>
+                <td>{booking.listing.postCode}</td>
+                <td>{booking.listing.name}</td>
+                <td>{booking.listing.price}</td>
+                <td>{booking.expert.name}</td>
+                <td>{booking.listing.expertiseArea}</td>
             </tr>,
         );
     });
     return rows;
 }
 
-const CustomerDashboard: React.FC<CustomerDashboardPageAllProps> = ({ customerUser, getCustomerUserAction }) => {
+const renderHeaders = () => (
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Listing</th>
+            <th>Price</th>
+            <th>Expert</th>
+            <th>Expertise</th>
+        </tr>
+    </thead>
+);
+
+const CustomerDashboard: React.FC<CustomerDashboardPageAllProps> = ({
+    customerUser,
+    getCustomerUserAction,
+    history,
+}) => {
     useEffect(() => {
         getCustomerUserAction();
     }, [getCustomerUserAction]);
@@ -53,7 +75,7 @@ const CustomerDashboard: React.FC<CustomerDashboardPageAllProps> = ({ customerUs
                     insights on your improvements!
                 </Paragraph>
             </Jumbotron>
-            <Row className={'mt-4'}>
+            <Row className={'mt-4 mb-5'}>
                 <Col md={1} />
                 <Col md={10}>
                     {customerUser.futureBookings.length === 0 && (
@@ -65,17 +87,8 @@ const CustomerDashboard: React.FC<CustomerDashboardPageAllProps> = ({ customerUs
                         <div>
                             <h3>Upcoming Appointments</h3>
                             <Table responsive="md" hover bordered>
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Time</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {customerUser &&
-                                        customerUser.futureBookings &&
-                                        renderBookings(customerUser.futureBookings)}
-                                </tbody>
+                                {renderHeaders()}
+                                <tbody>{renderBookings(customerUser.futureBookings, history)}</tbody>
                             </Table>
                         </div>
                     )}
@@ -85,20 +98,11 @@ const CustomerDashboard: React.FC<CustomerDashboardPageAllProps> = ({ customerUs
                         </div>
                     )}
                     {customerUser.pastBookings.length > 0 && (
-                        <div>
+                        <div className={'mt-5'}>
                             <h3>Past Appointments</h3>
                             <Table responsive="md" hover bordered>
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Time</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {customerUser &&
-                                        customerUser.pastBookings &&
-                                        renderBookings(customerUser.pastBookings)}
-                                </tbody>
+                                {renderHeaders()}
+                                <tbody>{renderBookings(customerUser.pastBookings, history)}</tbody>
                             </Table>
                         </div>
                     )}
