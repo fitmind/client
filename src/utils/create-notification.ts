@@ -1,6 +1,6 @@
-import { NotificationInterface, NotificationType } from '../interfaces/Notification.interface';
+import { Notification, NotificationType } from '../interfaces/notification';
 
-export const createNotification = (type: NotificationType, body?: string): NotificationInterface => {
+export const createNotification = (type: NotificationType, body?: string): Notification => {
     return {
         type,
         body,

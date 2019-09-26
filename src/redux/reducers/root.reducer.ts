@@ -3,7 +3,7 @@ import { History } from 'history';
 import { connectRouter, RouterState } from 'connected-react-router';
 import { Dispatch } from 'react';
 import { UIReducer, UIInitialState, UIState } from './ui/ui.reducer';
-import { ServerReducer, ServerInitialState, ServerStateInterface } from './server-reducer/server.reducer';
+import { ServerReducer, ServerInitialState, ServerStateInterface } from './server/server.reducer';
 
 export interface ApplicationState {
     ui: UIState;
