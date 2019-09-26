@@ -33,6 +33,7 @@ function renderBookings(bookings: Booking[], history) {
                 onClick={() => history.push(CONFIG.routes.NavigateToBooking(booking._id))}
             >
                 <td>{formatDate(booking.time)}</td>
+                <td>{booking.listing.postCode}</td>
                 <td>{booking.listing.name}</td>
                 <td>{booking.listing.price}</td>
                 <td>{booking.expert.name}</td>
@@ -47,6 +48,7 @@ const renderHeaders = () => (
     <thead>
         <tr>
             <th>Time</th>
+            <th>Location</th>
             <th>Listing</th>
             <th>Price</th>
             <th>Expert</th>

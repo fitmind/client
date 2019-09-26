@@ -6,7 +6,7 @@ import CONFIG from '../../../config/config';
 import { push } from 'connected-react-router';
 import { serverActions } from '../../../redux/actions/server.actions';
 import { ExpertLoginAction } from './expert-login.actions';
-import { BAD_REQUEST, NOT_FOUND, OK } from 'http-status-codes';
+import { BAD_REQUEST, NOT_FOUND, CREATED } from 'http-status-codes';
 
 const mode = 'cors';
 const credentials = 'include';
@@ -42,7 +42,7 @@ export function* loginExpertSaga(action: ExpertLoginAction) {
         if (statusCode === NOT_FOUND) {
             yield put(setNotification(expertEmailNotFound));
         }
-        if (statusCode === OK) {
+        if (statusCode === CREATED) {
             try {
                 yield put(push(CONFIG.routes.expertDashboard));
                 yield put(setNotification(expertLoginPositiveNotification));

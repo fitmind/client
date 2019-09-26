@@ -9,6 +9,7 @@ import Header from '../../../atoms/Header/Header';
 import Paragraph from '../../../atoms/Paragraph/Paragraph';
 import { Booking } from '../../../interfaces/booking';
 import CONFIG from '../../../config/config';
+import { formatDate } from '../../../utils/format-date';
 
 interface PropsFromState {
     expertUser: ExpertUser;
@@ -30,13 +31,30 @@ function renderBookings(bookings: Booking[], history) {
                 style={{ cursor: 'pointer' }}
                 onClick={() => history.push(CONFIG.routes.NavigateToBooking(booking._id))}
             >
-                <td>{booking._id}</td>
-                <td>{booking.time}</td>
+                <td>{formatDate(booking.time)}</td>
+                <td>{booking.listing.postCode}</td>
+                <td>{booking.listing.name}</td>
+                <td>{booking.listing.price}</td>
+                <td>{booking.customer.name}</td>
+                <td>{booking.listing.expertiseArea}</td>
             </tr>,
         );
     });
     return rows;
 }
+
+const renderHeaders = () => (
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Listing</th>
+            <th>Price</th>
+            <th>Customer</th>
+            <th>Expertise</th>
+        </tr>
+    </thead>
+);
 
 const ExpertDashboard: React.FC<ExpertDashboardPageAllProps> = ({ getExpertUserAction, expertUser, history }) => {
     useEffect(() => {
@@ -71,7 +89,7 @@ const ExpertDashboard: React.FC<ExpertDashboardPageAllProps> = ({ getExpertUserA
                             Here you will be able to look at your upcoming and past appointments.
                         </Paragraph>
                     </Jumbotron>
-                    <Row className={'mt-4'}>
+                    <Row className={'mt-5 mb-5'}>
                         <Col md={1} />
                         <Col md={10}>
                             {expertUser.futureBookings.length === 0 && (
@@ -83,12 +101,7 @@ const ExpertDashboard: React.FC<ExpertDashboardPageAllProps> = ({ getExpertUserA
                                 <div>
                                     <h3>Upcoming Appointments</h3>
                                     <Table responsive="md" hover bordered>
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Time</th>
-                                            </tr>
-                                        </thead>
+                                        {renderHeaders()}
                                         <tbody>
                                             {expertUser &&
                                                 expertUser.futureBookings &&
@@ -103,15 +116,10 @@ const ExpertDashboard: React.FC<ExpertDashboardPageAllProps> = ({ getExpertUserA
                                 </div>
                             )}
                             {expertUser.pastBookings.length > 0 && (
-                                <div>
+                                <div className={'mt-5'}>
                                     <h3>Past Appointments</h3>
                                     <Table responsive="md" hover bordered>
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Time</th>
-                                            </tr>
-                                        </thead>
+                                        {renderHeaders()}
                                         <tbody>
                                             {expertUser &&
                                                 expertUser.pastBookings &&
