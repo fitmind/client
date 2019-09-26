@@ -1,6 +1,6 @@
 import { Booking } from './booking';
 
-export interface expertUser {
+export interface ExpertUser {
     id: string;
     name: string;
     description: string;

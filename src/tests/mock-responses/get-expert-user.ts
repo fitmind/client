@@ -1,13 +1,21 @@
-import CONFIG from '../../config/config';
-import { CustomerUser } from '../../interfaces/customer-user';
+import { ExpertUser } from '../../interfaces/expert-user';
 
-export const getUserMockResponse: CustomerUser = {
-    id: '5d6fa91a082a80094132a661',
-    name: 'an updated name4',
-    email: 'diegoromero.audio2@gmail.com',
+export const getExpertUserMockResponse: ExpertUser = {
+    id: '5d6f9e05448e9506db043104',
+    name: 'Diego',
+    email: 'diegoromero.audio@gmail.com',
     description: 'some long string',
-    pictureUrl: CONFIG.testingPictureUrl,
-    interestedInExpertiseAreas: ['PERSONAL_COACH', 'YOGA_COACH'],
+    isAnExpertIn: ['PERSONAL_COACH', 'YOGA_COACH'],
+    weeklyAvailability: {
+        monday: ['08:00', '09:00', '10:00'],
+        tuesday: ['07:00', '08:00', '09:00'],
+        wednesday: ['06:00', '07:00', '08:00', '09:00'],
+        thursday: ['14:00', '15:00', '16:00', '17:00', '18:00', '19:00'],
+        friday: ['20:00', '21:00', '22:00', '23:00'],
+        saturday: ['01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00'],
+        sunday: ['00:00'],
+    },
+    approvedStatus: 'APPROVED',
     pastBookings: [
         {
             _id: '5d6fa930082a80094132a662',

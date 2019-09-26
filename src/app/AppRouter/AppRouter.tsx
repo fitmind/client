@@ -6,7 +6,7 @@ import CONFIG from '../../config/config';
 import CustomerDashboard from '../../ecosystems/customer-user/customer-dashboard/customer-dashboard';
 import LoginPage from '../../ecosystems/customer-user/customer-login/customer-login';
 import CustomerProfileUpdatePage from '../../ecosystems/customer-user/customer-profile-update/CustomerProfileUpdate.page';
-import ExpertDashboardPage from '../../ecosystems/expert-user/expert-dashboard/ExpertDashboard.page';
+import ExpertDashboardPage from '../../ecosystems/expert-user/expert-dashboard/expert-dashboard';
 import ExpertLoginPage from '../../ecosystems/expert-user/expert-login/ExpertLogin.page';
 import ExpertProfileUpdate from '../../ecosystems/expert-user/expert-profile-update/ExpertProfileUpdate.page';
 import ExpertSignUpPage from '../../ecosystems/expert-user/expert-register/expert-register';

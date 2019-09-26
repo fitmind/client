@@ -1,5 +1,5 @@
-import { customerUser } from '../../interfaces/customer-user';
-import { expertUser } from '../../interfaces/expert-user';
+import { CustomerUser } from '../../interfaces/customer-user';
+import { ExpertUser } from '../../interfaces/expert-user';
 
 export const serverActions = {
     // customer user
@@ -15,11 +15,12 @@ export const serverActions = {
     SET_EXPERT_USER: 'SET_EXPERT_USER',
     GET_EXPERT_USER: 'GET_EXPERT_USER',
     REGISTER_EXPERT_USER: 'REGISTER_EXPERT_USER',
+    DELETE_EXPERT_USER: 'DELETE_EXPERT_USER',
     LOGOUT_EXPERT: 'LOGOUT_EXPERT',
 };
 
 export interface ServerActionTypes {
     type: string;
-    customerUser?: customerUser;
-    expertUser?: expertUser;
+    customerUser?: CustomerUser;
+    expertUser?: ExpertUser;
 }

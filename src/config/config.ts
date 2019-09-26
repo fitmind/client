@@ -1,5 +1,17 @@
+enum approvedStatus {
+    APPROVED = 'APPROVED',
+    PENDING = 'PENDING',
+    DENIED = 'DENIED',
+}
+
 const CONFIG = {
     defaultHeaders: { Accept: 'application/json', 'Content-Type': 'application/json' },
+    authorizedHeaders: {
+        mode: 'cors',
+        credentials: 'include',
+        headers: { Accept: 'application/json' },
+    },
+    approvedStatus,
     routes: {
         home: '/',
         listings: '/listings',
