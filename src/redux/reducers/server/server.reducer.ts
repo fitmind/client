@@ -6,6 +6,8 @@ import { ExpertUser } from '../../../interfaces/expert-user';
 export interface ServerStateInterface {
     expertUser?: ExpertUser;
     customerUser?: CustomerUser;
+    expertLoggedIn: boolean;
+    customerLoggedIn: boolean;
 }
 
 export const initialCustomerUser: CustomerUser = {
@@ -43,6 +45,8 @@ export const initialExpert: ExpertUser = {
 export const ServerInitialState: ServerStateInterface = {
     expertUser: initialExpert,
     customerUser: initialCustomerUser,
+    expertLoggedIn: false,
+    customerLoggedIn: false,
 };
 
 export const ServerReducer: Reducer<ServerStateInterface> = (
@@ -52,10 +56,18 @@ export const ServerReducer: Reducer<ServerStateInterface> = (
     switch (action.type) {
         case serverActions.SET_CUSTOMER_USER:
             return { ...state, customerUser: action.customerUser };
+        case serverActions.SET_CUSTOMER_LOGGED_IN:
+            return { ...state, customerLoggedIn: true };
+        case serverActions.SET_CUSTOMER_LOGGED_OUT:
+            return { ...state, customerLoggedIn: false };
         case serverActions.DELETE_CUSTOMER_USER:
             return { ...state, customerUser: initialCustomerUser };
         case serverActions.SET_EXPERT_USER:
             return { ...state, expertUser: action.expertUser };
+        case serverActions.SET_EXPERT_LOGGED_IN:
+            return { ...state, expertLoggedIn: true };
+        case serverActions.SET_EXPERT_LOGGED_OUT:
+            return { ...state, expertLoggedIn: false };
         case serverActions.DELETE_EXPERT_USER:
             return { ...state, expertUser: initialExpert };
         default:

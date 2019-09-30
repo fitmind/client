@@ -30,6 +30,7 @@ const CONFIG = {
         expertDashboard: '/experts/dashboard',
         expertProfileUpdate: '/expert/edit',
         expertPublicPage: '/experts/:id',
+        expertCreateListing: '/experts/listing/new',
         navigateToExpertPublicPage: (id: string) => `/experts/${id}`,
     },
     expertises: {

@@ -7,6 +7,7 @@ import { watchExpertLoginSaga } from '../ecosystems/expert-user/expert-login/exp
 import { watchRegisterExpertSaga } from '../ecosystems/expert-user/expert-register/expert-register.saga';
 import { watchGetExpertUser } from '../ecosystems/expert-user/expert-dashboard/expert-dashboard.saga';
 import { watchLogoutExpertSaga } from './flows/expert-logout/expert-logout.saga';
+import { watchCreateListing } from '../ecosystems/expert-user/listing-create/listing-create.saga';
 
 export function* rootSaga() {
     yield all([
@@ -21,5 +22,8 @@ export function* rootSaga() {
         watchRegisterExpertSaga(),
         watchGetExpertUser(),
         watchLogoutExpertSaga(),
+
+        // listings
+        watchCreateListing(),
     ]);
 }

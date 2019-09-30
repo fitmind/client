@@ -6,13 +6,13 @@ import CONFIG from '../../config/config';
 import { ApplicationState } from '../../redux/reducers/root.reducer';
 import { customerUserLogoutAction } from '../../redux/flows/customer-logout/customer-logout-action';
 import { bindActionCreators } from 'redux';
-import { CustomerUser } from '../../interfaces/customer-user';
-import { ExpertUser } from '../../interfaces/expert-user';
 import { expertUserLogoutAction } from '../../redux/flows/expert-logout/expert-logout-action';
+import { ExpertUser } from '../../interfaces/expert-user';
 
 interface PropsFromState {
-    customerUser: CustomerUser;
-    expertUser: ExpertUser;
+    customerLoggedIn: boolean;
+    expertLoggedIn: boolean;
+    expert: ExpertUser;
 }
 
 interface PropsFromDispatch {
@@ -23,11 +23,12 @@ interface PropsFromDispatch {
 type allProps = PropsFromState & RouteComponentProps & PropsFromDispatch;
 
 const NavBar: React.FC<allProps> = ({
-    customerUser,
-    expertUser,
+    customerLoggedIn,
+    expertLoggedIn,
     customerUserLogoutAction,
     expertUserLogoutAction,
     history,
+    expert,
 }) => (
     <Navbar bg="light" expand="lg">
         <Navbar.Brand onClick={() => history.push(CONFIG.routes.home)}>Fitmind</Navbar.Brand>
@@ -39,7 +40,7 @@ const NavBar: React.FC<allProps> = ({
                 <Nav.Link>Contact</Nav.Link>
             </Nav>
 
-            {customerUser.id && (
+            {customerLoggedIn && (
                 <ButtonGroup className="mr-2">
                     <Button
                         variant="outline-primary"
@@ -50,14 +51,14 @@ const NavBar: React.FC<allProps> = ({
                     </Button>
                 </ButtonGroup>
             )}
-            {!customerUser.id && !expertUser.id && (
+            {!customerLoggedIn && !expertLoggedIn && (
                 <ButtonGroup className="mr-2">
                     <Button variant="outline-primary" onClick={() => history.push(CONFIG.routes.customerLogin)}>
                         Customers
                     </Button>
                 </ButtonGroup>
             )}
-            {expertUser.id && (
+            {expertLoggedIn && (
                 <Button
                     variant="outline-secondary"
                     className={'mr-2'}
@@ -66,12 +67,21 @@ const NavBar: React.FC<allProps> = ({
                     Dashboard
                 </Button>
             )}
-            {!customerUser.id && !expertUser.id && (
+            {expertLoggedIn && expert.approvedStatus === CONFIG.approvedStatus.APPROVED && (
+                <Button
+                    variant="outline-success"
+                    className={'mr-2'}
+                    onClick={() => history.push(CONFIG.routes.expertCreateListing)}
+                >
+                    Create Listing
+                </Button>
+            )}
+            {!customerLoggedIn && !expertLoggedIn && (
                 <Button variant="outline-secondary" onClick={() => history.push(CONFIG.routes.expertLogin)}>
                     Experts
                 </Button>
             )}
-            {customerUser.id && (
+            {customerLoggedIn && (
                 <Button
                     variant="outline-secondary"
                     className={'mr-2'}
@@ -80,12 +90,12 @@ const NavBar: React.FC<allProps> = ({
                     Edit Profile
                 </Button>
             )}
-            {customerUser.id && (
+            {customerLoggedIn && (
                 <Button variant="outline-secondary" onClick={() => customerUserLogoutAction()}>
                     Customer Logout
                 </Button>
             )}
-            {expertUser.id && (
+            {expertLoggedIn && (
                 <Button
                     variant="outline-secondary"
                     className="mr-2"
@@ -94,7 +104,7 @@ const NavBar: React.FC<allProps> = ({
                     Edit Profile
                 </Button>
             )}
-            {expertUser.id && (
+            {expertLoggedIn && (
                 <Button variant="outline-secondary" onClick={() => expertUserLogoutAction()}>
                     Expert Logout
                 </Button>
@@ -113,8 +123,9 @@ const mapDispatchToProps = dispatch =>
     );
 
 const mapStateToProps = (state: ApplicationState) => ({
-    customerUser: state.server.customerUser,
-    expertUser: state.server.expertUser,
+    customerLoggedIn: state.server.customerLoggedIn,
+    expertLoggedIn: state.server.expertLoggedIn,
+    expert: state.server.expertUser,
 });
 
 export default withRouter(

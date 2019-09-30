@@ -1,7 +1,7 @@
-import { UserLoginActionInterface } from './customer-login.actions';
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { setCustomerLoggedIn, UserLoginActionInterface } from './customer-login.actions';
+import { call, delay, put, takeEvery } from 'redux-saga/effects';
 import { Notification, NotificationType } from '../../../interfaces/notification';
-import { setLoadingFalse, setLoadingTrue, setNotification } from '../../../redux/actions/ui.actions';
+import { clearNotification, setLoadingFalse, setLoadingTrue, setNotification } from '../../../redux/actions/ui.actions';
 import { createNotification } from '../../../utils/create-notification';
 import CONFIG from '../../../config/config';
 import { push } from 'connected-react-router';
@@ -46,6 +46,7 @@ export function* loginUserSaga(action: UserLoginActionInterface) {
         }
         if (statusCode === 201) {
             try {
+                yield put(setCustomerLoggedIn());
                 yield put(push(CONFIG.routes.customerDashboard));
                 yield put(setNotification(userLoginPositiveNotification));
             } catch (settingCustomerError) {
@@ -56,6 +57,10 @@ export function* loginUserSaga(action: UserLoginActionInterface) {
         yield put(setNotification(userLoginFailedNotification));
     } finally {
         yield put(setLoadingFalse());
+        if (process.env.NODE_ENV !== 'test') {
+            yield delay(5000);
+        }
+        yield put(clearNotification());
     }
 }
 

@@ -1,12 +1,12 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery, delay } from 'redux-saga/effects';
 import { NotificationType } from '../../../interfaces/notification';
-import { setLoadingFalse, setLoadingTrue, setNotification } from '../../../redux/actions/ui.actions';
+import { clearNotification, setLoadingFalse, setLoadingTrue, setNotification } from '../../../redux/actions/ui.actions';
 import { createNotification } from '../../../utils/create-notification';
 import CONFIG from '../../../config/config';
 import { push } from 'connected-react-router';
 import { serverActions } from '../../../redux/actions/server.actions';
-import { ExpertLoginAction } from './expert-login.actions';
-import { BAD_REQUEST, NOT_FOUND, CREATED } from 'http-status-codes';
+import { ExpertLoginAction, setExpertLoggedIn } from './expert-login.actions';
+import { BAD_REQUEST, NOT_FOUND, OK } from 'http-status-codes';
 
 const mode = 'cors';
 const credentials = 'include';
@@ -19,7 +19,6 @@ export const expertLoginFailedNotification = createNotification(
 );
 export const expertWrongDetails = createNotification(NotificationType.negative, 'The information entered is invalid');
 export const expertEmailNotFound = createNotification(NotificationType.negative, 'Could not find user');
-export const expertLoginServerError = createNotification(NotificationType.negative, 'Server Error');
 
 export async function apiLoginExpertUser({ email, password }: ExpertLoginAction) {
     return await fetch(`${API_URL}/expert/login`, {
@@ -42,18 +41,19 @@ export function* loginExpertSaga(action: ExpertLoginAction) {
         if (statusCode === NOT_FOUND) {
             yield put(setNotification(expertEmailNotFound));
         }
-        if (statusCode === CREATED) {
-            try {
-                yield put(push(CONFIG.routes.expertDashboard));
-                yield put(setNotification(expertLoginPositiveNotification));
-            } catch (settingCustomerError) {
-                yield put(setNotification(expertLoginServerError));
-            }
+        if (statusCode === OK) {
+            yield put(setExpertLoggedIn());
+            yield put(push(CONFIG.routes.expertDashboard));
+            yield put(setNotification(expertLoginPositiveNotification));
         }
     } catch (loginError) {
         yield put(setNotification(expertLoginFailedNotification));
     } finally {
         yield put(setLoadingFalse());
+        if (process.env.NODE_ENV !== 'test') {
+            yield delay(5000);
+        }
+        yield put(clearNotification());
     }
 }
 
