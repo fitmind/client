@@ -10,3 +10,9 @@ export const customerUserLoginAction = ({ email, password }): UserLoginActionInt
     email,
     password,
 });
+
+export type SetCustomerLoggedIn = Action<'SET_CUSTOMER_LOGGED_IN'>;
+
+export const setCustomerLoggedIn = (): SetCustomerLoggedIn => ({
+    type: 'SET_CUSTOMER_LOGGED_IN',
+});

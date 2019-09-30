@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import LoadingComponent from '../../atoms/Loading/Loading';
 import Notification from '../../atoms/Notification/Notification';
 import CONFIG from '../../config/config';
@@ -18,8 +18,38 @@ import NotFoundPage from '../../ecosystems/not-found-page/NotFound.page';
 import NavBar from '../../molecules/Navbar/Navbar';
 import BookingPage from '../../ecosystems/booking/BookingPage';
 import CustomerRegister from '../../ecosystems/customer-user/customer-register/customer-register';
+import { ApplicationState } from '../../redux/reducers/root.reducer';
+import { connect } from 'react-redux';
+import ListingCreate from '../../ecosystems/expert-user/listing-create/listing-create';
 
-const AppRouter: React.FC = () => (
+interface MapStateToProps {
+    expertLoggedIn: boolean;
+    customerLoggedIn: boolean;
+}
+
+type AllProps = MapStateToProps;
+
+const CustomerPrivateRoute = ({ component, isAuthenticated, ...rest }) => {
+    const routeComponent = props =>
+        isAuthenticated ? (
+            React.createElement(component, props)
+        ) : (
+            <Redirect to={{ pathname: CONFIG.routes.customerLogin }} />
+        );
+    return <Route {...rest} render={routeComponent} />;
+};
+
+const ExpertPrivateRoute = ({ component, isAuthenticated, ...rest }) => {
+    const routeComponent = props =>
+        isAuthenticated ? (
+            React.createElement(component, props)
+        ) : (
+            <Redirect to={{ pathname: CONFIG.routes.expertLogin }} />
+        );
+    return <Route {...rest} render={routeComponent} />;
+};
+
+const AppRouter: React.FC<AllProps> = ({ expertLoggedIn, customerLoggedIn }) => (
     <div>
         <NavBar />
         <LoadingComponent />
@@ -27,13 +57,39 @@ const AppRouter: React.FC = () => (
         <Switch>
             <Route path={CONFIG.routes.home} exact component={Home} />
             <Route path={CONFIG.routes.customerLogin} exact component={LoginPage} />
-            <Route path={CONFIG.routes.customerProfileUpdate} exact component={CustomerProfileUpdatePage} />
-            <Route path={CONFIG.routes.customerDashboard} exact component={CustomerDashboard} />
+            <CustomerPrivateRoute
+                isAuthenticated={customerLoggedIn}
+                path={CONFIG.routes.customerProfileUpdate}
+                exact
+                component={CustomerProfileUpdatePage}
+            />
+            <CustomerPrivateRoute
+                isAuthenticated={customerLoggedIn}
+                path={CONFIG.routes.customerDashboard}
+                exact
+                component={CustomerDashboard}
+            />
             <Route path={CONFIG.routes.customerRegister} exact component={CustomerRegister} />
             <Route path={CONFIG.routes.expertLogin} exact component={ExpertLoginPage} />
-            <Route path={CONFIG.routes.expertDashboard} exact component={ExpertDashboardPage} />
+            <ExpertPrivateRoute
+                isAuthenticated={expertLoggedIn}
+                path={CONFIG.routes.expertDashboard}
+                exact
+                component={ExpertDashboardPage}
+            />
             <Route path={CONFIG.routes.expertSignUp} exact component={ExpertSignUpPage} />
-            <Route path={CONFIG.routes.expertProfileUpdate} exact component={ExpertProfileUpdate} />
+            <ExpertPrivateRoute
+                isAuthenticated={expertLoggedIn}
+                path={CONFIG.routes.expertProfileUpdate}
+                exact
+                component={ExpertProfileUpdate}
+            />
+            <ExpertPrivateRoute
+                isAuthenticated={expertLoggedIn}
+                path={CONFIG.routes.expertCreateListing}
+                exact
+                component={ListingCreate}
+            />
             <Route path={CONFIG.routes.listings} exact component={ListingsPage} />
             <Route path={CONFIG.routes.listing} exact component={ListingSinglePage} />
             <Route path={CONFIG.routes.singleBooking} exact component={BookingPage} />
@@ -43,4 +99,12 @@ const AppRouter: React.FC = () => (
     </div>
 );
 
-export default AppRouter;
+const mapStateToProps = (state: ApplicationState) => ({
+    customerLoggedIn: state.server.customerLoggedIn,
+    expertLoggedIn: state.server.expertLoggedIn,
+});
+
+export default connect(
+    mapStateToProps,
+    null,
+)(AppRouter);

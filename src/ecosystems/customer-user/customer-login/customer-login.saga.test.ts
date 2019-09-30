@@ -8,7 +8,7 @@ import {
 } from './customer-login.saga';
 import { push } from 'connected-react-router';
 import { throwError } from 'redux-saga-test-plan/providers';
-import { setLoadingFalse, setLoadingTrue, setNotification } from '../../../redux/actions/ui.actions';
+import { clearNotification, setLoadingFalse, setLoadingTrue, setNotification } from '../../../redux/actions/ui.actions';
 import CONFIG from '../../../config/config';
 
 describe('customer login saga', () => {
@@ -19,6 +19,7 @@ describe('customer login saga', () => {
             .put(push(CONFIG.routes.customerDashboard))
             .put(setNotification(userLoginPositiveNotification))
             .put(setLoadingFalse())
+            .put(clearNotification())
             .run();
     });
 
@@ -30,6 +31,7 @@ describe('customer login saga', () => {
                 .put(setLoadingTrue())
                 .put(setNotification(userLoginFailedNotification))
                 .put(setLoadingFalse())
+                .put(clearNotification())
                 .run();
         });
     });

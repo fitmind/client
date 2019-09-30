@@ -10,3 +10,9 @@ export const expertUserLoginAction = ({ email, password }): ExpertLoginAction =>
     email,
     password,
 });
+
+export type SetExpertLoggedIn = Action<'SET_EXPERT_LOGGED_IN'>;
+
+export const setExpertLoggedIn = (): SetExpertLoggedIn => ({
+    type: 'SET_EXPERT_LOGGED_IN',
+});
