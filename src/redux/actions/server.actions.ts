@@ -1,5 +1,6 @@
 import { CustomerUser } from '../../interfaces/customer-user';
 import { ExpertUser } from '../../interfaces/expert-user';
+import { Listing } from '../../interfaces/listing';
 
 export const serverActions = {
     // customer user
@@ -22,12 +23,15 @@ export const serverActions = {
     DELETE_EXPERT_USER: 'DELETE_EXPERT_USER',
     LOGOUT_EXPERT: 'LOGOUT_EXPERT',
 
-    // listings
+    // listings-page
     CREATE_LISTING: 'CREATE_LISTING',
+    GET_LISTINGS: 'GET_LISTINGS',
+    SET_LISTINGS: 'SET_LISTINGS',
 };
 
 export interface ServerActionTypes {
     type: string;
     customerUser?: CustomerUser;
     expertUser?: ExpertUser;
+    listings?: Listing[];
 }

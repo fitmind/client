@@ -9,6 +9,7 @@ import { watchRegisterExpertSaga } from '../ecosystems/expert-user/expert-regist
 import { watchGetExpertUser } from '../ecosystems/expert-user/expert-dashboard/expert-dashboard.saga';
 import { watchLogoutExpertSaga } from './flows/expert-logout/expert-logout.saga';
 import { watchCreateListing } from '../ecosystems/expert-user/listing-create/listing-create.saga';
+import { watchGetListingsSaga } from '../ecosystems/listings-page/listings-page.saga';
 
 describe('root saga', () => {
     it('should react to the actions being called', () => {
@@ -27,8 +28,11 @@ describe('root saga', () => {
                 watchGetExpertUser(),
                 watchLogoutExpertSaga(),
 
-                // listings
+                // listings-page
                 watchCreateListing(),
+
+                // get listings
+                watchGetListingsSaga(),
             ]),
         );
     });

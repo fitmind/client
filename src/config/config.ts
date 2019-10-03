@@ -14,7 +14,7 @@ const CONFIG = {
     approvedStatus,
     routes: {
         home: '/',
-        listings: '/listings',
+        listings: '/listings-page',
         listing: '/listing/:id',
         listingId: (id: string) => `/listing/${id}`,
         NavigateToListing: (id: number): string => `/listing/${id}`,

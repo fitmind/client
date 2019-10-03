@@ -7,11 +7,11 @@ import CustomerDashboard from '../../ecosystems/customer-user/customer-dashboard
 import LoginPage from '../../ecosystems/customer-user/customer-login/customer-login';
 import CustomerProfileUpdatePage from '../../ecosystems/customer-user/customer-profile-update/CustomerProfileUpdate.page';
 import ExpertDashboardPage from '../../ecosystems/expert-user/expert-dashboard/expert-dashboard';
-import ExpertLoginPage from '../../ecosystems/expert-user/expert-login/ExpertLogin.page';
+import ExpertLoginPage from '../../ecosystems/expert-user/expert-login/expert-login.page';
 import ExpertProfileUpdate from '../../ecosystems/expert-user/expert-profile-update/ExpertProfileUpdate.page';
 import ExpertSignUpPage from '../../ecosystems/expert-user/expert-register/expert-register';
 import Home from '../../ecosystems/home/Home.page';
-import ListingsPage from '../../ecosystems/listings/Listings.page';
+import ListingsPage from '../../ecosystems/listings-page/listings-page';
 import ListingSinglePage from '../../ecosystems/listing-single/ListingsSingle.page';
 import ExpertPublicPage from '../../ecosystems/expert-user/expert-public-page/ExpertPublicPage';
 import NotFoundPage from '../../ecosystems/not-found-page/NotFound.page';
