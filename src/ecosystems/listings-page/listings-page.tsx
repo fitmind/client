@@ -32,11 +32,9 @@ interface MapDispatchToProps {
 type allProps = MapStateToProps & MapDispatchToProps;
 
 const ListingsPage: React.FC<allProps> = ({ listings, getListings }) => {
-    let allExpertises = { value: 'all', label: 'All' };
-
     useEffect(() => {
-        getListings({ page: 1, size: 20, expertise: allExpertises });
-    }, [getListings, allExpertises]);
+        getListings({ page: 1, size: 20 });
+    }, [getListings]);
 
     return (
         <Container fluid className={'mt-5 mb-5 text-center'}>
@@ -53,7 +51,7 @@ const ListingsPage: React.FC<allProps> = ({ listings, getListings }) => {
                                     initialValues={{
                                         minPrice: '',
                                         maxPrice: '',
-                                        expertise: allExpertises,
+                                        expertise: { value: 'all', label: 'All' },
                                     }}
                                     onSubmit={(values, actions) => {
                                         getListings({ size: 20, page: 1, ...values });
@@ -127,7 +125,10 @@ const ListingsPage: React.FC<allProps> = ({ listings, getListings }) => {
                                                     onChange={evt => {
                                                         setFieldValue('expertise', evt);
                                                     }}
-                                                    options={[allExpertises, ...getvaluesFromObj(CONFIG.expertises)]}
+                                                    options={[
+                                                        { value: 'all', label: 'All' },
+                                                        ...getvaluesFromObj(CONFIG.expertises),
+                                                    ]}
                                                     name={'expertise'}
                                                     closeMenuOnSelect={true}
                                                 />
