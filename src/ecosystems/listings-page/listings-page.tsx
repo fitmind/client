@@ -36,7 +36,7 @@ const ListingsPage: React.FC<allProps> = ({ listings, getListings }) => {
 
     useEffect(() => {
         getListings({ page: 1, size: 20, expertise: allExpertises });
-    }, [getListings]);
+    }, [getListings, allExpertises]);
 
     return (
         <Container fluid className={'mt-5 mb-5 text-center'}>
