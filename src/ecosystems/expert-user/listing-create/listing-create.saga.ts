@@ -24,7 +24,7 @@ export const invalidListingDataNotification = createNotification(NotificationTyp
 export interface ListingRequestBody {
     name: string;
     description: string;
-    price: string;
+    price: number;
     postCode: string;
     expertiseArea: string;
     pictureUrl: string;
@@ -43,7 +43,7 @@ export async function apiCreateListing(data: ListingRequestBody) {
 export function* createListingSaga(action: ListingCreateAction) {
     yield put(setLoadingTrue());
 
-    const price = action.price + '.00';
+    const price = parseInt(action.price);
     const data: ListingRequestBody = omit(['type'], { ...action, expertiseArea: action.expertiseArea.value, price });
     try {
         const response = yield call(apiCreateListing, data);

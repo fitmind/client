@@ -1,11 +1,12 @@
 import { Action } from 'redux';
 import { Listing } from '../../interfaces/listing';
+import { MultiSelectValues } from '../../interfaces/multi-select-values';
 
 export interface GetListingsAction extends Action<'GET_LISTINGS'> {
     page: string;
     minPrice: number;
     maxPrice: number;
-    expertise: string;
+    expertise: MultiSelectValues;
     size: number;
 }
 

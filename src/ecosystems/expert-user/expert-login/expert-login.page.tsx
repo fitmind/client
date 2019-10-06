@@ -34,7 +34,7 @@ const ExpertLoginPage: React.FC<LoginPageAllProps> = ({ expertUserLoginAction, h
                         <Card.Header as="h5">Expert Login</Card.Header>
                         <Card.Body>
                             <Formik
-                                initialValues={{ email: 'diegoromero.audio@gmail.com', password: 'ValidPassword123' }}
+                                initialValues={{ email: 'diego@mail.com', password: 'Testing123!' }}
                                 validationSchema={LoginSchema}
                                 onSubmit={(values, { setSubmitting }) => {
                                     expertUserLoginAction(values);
@@ -69,7 +69,6 @@ const ExpertLoginPage: React.FC<LoginPageAllProps> = ({ expertUserLoginAction, h
                                             <Form.Label column={true}>Password</Form.Label>
                                             <Form.Control
                                                 type="password"
-                                                placeholder="Password"
                                                 name="password"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
@@ -81,9 +80,6 @@ const ExpertLoginPage: React.FC<LoginPageAllProps> = ({ expertUserLoginAction, h
                                             <Form.Control.Feedback type="invalid">
                                                 {errors.password}
                                             </Form.Control.Feedback>
-                                            <Form.Text className="text-muted">
-                                                Password needs to have numbers and letters
-                                            </Form.Text>
                                         </Form.Group>
                                         <Button
                                             variant="outline-primary"

@@ -1,12 +1,11 @@
 import React from 'react';
-import { Card, CardColumns, ListGroup, ListGroupItem, Container, Pagination } from 'react-bootstrap';
-import listings from '../mock-listings.json';
-import yogaPicture from '../../../assets/images/yoga_picture.png';
+import { Card, CardColumns, ListGroup, ListGroupItem, Container, Pagination, Button } from 'react-bootstrap';
 import { RouteComponentProps, withRouter } from 'react-router';
 import CONFIG from '../../../config/config';
-import moment from 'moment';
-
-const mockDescription = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus iaculis, odio sed laoreet ornare, ex leo ultricies augue, eget laoreet est sapien at dui. Nulla cursus erat vitae ligula tincidunt, nec hendrerit augue molestie. Quisque et condimentum dui.`;
+import { Listing } from '../../../interfaces/listing';
+import { formatDate } from '../../../utils/format-date';
+import { parseExpertiseText } from '../../../utils/parse-expertise-text';
+import Header from '../../../atoms/Header/Header';
 
 const renderPagination = () => {
     let items = [];
@@ -21,31 +20,52 @@ const renderPagination = () => {
     return items;
 };
 
-const ListingsList: React.FC<RouteComponentProps> = props => (
+interface Props {
+    listings?: Listing[];
+}
+
+type AllProps = RouteComponentProps & Props;
+
+const ListingsList: React.FC<AllProps> = ({ listings, history }) => (
     <Container>
         <CardColumns>
-            {listings.map((listing, i) => (
-                <Card
-                    key={i}
-                    className={`mb-4`}
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => props.history.push(CONFIG.routes.listingId(listing._id))}
-                >
-                    <Card.Header>Qualified Yoga Teacher</Card.Header>
-                    <Card.Img variant="top" src={yogaPicture} />
-                    <Card.Title className={`mt-4`}>Diego Romero</Card.Title>
-                    <ListGroup className="list-group-flush">
-                        <ListGroupItem>Price: £{listing.price}.00</ListGroupItem>
-                        <ListGroupItem>Location: {listing.postCode}</ListGroupItem>
-                    </ListGroup>
-                    <Card.Body>
-                        <Card.Text>{mockDescription}</Card.Text>
-                    </Card.Body>
-                    <Card.Footer className="text-muted">
-                        Created: {moment(listing.createdTimeStamp).format('MMMM YYYY')}
-                    </Card.Footer>
-                </Card>
-            ))}
+            {listings.length === 0 && (
+                <div>
+                    <Header as={'h2'}>Sorry there are no listings available</Header>
+                </div>
+            )}
+            {listings.length > 0 &&
+                listings.map((listing, i) => (
+                    <Card key={i} className={`mb-4 text-center`}>
+                        <Card.Header>{listing.name}</Card.Header>
+                        <Card.Img variant="top" src={listing.pictureUrl} />
+                        <ListGroup className="list-group-flush">
+                            <ListGroupItem>
+                                <span className={'font-weight-bold'}>Price: £</span>
+                                {listing.price}.00
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                <span className={'font-weight-bold'}>Location: </span>
+                                {listing.postCode}
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                <span className={'font-weight-bold'}>Expertise: </span>
+                                {parseExpertiseText(listing.expertiseArea)}
+                            </ListGroupItem>
+                        </ListGroup>
+                        <Card.Body>
+                            <span className={'font-weight-bold'}>Description: </span>
+                            <Card.Text>{listing.description}</Card.Text>
+                            <Button onClick={() => history.push(CONFIG.routes.listingId(listing._id))}>
+                                View Listing
+                            </Button>
+                        </Card.Body>
+                        <Card.Footer className="text-muted">
+                            <span className={'font-weight-bold'}>Created: </span>
+                            {formatDate(listing.createdTimeStamp)}
+                        </Card.Footer>
+                    </Card>
+                ))}
         </CardColumns>
         <Pagination className={'d-flex justify-content-center mt-4'}>{renderPagination()}</Pagination>
     </Container>

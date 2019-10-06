@@ -17,10 +17,9 @@ export const getListingsFailed = createNotification(
 
 export async function apiGetListings({ page, size, minPrice, maxPrice, expertise }: GetListingsAction) {
     let params = { page, size };
-
     if (minPrice) params['min_price'] = minPrice;
     if (maxPrice) params['max_price'] = maxPrice;
-    if (expertise) params['expertise'] = expertise;
+    if (expertise && expertise.value !== 'all') params['expertise'] = expertise.value;
 
     const query = queryString.stringify(params);
 

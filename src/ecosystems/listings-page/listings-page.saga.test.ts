@@ -13,7 +13,7 @@ describe('getListingsSaga', () => {
         size: 20,
         minPrice: 100,
         maxPrice: 200,
-        expertise: 'YOGA_TEACHER',
+        expertise: { label: '', value: 'YOGA_TEACHER' },
     };
     const action: GetListingsAction = {
         type: 'GET_LISTINGS',
