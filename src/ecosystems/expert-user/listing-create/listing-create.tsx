@@ -16,8 +16,8 @@ const ListingCreateSchema = Yup.object().shape({
         .max(24, 'Too Long!')
         .required('Required'),
     price: Yup.string()
-        .min(2, 'Too Short!')
-        .max(8, 'Too Long!')
+        .min(1)
+        .max(4)
         .required('Required'),
     description: Yup.string()
         .min(6, 'Too Short!')

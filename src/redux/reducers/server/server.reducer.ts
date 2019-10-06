@@ -2,12 +2,14 @@ import { Reducer } from 'redux';
 import { serverActions, ServerActionTypes } from '../../actions/server.actions';
 import { CustomerUser } from '../../../interfaces/customer-user';
 import { ExpertUser } from '../../../interfaces/expert-user';
+import { Listing } from '../../../interfaces/listing';
 
 export interface ServerStateInterface {
     expertUser?: ExpertUser;
     customerUser?: CustomerUser;
     expertLoggedIn: boolean;
     customerLoggedIn: boolean;
+    listings?: Listing[];
 }
 
 export const initialCustomerUser: CustomerUser = {
@@ -47,6 +49,7 @@ export const ServerInitialState: ServerStateInterface = {
     customerUser: initialCustomerUser,
     expertLoggedIn: false,
     customerLoggedIn: false,
+    listings: [],
 };
 
 export const ServerReducer: Reducer<ServerStateInterface> = (
@@ -70,6 +73,8 @@ export const ServerReducer: Reducer<ServerStateInterface> = (
             return { ...state, expertLoggedIn: false };
         case serverActions.DELETE_EXPERT_USER:
             return { ...state, expertUser: initialExpert };
+        case serverActions.SET_LISTINGS:
+            return { ...state, listings: action.listings };
         default:
             return state;
     }
